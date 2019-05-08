@@ -27,6 +27,9 @@ public class Class {
 		this.sessions = sessions;
 	}
 	
+	
+	
+	
 	/**
 	 * @author fijewskij
 	 * Internal class to hold the different sessions of GTC Classes
