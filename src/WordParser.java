@@ -1,4 +1,5 @@
 import java.io.FileInputStream;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.ListIterator;
 
@@ -27,8 +28,10 @@ public class WordParser {
 		IBodyElement element = (IBodyElement) bodyElementIterator.next();
 		java.util.List<XWPFParagraph> paragraphList;
 		
+		ArrayList students = new ArrayList<String>();
+		
 		XWPFTable table = null;
-		XWPFParagraph className = null;
+		String className = null;
 
 		while (bodyElementIterator.hasNext()) {
 			
@@ -43,8 +46,9 @@ public class WordParser {
 			if ("PARAGRAPH".equalsIgnoreCase(element.getElementType().name())) {
 				if (((XWPFParagraph)element).getParagraphText().startsWith("Class") 
 						|| ((XWPFParagraph)element).getParagraphText().startsWith("class")) {
-					className = ((XWPFParagraph)element);
-					System.out.println(className.getParagraphText());
+					className = (((XWPFParagraph)element).getParagraphText());
+					System.out.println(className);
+					
 				}
 			}
 			//System.out.println(element.getElementType().name());
@@ -56,13 +60,34 @@ public class WordParser {
 
 						for (int j = 0; j < table.getRow(i).getTableCells().size(); j++) {
 							
+							// Find the different sessions and their dates.
+							// If statement looks for the key word "session" within the first column of the table.
+							if ((table.getRow(i).getCell(j).getText().startsWith("Session")
+									|| table.getRow(i).getCell(j).getText().startsWith("session"))
+									&& j == 0) {
+								
+								String sessionName = table.getRow(i).getCell(j).getText();
+								System.out.println("sessionName: " + sessionName);
+								
+								System.out.println("row size " + table.getRow(i).toString());
+								
+								String startDate = table.getRow(i).getCell(j+1).getText();
+								System.out.println("startDate: " + startDate);
+
+							//	Session session = new Session()
+							}
+							
 							// Find the Technician Name column
 							if (table.getRow(i).getCell(j).getText().equals("Technician Name")) {
 								// Get all techs
 								for(int k = i+1; k < table.getRows().size(); k++) {
 								
-									System.out.println(table.getRow(k).getCell(j).getText());
+									students.add(table.getRow(k).getCell(j).getText());
+									System.out.println("Added student: " + table.getRow(k).getCell(j).getText());
 								}
+								
+								System.out.println("");
+
 								//POIXMLDocumentPart className =  prevElement.getPart().getPackagePart().getContentType();
 								
 							}

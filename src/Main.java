@@ -12,7 +12,9 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		WordParser.findClases("Test_Schedule.docx");
+		String filename = "Test_Schedule.docx";
+
+		WordParser.findClases(filename);
 	}
 
 }
