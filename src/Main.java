@@ -11,10 +11,12 @@ import org.apache.xmlbeans.impl.xb.xsdschema.ListDocument.List;
 public class Main {
 
 	public static void main(String[] args) {
+		
+		String fileName = "Test_Schedule_new.docx";
+		
+		System.out.println("Reading from " + fileName);
 
-		String filename = "Test_Schedule.docx";
-
-		WordParser.findClases(filename);
+		WordParser.findClases(fileName);
 	}
 
 }

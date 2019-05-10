@@ -18,6 +18,7 @@ public class Class {
 		this.technicans = technicans;
 		this.startDate = startDate;
 		this.endDate = endDate;
+		this.className = className;
 	}
 	
 
@@ -28,23 +29,7 @@ public class Class {
 	}
 	
 	
-	
-	
-	/**
-	 * @author fijewskij
-	 * Internal class to hold the different sessions of GTC Classes
-	 */
-	public class Session{
-		String sessionName;
-		String startDate;
-		String endDate;
-		
-		public Session(String sessionName, String startDate, String endDate) {
-			this.sessionName = sessionName;
-			this.startDate = startDate;
-			this.endDate = endDate;
-		}
-	}
+
 	
 }
 
