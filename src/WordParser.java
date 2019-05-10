@@ -31,7 +31,6 @@ public class WordParser {
 		IBodyElement element = (IBodyElement) bodyElementIterator.next();
 		java.util.List<XWPFParagraph> paragraphList;
 		
-		ArrayList students = new ArrayList<String>();
 		ArrayList sessions = new ArrayList<Session>();
 		ArrayList classes = new ArrayList<Class>();
 
@@ -92,6 +91,8 @@ public class WordParser {
 							}
 							
 							// Find the Technician Name column
+							ArrayList students = new ArrayList<String>();
+					
 							if (table.getRow(i).getCell(j).getText().equals("Technician Name")) {
 								// Get all techs
 								for(int k = i+1; k < table.getRows().size(); k++) {
