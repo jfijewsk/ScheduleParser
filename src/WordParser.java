@@ -91,7 +91,7 @@ public class WordParser {
 							}
 							
 							// Find the Technician Name column
-							ArrayList students = new ArrayList<String>();
+							ArrayList students = new ArrayList<Technician>();
 					
 							if (table.getRow(i).getCell(j).getText().equals("Technician Name")) {
 								// Get all techs
@@ -100,7 +100,12 @@ public class WordParser {
 									// make sure not to add a blank tech
 									if (table.getRow(k).getCell(j).getText() != null 
 											|| !table.getRow(k).getCell(j).getText().equals("")) {
-										students.add(table.getRow(k).getCell(j).getText());
+										
+										String name = table.getRow(k).getCell(j).getText();
+										String branch = table.getRow(k).getCell(j - 1).getText();
+										String startDate = table.getRow(k).getCell(j + 1).getText();
+										
+										students.add(new Technician(name, branch, startDate));
 										System.out.println("Added student: " + table.getRow(k).getCell(j).getText());
 									}
 

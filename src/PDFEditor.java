@@ -26,10 +26,10 @@ public class PDFEditor {
 			    PDField field = (PDField) acroForm.getField( "Tech Names" );
 			    
 			    // Changing the techs names on the pdf
-			    ArrayList<String> enrolledTechs = classes.get(0).getTechnicans();
+			    ArrayList<Technician> enrolledTechs = classes.get(0).getTechnicans();
 			    for (int i = 0; i < enrolledTechs.size(); i++) {
 			    	
-			    	allTechs = allTechs.concat(enrolledTechs.get(i) +  "\n");
+			    	allTechs = allTechs.concat(enrolledTechs.get(i).getName() +  "\n");
 				    
 			    }
 			    
