@@ -22,7 +22,7 @@ import org.apache.xmlbeans.impl.xb.xsdschema.ListDocument.List;
  */
 public class WordParser {
 	
-	public static void findClases(String fileName) {
+	public static ArrayList<Class> findClases(String fileName) {
 				
 	try {
 		FileInputStream fis = new FileInputStream(fileName);
@@ -33,6 +33,8 @@ public class WordParser {
 		
 		ArrayList students = new ArrayList<String>();
 		ArrayList sessions = new ArrayList<Session>();
+		ArrayList classes = new ArrayList<Class>();
+
 		
 		XWPFTable table = null;
 		String className = null;
@@ -104,6 +106,7 @@ public class WordParser {
 								}
 								
 								Class classGTC = new Class(students, className, sessions);
+								classes.add(classGTC);
 								System.out.println("");
 
 								//POIXMLDocumentPart className =  prevElement.getPart().getPackagePart().getContentType();
@@ -123,10 +126,12 @@ public class WordParser {
 
 			}
 		
-
+		return classes;
 
 	} catch (Exception ex) {
 		ex.printStackTrace();
 	}
+
+	return null;
 }
 }

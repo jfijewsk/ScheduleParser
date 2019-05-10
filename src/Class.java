@@ -20,12 +20,37 @@ public class Class {
 		this.endDate = endDate;
 		this.className = className;
 	}
-	
+
 
 	// GTC class constructor
 	public Class(ArrayList technicans,String className, ArrayList sessions) {
 		this.technicans = technicans;
 		this.sessions = sessions;
+	}
+	
+
+	public ArrayList getTechnicans() {
+		return technicans;
+	}
+
+
+	public ArrayList getSessions() {
+		return sessions;
+	}
+
+
+	public String getStartDate() {
+		return startDate;
+	}
+
+
+	public String getEndDate() {
+		return endDate;
+	}
+
+
+	public String getClassName() {
+		return className;
 	}
 	
 	
