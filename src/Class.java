@@ -6,12 +6,12 @@ import java.util.ArrayList;
  */
 public class Class {
 
-	ArrayList technicans = new ArrayList<String>();
-	ArrayList sessions = new ArrayList<Session>();
+	private ArrayList technicans = new ArrayList<String>();
+	private ArrayList<Session> sessions = new ArrayList<Session>();
 
-	String startDate;
-	String endDate;
-	String className;
+	private String startDate;
+	private String endDate;
+	private String className;
 
 	// Non-GTC class constructor 
 	public Class(ArrayList technicans, String startDate, String endDate, String className) {
@@ -26,6 +26,7 @@ public class Class {
 	public Class(ArrayList technicans,String className, ArrayList sessions) {
 		this.technicans = technicans;
 		this.sessions = sessions;
+		this.className = className;
 	}
 	
 
@@ -34,7 +35,7 @@ public class Class {
 	}
 
 
-	public ArrayList getSessions() {
+	public ArrayList<Session> getSessions() {
 		return sessions;
 	}
 

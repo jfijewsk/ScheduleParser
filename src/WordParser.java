@@ -107,6 +107,7 @@ public class WordParser {
 										
 										students.add(new Technician(name, branch, startDate));
 										System.out.println("Added student: " + table.getRow(k).getCell(j).getText());
+										
 									}
 
 								}

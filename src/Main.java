@@ -17,12 +17,14 @@ public class Main {
 		String doorSignFileName = "Training Door Sign Auto-Fill.pdf";
 		
 		ArrayList classes = new ArrayList<Class>();
-		
+			
 		System.out.println("Reading from " + fileName);
 
 		classes = WordParser.findClases(fileName);
 		
-		PDFEditor.fillDoorSign(doorSignFileName, classes);
+		PDFEditor.fillDoorSign(doorSignFileName, (Class)classes.get(0));
+		
+		
 	}
 
 }
