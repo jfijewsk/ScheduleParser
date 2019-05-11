@@ -34,7 +34,7 @@ public class PDFEditor {
 			    PDField techNameField = (PDField) acroForm.getField( "Tech Names" );
 			    PDField techBranchField = (PDField) acroForm.getField( "Tech Branch" );
 			    PDField startDateField = (PDField) acroForm.getField( "Class Dates" );
-			    PDComboBox trainer = (PDComboBox) acroForm.getField( "Trainer" );
+			    PDComboBox trainerCombo = (PDComboBox) acroForm.getField( "Trainer" );
 
 			    
 			    // Changing the techs names on the pdf
@@ -47,13 +47,14 @@ public class PDFEditor {
 				    
 			    }
 			    
+			    // Fill out pdf
 			    techNameField.setValue(allTechs);
 			    techBranchField.setValue(allBranches);
 			    startDateField.setValue(classInfo.getSessions().get(0).getDateRange());
 		    	
 			    List allTrainers = config.getList("allTrainers");
-			    System.out.println(allTrainers.get(1).toString());
-			    trainer.setOptions(allTrainers);
+			    trainerCombo.setOptions(allTrainers);
+			    trainerCombo.setValue(config.getString("trainerName"));
 			    
 			    
 			    pdfDocument.save(fileName);
