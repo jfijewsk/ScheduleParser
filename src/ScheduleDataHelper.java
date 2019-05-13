@@ -16,6 +16,8 @@ public class ScheduleDataHelper {
 	
 	public static Class[] getAllGTCClasses() {
 		ArrayList<Class> classes = WordParser.findClases(prop.getScheduleFileName());
+		
+//		System.out.println("SCHEDULED class shows " + classes.get(0).getSessions().get(0).getSessionName());
 		Class[] GTCclasses = new Class[classes.size()];
 		
 		for(int i = 0; i < classes.size(); i ++) {
@@ -28,6 +30,8 @@ public class ScheduleDataHelper {
 	
 	
 	public static Session[] getAllSessions(Class inputClass) {
+		
+		System.out.println("Found class with: " + inputClass.getSessions().size()  +   " sessions");
 		Session[] GTCsessions = new Session[inputClass.getSessions().size()];
 		
 		for(int i = 0; i < inputClass.getSessions().size(); i ++) {

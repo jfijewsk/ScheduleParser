@@ -6,15 +6,15 @@ import java.util.ArrayList;
  */
 public class Class {
 
-	private ArrayList technicans = new ArrayList<String>();
-	private ArrayList<Session> sessions = new ArrayList<Session>();
+	private ArrayList<Technician> technicans;
+	private ArrayList<Session> sessions;
 
 	private String startDate;
 	private String endDate;
 	private String className;
 
 	// Non-GTC class constructor 
-	public Class(ArrayList technicans, String startDate, String endDate, String className) {
+	public Class(ArrayList<Technician> technicans, String startDate, String endDate, String className) {
 		this.technicans = technicans;
 		this.startDate = startDate;
 		this.endDate = endDate;
@@ -23,14 +23,16 @@ public class Class {
 
 
 	// GTC class constructor
-	public Class(ArrayList technicans,String className, ArrayList sessions) {
+	public Class(ArrayList<Technician> technicans, String className, ArrayList<Session> sessions) {
 		this.technicans = technicans;
 		this.sessions = sessions;
 		this.className = className;
+		
+		System.out.println("Created in the constructor: " + sessions.get(0).getSessionName());
 	}
 	
 
-	public ArrayList getTechnicans() {
+	public ArrayList<Technician> getTechnicans() {
 		return technicans;
 	}
 

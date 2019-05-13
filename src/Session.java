@@ -34,4 +34,9 @@ public class Session{
 		return startDateDashSplit[0] + "/" + startDateDashSplit[1] 
 				+ " - " + endDateDashSplit[0] + "/" + endDateDashSplit[1];
 	}
+	
+	@Override
+	public String toString() {
+		return sessionName;
+	}
 }

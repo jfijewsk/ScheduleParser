@@ -23,25 +23,20 @@ import org.apache.xmlbeans.impl.xb.xsdschema.ListDocument.List;
 public class WordParser {
 	
 	public static ArrayList<Class> findClases(String fileName) {
+		
+		ArrayList<Class> classes = new ArrayList<Class>();
 				
 	try {
 		FileInputStream fis = new FileInputStream(fileName);
 		XWPFDocument xdoc = new XWPFDocument(OPCPackage.open(fis));
-		Iterator bodyElementIterator = xdoc.getBodyElementsIterator();
+		Iterator<?> bodyElementIterator = xdoc.getBodyElementsIterator();
 		IBodyElement element = (IBodyElement) bodyElementIterator.next();
 		java.util.List<XWPFParagraph> paragraphList;
-		
-		ArrayList sessions = new ArrayList<Session>();
-		ArrayList classes = new ArrayList<Class>();
-
 		
 		XWPFTable table = null;
 		String className = null;
 
 		while (bodyElementIterator.hasNext()) {
-			
-//			System.out.println(element.getElementType().name());
-//			System.out.println(element.getClass());
 
 			// If next is a paragraph increase paragraph index
 		    element = (IBodyElement) bodyElementIterator.next();
@@ -54,18 +49,17 @@ public class WordParser {
 					
 					
 					className = (((XWPFParagraph)element).getParagraphText());
-//					System.out.println("className: " + className);
 					
 				}
 			}
-			//System.out.println(element.getElementType().name());
 
 			if ("TABLE".equalsIgnoreCase(element.getElementType().name())) {
-				
 				
 				table = (XWPFTable) element;
 				
 				  XWPFTableRow[] rows = table.getRows().toArray(new XWPFTableRow[0]);
+				  
+					ArrayList<Session> sessions = new ArrayList<Session>();
 				  
 					for (int i = 0; i < table.getRows().size(); i++) {
 
@@ -78,20 +72,17 @@ public class WordParser {
 									&& j == 0) {
 								
 								String sessionName = table.getRow(i).getCell(j).getText();
-//								System.out.println("sessionName: " + sessionName);
 																
 								String startDate = table.getRow(i).getCell(j+1).getText();
-//								System.out.println("startDate: " + startDate);
 								
 								String endDate = table.getRow(i).getCell(j+2).getText();
-//								System.out.println("endDate: " + endDate);
 								
 								Session session = new Session(sessionName, startDate, endDate);
 								sessions.add(session);
 							}
 							
 							// Find the Technician Name column
-							ArrayList students = new ArrayList<Technician>();
+							ArrayList<Technician> students = new ArrayList<Technician>();
 					
 							if (table.getRow(i).getCell(j).getText().equals("Technician Name")) {
 								// Get all techs
@@ -114,31 +105,33 @@ public class WordParser {
 								
 								Class classGTC = new Class(students, className, sessions);
 								classes.add(classGTC);
-//								System.out.println("");
+								
+								System.out.println("Added a class with :" + sessions.get(0).getSessionName());
+								System.out.println("The actual class object shows :" + classGTC.getSessions().get(0).getSessionName());
 
-								//POIXMLDocumentPart className =  prevElement.getPart().getPackagePart().getContentType();
+
 								
 							}
-							
-/*								// Dont print if empty
-							if (table.getRow(i).getCell(j).getText() != null || 
-									!table.getRow(i).getCell(j).getText().equals("")) {
-								System.out.println(table.getRow(i).getCell(j).getText());
-								
-							}
-							*/
-						}
-					}
-				}
 
+						} // end of each col loop
+					} // end of each row loop
+					
+
+					// Reset sessions
+//					sessions.clear();
+				} // end of found table loop
+			
+
+			// end of while loop
 			}
 		
+		System.out.println("At the end of WordPArser # of sessions is: " + classes.get(1).getSessions().size());
 		return classes;
 
 	} catch (Exception ex) {
 		ex.printStackTrace();
 	}
+	return classes;
 
-	return null;
 }
 }

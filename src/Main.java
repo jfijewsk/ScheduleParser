@@ -17,10 +17,10 @@ public class Main {
 		// init properties file
 		Properties prop = Properties.getInstance();
 		
-		String fileName = prop.getScheduleFileName();
-		String doorSignFileName = prop.getDoorSignFileName();
+//		String fileName = prop.getScheduleFileName();
+//		String doorSignFileName = prop.getDoorSignFileName();
 		
-		ArrayList classes = new ArrayList<Class>();
+//		ArrayList classes = new ArrayList<Class>();
 			
 //		classes = WordParser.findClases(fileName);
 		

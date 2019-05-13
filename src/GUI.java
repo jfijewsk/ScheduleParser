@@ -80,13 +80,6 @@ public class GUI extends javax.swing.JFrame {
             techTable.getColumnModel().getColumn(1).setMaxWidth(150);
         }
 
-        GTCSessionCombo.setModel(new javax.swing.DefaultComboBoxModel<>());
-        GTCSessionCombo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                GTCSessionComboActionPerformed(evt);
-            }
-        });
-
         GTCClassNumCombo1.setModel(new javax.swing.DefaultComboBoxModel<>(ScheduleDataHelper.getAllGTCClasses()));
         GTCClassNumCombo1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -96,6 +89,18 @@ public class GUI extends javax.swing.JFrame {
         GTCClassNumCombo1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 GTCClassNumCombo1PropertyChange(evt);
+            }
+        });
+        
+
+    	Class selectedClass = (Class) GTCClassNumCombo1.getSelectedItem();
+    	System.out.println("GUI selected class: " + selectedClass);
+    	System.out.println("GUI selected class shows to have: " + selectedClass.getTechnicans().size() + " techs");
+    	System.out.println("GUI selected class shows to have: " + selectedClass.getSessions().size() + " sessions");
+    	GTCSessionCombo.setModel(new javax.swing.DefaultComboBoxModel<>(ScheduleDataHelper.getAllSessions(selectedClass)));
+        GTCSessionCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GTCSessionComboActionPerformed(evt);
             }
         });
 
