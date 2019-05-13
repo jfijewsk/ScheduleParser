@@ -22,7 +22,9 @@ public class Main {
 
 		classes = WordParser.findClases(fileName);
 		
-		PDFEditor.fillDoorSign(doorSignFileName, (Class)classes.get(0));
+//		PDFEditor.fillDoorSign(doorSignFileName, (Class)classes.get(0));
+		
+		GUI gui = new GUI();
 		
 		
 	}

@@ -6,10 +6,6 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/SER316/Schedule_Parser/src/Resources/poi-4.1.0.jar"/>
-	<classpathentry kind="lib" path="C:/SER316/Schedule_Parser/src/Resources/pdfbox-2.0.15.jar"/>
-	<classpathentry kind="lib" path="C:/SER316/Schedule_Parser/src/Resources/poi-ooxml-4.1.0.jar"/>
-	<classpathentry kind="lib" path="C:/SER316/Schedule_Parser/src/Resources/xmlbeans-3.1.0.jar"/>
 	<classpathentry kind="lib" path="C:/SER316/Schedule_Parser/src/Resources/lib/activation-1.1.1.jar"/>
 	<classpathentry kind="lib" path="C:/SER316/Schedule_Parser/src/Resources/lib/commons-codec-1.12.jar"/>
 	<classpathentry kind="lib" path="C:/SER316/Schedule_Parser/src/Resources/lib/commons-collections4-4.3.jar"/>
@@ -21,6 +17,15 @@
 	<classpathentry kind="lib" path="C:/SER316/Schedule_Parser/src/Resources/lib/jaxb-impl-2.3.0.1.jar"/>
 	<classpathentry kind="lib" path="C:/SER316/Schedule_Parser/src/Resources/lib/junit-4.12.jar"/>
 	<classpathentry kind="lib" path="C:/SER316/Schedule_Parser/src/Resources/lib/log4j-1.2.17.jar"/>
+	<classpathentry kind="lib" path="C:/SER316/Schedule_Parser/src/Resources/commons-beanutils-1.9.3.jar"/>
 	<classpathentry kind="lib" path="C:/SER316/Schedule_Parser/src/Resources/commons-configuration2-2.4.jar"/>
+	<classpathentry kind="lib" path="C:/SER316/Schedule_Parser/src/Resources/commons-lang3-3.9.jar"/>
+	<classpathentry kind="lib" path="C:/SER316/Schedule_Parser/src/Resources/commons-text-1.6.jar"/>
+	<classpathentry kind="lib" path="C:/SER316/Schedule_Parser/src/Resources/fontbox-2.0.15.jar"/>
+	<classpathentry kind="lib" path="C:/SER316/Schedule_Parser/src/Resources/pdfbox-2.0.15.jar"/>
+	<classpathentry kind="lib" path="C:/SER316/Schedule_Parser/src/Resources/poi-4.1.0.jar"/>
+	<classpathentry kind="lib" path="C:/SER316/Schedule_Parser/src/Resources/poi-ooxml-4.1.0.jar"/>
+	<classpathentry kind="lib" path="C:/SER316/Schedule_Parser/src/Resources/poi-ooxml-schemas-4.1.0.jar"/>
+	<classpathentry kind="lib" path="C:/SER316/Schedule_Parser/src/Resources/xmlbeans-3.1.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
