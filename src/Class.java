@@ -27,8 +27,6 @@ public class Class {
 		this.technicans = technicans;
 		this.sessions = sessions;
 		this.className = className;
-		
-		System.out.println("Created in the constructor: " + sessions.get(0).getSessionName());
 	}
 	
 

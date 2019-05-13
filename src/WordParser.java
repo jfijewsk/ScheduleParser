@@ -106,11 +106,6 @@ public class WordParser {
 								Class classGTC = new Class(students, className, sessions);
 								classes.add(classGTC);
 								
-								System.out.println("Added a class with :" + sessions.get(0).getSessionName());
-								System.out.println("The actual class object shows :" + classGTC.getSessions().get(0).getSessionName());
-
-
-								
 							}
 
 						} // end of each col loop
@@ -125,7 +120,6 @@ public class WordParser {
 			// end of while loop
 			}
 		
-		System.out.println("At the end of WordPArser # of sessions is: " + classes.get(1).getSessions().size());
 		return classes;
 
 	} catch (Exception ex) {

@@ -47,39 +47,6 @@ public class GUI extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(885, 527));
         setResizable(false);
 
-        techTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "Technician", "Branch"
-            }
-        ) {
-
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
-
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        techTable.setColumnSelectionAllowed(true);
-        techTable.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-        techTable.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-        techTable.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(techTable);
-        techTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-        if (techTable.getColumnModel().getColumnCount() > 0) {
-            techTable.getColumnModel().getColumn(1).setMinWidth(100);
-            techTable.getColumnModel().getColumn(1).setPreferredWidth(100);
-            techTable.getColumnModel().getColumn(1).setMaxWidth(150);
-        }
-
         GTCClassNumCombo1.setModel(new javax.swing.DefaultComboBoxModel<>(ScheduleDataHelper.getAllGTCClasses()));
         GTCClassNumCombo1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,9 +61,6 @@ public class GUI extends javax.swing.JFrame {
         
 
     	Class selectedClass = (Class) GTCClassNumCombo1.getSelectedItem();
-    	System.out.println("GUI selected class: " + selectedClass);
-    	System.out.println("GUI selected class shows to have: " + selectedClass.getTechnicans().size() + " techs");
-    	System.out.println("GUI selected class shows to have: " + selectedClass.getSessions().size() + " sessions");
     	GTCSessionCombo.setModel(new javax.swing.DefaultComboBoxModel<>(ScheduleDataHelper.getAllSessions(selectedClass)));
         GTCSessionCombo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -177,6 +141,40 @@ public class GUI extends javax.swing.JFrame {
                 jMenuConfigActionPerformed(evt);
             }
         });
+        
+ /*       techTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Technician", "Branch"
+            }
+        ) {
+
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });*/
+        
+        fillTechTable();
+        
+        techTable.setColumnSelectionAllowed(true);
+        techTable.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        techTable.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        techTable.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(techTable);
+        techTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        if (techTable.getColumnModel().getColumnCount() > 0) {
+            techTable.getColumnModel().getColumn(1).setMinWidth(100);
+            techTable.getColumnModel().getColumn(1).setPreferredWidth(100);
+            techTable.getColumnModel().getColumn(1).setMaxWidth(150);
+        }
+        
         jMenu2.add(jMenuConfig);
 
         jMenuBar1.add(jMenu2);
@@ -262,8 +260,12 @@ public class GUI extends javax.swing.JFrame {
     // for selecting the different sessions.
     private void GTCClassNumCombo1ActionPerformed(java.awt.event.ActionEvent evt) {  
     	        
+    	// Populate the session combo
     	Class selectedClass = (Class) GTCClassNumCombo1.getSelectedItem();
     	GTCSessionCombo.setModel(new javax.swing.DefaultComboBoxModel<>(ScheduleDataHelper.getAllSessions(selectedClass)));
+    	
+    	// Populate the tech table
+    	fillTechTable();
 
     }                                                 
 
@@ -362,4 +364,14 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel selectTechLbl;
     private javax.swing.JTable techTable;
     // End of variables declaration                   
+    
+    private void fillTechTable() {
+    	Class selectedClass = (Class) GTCClassNumCombo1.getSelectedItem();
+    	// Populate the tech table
+    	for (int i = 0; i < selectedClass.getTechnicans().size(); i++) {
+    		techTable.setValueAt(selectedClass.getTechnicans().get(i).getName(), 0, 0);
+    		techTable.setValueAt(selectedClass.getTechnicans().get(i).getBranch(), 0, 1);
+
+    	}
+    }
 }
