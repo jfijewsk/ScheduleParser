@@ -22,11 +22,11 @@ public class Main {
 		
 		ArrayList classes = new ArrayList<Class>();
 			
-		classes = WordParser.findClases(fileName);
+//		classes = WordParser.findClases(fileName);
 		
-		PDFEditor.fillDoorSign(doorSignFileName, (Class)classes.get(0));
+//		PDFEditor.fillDoorSign(doorSignFileName, (Class)classes.get(0));
 		
-//		GUI gui = new GUI();
+		GUI gui = new GUI();
 		
 	
 		

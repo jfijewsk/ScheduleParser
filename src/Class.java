@@ -54,6 +54,11 @@ public class Class {
 		return className;
 	}
 	
+	@Override
+	public String toString() {
+		return className;
+	}
+	
 	
 
 	

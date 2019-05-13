@@ -8,22 +8,32 @@ import java.util.ArrayList;
  */
 public class ScheduleDataHelper {
 
-	String fileName = Properties.getScheduleFileName();
-	String doorSignFileName = Properties.getDoorSignFileName();
+	static Properties prop = Properties.getInstance();
+	
+	String fileName = prop.getScheduleFileName();
+	String doorSignFileName = prop.getDoorSignFileName();
 				
-	public static String[] getAllGTCClasses() {
-		ArrayList<Class> classes = WordParser.findClases(Properties.getScheduleFileName());
-		String[] GTCclasses = new String[classes.size()];
+	
+	public static Class[] getAllGTCClasses() {
+		ArrayList<Class> classes = WordParser.findClases(prop.getScheduleFileName());
+		Class[] GTCclasses = new Class[classes.size()];
 		
 		for(int i = 0; i < classes.size(); i ++) {
-			GTCclasses[i] = classes.get(i).getClassName();
+			GTCclasses[i] = classes.get(i);
 			
 		}
 		
 		return GTCclasses;
 	}
 	
-	public static String[] getAllSessions() {
-		return null;
+	
+	public static Session[] getAllSessions(Class inputClass) {
+		Session[] GTCsessions = new Session[inputClass.getSessions().size()];
+		
+		for(int i = 0; i < inputClass.getSessions().size(); i ++) {
+			GTCsessions[i] = inputClass.getSessions().get(i);
+			
+		}
+		return GTCsessions;
 	}
 }

@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -24,8 +26,8 @@ public class GUI extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         techTable = new javax.swing.JTable();
-        GTCSessionCombo = new javax.swing.JComboBox<>();
-        GTCClassNumCombo1 = new javax.swing.JComboBox<>();
+        GTCSessionCombo = new javax.swing.JComboBox<Session>();
+        GTCClassNumCombo1 = new javax.swing.JComboBox<Class>();
         selectTechLbl = new javax.swing.JLabel();
         selectAllBtn = new javax.swing.JButton();
         clearAllBtn = new javax.swing.JButton();
@@ -251,8 +253,13 @@ public class GUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }                                               
 
-    private void GTCClassNumCombo1ActionPerformed(java.awt.event.ActionEvent evt) {                                                  
-        // TODO add your handling code here:
+    // After user selects a GTC class populate the tech table and the combo box
+    // for selecting the different sessions.
+    private void GTCClassNumCombo1ActionPerformed(java.awt.event.ActionEvent evt) {  
+    	        
+    	Class selectedClass = (Class) GTCClassNumCombo1.getSelectedItem();
+    	GTCSessionCombo.setModel(new javax.swing.DefaultComboBoxModel<>(ScheduleDataHelper.getAllSessions(selectedClass)));
+
     }                                                 
 
     private void selectAllBtnActionPerformed(java.awt.event.ActionEvent evt) {                                             
@@ -331,8 +338,8 @@ public class GUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify                     
-    private javax.swing.JComboBox<String> GTCClassNumCombo1;
-    private javax.swing.JComboBox<String> GTCSessionCombo;
+    private javax.swing.JComboBox<Class> GTCClassNumCombo1;
+    private javax.swing.JComboBox<Session> GTCSessionCombo;
     private javax.swing.JButton clearAllBtn;
     private javax.swing.JButton createDoorSignBtn;
     private javax.swing.JButton createNameTentBtn;
