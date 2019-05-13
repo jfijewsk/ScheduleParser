@@ -15,10 +15,10 @@ public class PDFEditor {
 
 	public static void fillDoorSign(String fileName, Class classInfo) {
 		
+		Properties prop = Properties.getInstance();
+		
 		try {
 			
-			Configuration config = Properties.getProp();
-
 			File file = new File(fileName);
 			PDDocument pdfDocument = PDDocument.load(file);
 						
@@ -52,9 +52,9 @@ public class PDFEditor {
 			    techBranchField.setValue(allBranches);
 			    startDateField.setValue(classInfo.getSessions().get(0).getDateRange());
 		    	
-			    List allTrainers = config.getList("allTrainers");
+			    List allTrainers = prop.getAllTrainers();
 			    trainerCombo.setOptions(allTrainers);
-			    trainerCombo.setValue(config.getString("trainerName"));
+			    trainerCombo.setValue(prop.getDefaultTrainer());
 			    
 			    
 			    pdfDocument.save(fileName);

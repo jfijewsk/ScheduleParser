@@ -15,18 +15,18 @@ public class Main {
 	public static void main(String[] args) {
 		
 		// init properties file
-		Properties.getProp();
+		Properties prop = Properties.getInstance();
 		
-//		String fileName = Properties.getScheduleFileName();
-//		String doorSignFileName = Properties.getDoorSignFileName();
+		String fileName = prop.getScheduleFileName();
+		String doorSignFileName = prop.getDoorSignFileName();
 		
-//		ArrayList classes = new ArrayList<Class>();
+		ArrayList classes = new ArrayList<Class>();
 			
-//		classes = WordParser.findClases(fileName);
+		classes = WordParser.findClases(fileName);
 		
-//		PDFEditor.fillDoorSign(doorSignFileName, (Class)classes.get(0));
+		PDFEditor.fillDoorSign(doorSignFileName, (Class)classes.get(0));
 		
-		GUI gui = new GUI();
+//		GUI gui = new GUI();
 		
 	
 		

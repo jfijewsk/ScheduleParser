@@ -22,4 +22,8 @@ public class ScheduleDataHelper {
 		
 		return GTCclasses;
 	}
+	
+	public static String[] getAllSessions() {
+		return null;
+	}
 }

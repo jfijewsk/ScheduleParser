@@ -78,7 +78,7 @@ public class GUI extends javax.swing.JFrame {
             techTable.getColumnModel().getColumn(1).setMaxWidth(150);
         }
 
-        GTCSessionCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        GTCSessionCombo.setModel(new javax.swing.DefaultComboBoxModel<>());
         GTCSessionCombo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 GTCSessionComboActionPerformed(evt);

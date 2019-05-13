@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
+import java.util.List;
 
 import org.apache.commons.configuration2.Configuration;
 import org.apache.commons.configuration2.FileBasedConfiguration;
@@ -14,18 +15,32 @@ import org.apache.commons.configuration2.ex.ConfigurationException;
 
 public class Properties {
 	
-	static Configuration config;
+	static Properties instance;
+	private static Configuration config;
+	
+	private Properties() {
+		
+	}
+	
+	public static Properties getInstance() {
+		if(instance == null) {
+			getProp();
+			return instance;
+		}
+		
+		else {
+			return instance;
+		}
+	}
 
 
 	/**
 	 * Retrieves the properties file.
 	 * @return Configuration
 	 */
-	public static Configuration getProp() {
+	private static void getProp() {
 		
 		 Parameters params = new Parameters();
-
-		if (config == null) {
 	
 		FileBasedConfigurationBuilder<FileBasedConfiguration> builder =
 		    new FileBasedConfigurationBuilder<FileBasedConfiguration>(PropertiesConfiguration.class)
@@ -36,19 +51,13 @@ public class Properties {
 		try
 		{
 		    config = builder.getConfiguration();
-		    return config;		    
 		}
 		catch(ConfigurationException cex)
 		{
 		    // loading of the configuration file failed
 		}
-		}
 		
-		else {
-			return config;
-		}
 		
-		return config;
 	}
 	
 	
@@ -64,7 +73,23 @@ public class Properties {
 	 * @return file location of pdf containing the door sign templete
 	 */
 	public static String getDoorSignFileName() {
-		return config.getString("doorSignPDFLocation ");
+		return config.getString("doorSignPDFLocation");
+
+	}
+	
+	/**
+	 * @return all trainers 
+	 */
+	public static List getAllTrainers() {
+		return config.getList("allTrainers");
+
+	}
+	
+	/**
+	 * @return all trainers 
+	 */
+	public static String getDefaultTrainer() {
+		return config.getString("trainerName");
 
 	}
 
