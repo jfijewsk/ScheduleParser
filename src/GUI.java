@@ -37,7 +37,9 @@ public class GUI extends javax.swing.JFrame {
         selectSessionLbl = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        jMenuExit = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jMenuConfig = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(885, 527));
@@ -58,6 +60,7 @@ public class GUI extends javax.swing.JFrame {
             boolean[] canEdit = new boolean [] {
                 false, false
             };
+
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -82,10 +85,15 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
-        GTCClassNumCombo1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        GTCClassNumCombo1.setModel(new javax.swing.DefaultComboBoxModel<>(ScheduleDataHelper.getAllGTCClasses()));
         GTCClassNumCombo1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 GTCClassNumCombo1ActionPerformed(evt);
+            }
+        });
+        GTCClassNumCombo1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                GTCClassNumCombo1PropertyChange(evt);
             }
         });
 
@@ -99,6 +107,11 @@ public class GUI extends javax.swing.JFrame {
         });
 
         clearAllBtn.setText("Clear All");
+        clearAllBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearAllBtnActionPerformed(evt);
+            }
+        });
 
         createDoorSignBtn.setText("Create Door Sign");
         createDoorSignBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -133,9 +146,32 @@ public class GUI extends javax.swing.JFrame {
         selectSessionLbl.setText("Select a session:");
 
         jMenu1.setText("File");
+
+        jMenuExit.setText("Exit");
+        jMenuExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuExitActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuExit);
+
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Config");
+        jMenu2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu2ActionPerformed(evt);
+            }
+        });
+
+        jMenuConfig.setText("Configure");
+        jMenuConfig.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuConfigActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuConfig);
+
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -239,6 +275,26 @@ public class GUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }                                                   
 
+    private void jMenuExitActionPerformed(java.awt.event.ActionEvent evt) {                                          
+        System.exit(0);
+    }                                         
+
+    private void jMenuConfigActionPerformed(java.awt.event.ActionEvent evt) {                                            
+        // TODO add your handling code here:
+    }                                           
+
+    private void GTCClassNumCombo1PropertyChange(java.beans.PropertyChangeEvent evt) {                                                 
+        // TODO add your handling code here:
+    }                                                
+
+    private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {                                       
+        // TODO add your handling code here:
+    }                                      
+
+    private void clearAllBtnActionPerformed(java.awt.event.ActionEvent evt) {                                            
+        // TODO add your handling code here:
+    }                                           
+
     /**
      * @param args the command line arguments
      */
@@ -285,6 +341,8 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuConfig;
+    private javax.swing.JMenuItem jMenuExit;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel selectAClassLbl;
     private javax.swing.JButton selectAllBtn;

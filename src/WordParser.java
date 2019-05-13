@@ -54,7 +54,7 @@ public class WordParser {
 					
 					
 					className = (((XWPFParagraph)element).getParagraphText());
-					System.out.println("className: " + className);
+//					System.out.println("className: " + className);
 					
 				}
 			}
@@ -78,13 +78,13 @@ public class WordParser {
 									&& j == 0) {
 								
 								String sessionName = table.getRow(i).getCell(j).getText();
-								System.out.println("sessionName: " + sessionName);
+//								System.out.println("sessionName: " + sessionName);
 																
 								String startDate = table.getRow(i).getCell(j+1).getText();
-								System.out.println("startDate: " + startDate);
+//								System.out.println("startDate: " + startDate);
 								
 								String endDate = table.getRow(i).getCell(j+2).getText();
-								System.out.println("endDate: " + endDate);
+//								System.out.println("endDate: " + endDate);
 								
 								Session session = new Session(sessionName, startDate, endDate);
 								sessions.add(session);
@@ -106,7 +106,7 @@ public class WordParser {
 										String startDate = table.getRow(k).getCell(j + 1).getText();
 										
 										students.add(new Technician(name, branch, startDate));
-										System.out.println("Added student: " + table.getRow(k).getCell(j).getText());
+//										System.out.println("Added student: " + table.getRow(k).getCell(j).getText());
 										
 									}
 
@@ -114,7 +114,7 @@ public class WordParser {
 								
 								Class classGTC = new Class(students, className, sessions);
 								classes.add(classGTC);
-								System.out.println("");
+//								System.out.println("");
 
 								//POIXMLDocumentPart className =  prevElement.getPart().getPackagePart().getContentType();
 								

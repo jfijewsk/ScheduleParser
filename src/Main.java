@@ -2,6 +2,7 @@ import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import org.apache.commons.configuration2.Configuration;
 import org.apache.poi.openxml4j.opc.OPCPackage;
 import org.apache.poi.xwpf.extractor.XWPFWordExtractor;
 import org.apache.poi.xwpf.usermodel.IBodyElement;
@@ -13,18 +14,21 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		String fileName = "Test_Schedule_new.docx";
-		String doorSignFileName = "Training Door Sign Auto-Fill.pdf";
+		// init properties file
+		Properties.getProp();
 		
-		ArrayList classes = new ArrayList<Class>();
+//		String fileName = Properties.getScheduleFileName();
+//		String doorSignFileName = Properties.getDoorSignFileName();
+		
+//		ArrayList classes = new ArrayList<Class>();
 			
-		System.out.println("Reading from " + fileName);
-
-		classes = WordParser.findClases(fileName);
+//		classes = WordParser.findClases(fileName);
 		
 //		PDFEditor.fillDoorSign(doorSignFileName, (Class)classes.get(0));
 		
 		GUI gui = new GUI();
+		
+	
 		
 		
 	}
