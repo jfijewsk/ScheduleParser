@@ -151,8 +151,10 @@ public class GUI extends javax.swing.JFrame {
         techTable.getSelectionModel().addListSelectionListener((ListSelectionListener) new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent e) {
             	  if ( !e.getValueIsAdjusting()) {  
-                int sel = techTable.getSelectedRow();
-                System.out.println("You selected: " + techTable.getValueAt(sel, 0));
+            		  int sel = techTable.getSelectedRow();
+                
+            		  techTable.setRowSelectionInterval(sel, sel);
+            		  System.out.println("You selected: " + techTable.getValueAt(sel, 0));
             	  }
             }
         });
