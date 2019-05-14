@@ -45,7 +45,7 @@ public class GUI extends javax.swing.JFrame {
         jMenuConfig = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(885, 527));
+        setMinimumSize(new java.awt.Dimension(1185, 527));
         setResizable(false);
 
         GTCClassNumCombo1.setModel(new javax.swing.DefaultComboBoxModel<>(ScheduleDataHelper.getAllGTCClasses()));
@@ -183,7 +183,7 @@ public class GUI extends javax.swing.JFrame {
                             .addComponent(selectTechLbl))
                         .addGap(191, 191, 191))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 595, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1000, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -337,12 +337,14 @@ public class GUI extends javax.swing.JFrame {
     private Object[][] getTechData() {
     	Class selectedClass = (Class) GTCClassNumCombo1.getSelectedItem();
     	int numOfTechs = selectedClass.getTechnicans().size();
-    	Object[][] data = new Object[numOfTechs][2];
+    	Object[][] data = new Object[numOfTechs][3];
     	
     	// Populate the tech table
     	for (int i = 0; i < numOfTechs; i++) {
     		data[i][0] = selectedClass.getTechnicans().get(i).getName();
     		data[i][1] = selectedClass.getTechnicans().get(i).getBranch();
+    		data[i][2] = selectedClass.getTechnicans().get(i).getStartDate();
+
 
     	}
     	
@@ -353,7 +355,7 @@ public class GUI extends javax.swing.JFrame {
         techTable.setModel(new javax.swing.table.DefaultTableModel(
                 getTechData(),
                 new String [] {
-                    "Technician", "Branch"
+                    "Technician", "Branch", "Misc"
                 }
             ) {
 
@@ -374,13 +376,15 @@ public class GUI extends javax.swing.JFrame {
     	        techTable.getTableHeader().setReorderingAllowed(false);
     	        jScrollPane1.setViewportView(techTable);
     	        techTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-    	        if (techTable.getColumnModel().getColumnCount() > 0) {   	        
+    	        if (techTable.getColumnModel().getColumnCount() > 0) {  
+    	            techTable.getColumnModel().getColumn(0).setMinWidth(300);
+    	            techTable.getColumnModel().getColumn(0).setPreferredWidth(350);
+    	            techTable.getColumnModel().getColumn(0).setMaxWidth(400);
     	            techTable.getColumnModel().getColumn(1).setMinWidth(200);
     	            techTable.getColumnModel().getColumn(1).setPreferredWidth(200);
     	            techTable.getColumnModel().getColumn(1).setMaxWidth(250);
     	            techTable.setFont(new Font("TimesRoman", Font.PLAIN, 18));
     	            techTable.setRowHeight(35); 
-
 
             }
     }
