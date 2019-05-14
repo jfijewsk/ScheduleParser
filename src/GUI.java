@@ -142,10 +142,8 @@ public class GUI extends javax.swing.JFrame {
             }
         });
         
- /*       techTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
+        techTable.setModel(new javax.swing.table.DefaultTableModel(
+            getTechData(),
             new String [] {
                 "Technician", "Branch"
             }
@@ -159,10 +157,8 @@ public class GUI extends javax.swing.JFrame {
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
-        });*/
-        
-        fillTechTable();
-        
+        });
+                
         techTable.setColumnSelectionAllowed(true);
         techTable.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         techTable.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
@@ -265,7 +261,6 @@ public class GUI extends javax.swing.JFrame {
     	GTCSessionCombo.setModel(new javax.swing.DefaultComboBoxModel<>(ScheduleDataHelper.getAllSessions(selectedClass)));
     	
     	// Populate the tech table
-    	fillTechTable();
 
     }                                                 
 
@@ -339,7 +334,7 @@ public class GUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GUI().setVisible(true);
+ //               new GUI().setVisible(true);
             }
         });
     }
@@ -365,13 +360,18 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JTable techTable;
     // End of variables declaration                   
     
-    private void fillTechTable() {
+    private Object[][] getTechData() {
     	Class selectedClass = (Class) GTCClassNumCombo1.getSelectedItem();
+    	int numOfTechs = selectedClass.getTechnicans().size();
+    	Object[][] data = new Object[numOfTechs][2];
+    	
     	// Populate the tech table
-    	for (int i = 0; i < selectedClass.getTechnicans().size(); i++) {
-    		techTable.setValueAt(selectedClass.getTechnicans().get(i).getName(), 0, 0);
-    		techTable.setValueAt(selectedClass.getTechnicans().get(i).getBranch(), 0, 1);
+    	for (int i = 0; i < numOfTechs; i++) {
+    		data[i][0] = selectedClass.getTechnicans().get(i).getName();
+    		data[i][1] = selectedClass.getTechnicans().get(i).getBranch();
 
     	}
+    	
+    	return data;
     }
 }
