@@ -1,3 +1,4 @@
+import java.awt.Font;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -142,34 +143,7 @@ public class GUI extends javax.swing.JFrame {
             }
         });
         
-        techTable.setModel(new javax.swing.table.DefaultTableModel(
-            getTechData(),
-            new String [] {
-                "Technician", "Branch"
-            }
-        ) {
-
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
-
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-                
-        techTable.setColumnSelectionAllowed(true);
-        techTable.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-        techTable.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-        techTable.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(techTable);
-        techTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-        if (techTable.getColumnModel().getColumnCount() > 0) {
-            techTable.getColumnModel().getColumn(1).setMinWidth(100);
-            techTable.getColumnModel().getColumn(1).setPreferredWidth(100);
-            techTable.getColumnModel().getColumn(1).setMaxWidth(150);
-        }
+        refreshTable();
         
         jMenu2.add(jMenuConfig);
 
@@ -261,7 +235,7 @@ public class GUI extends javax.swing.JFrame {
     	GTCSessionCombo.setModel(new javax.swing.DefaultComboBoxModel<>(ScheduleDataHelper.getAllSessions(selectedClass)));
     	
     	// Populate the tech table
-
+    	refreshTable();
     }                                                 
 
     private void selectAllBtnActionPerformed(java.awt.event.ActionEvent evt) {                                             
@@ -373,5 +347,41 @@ public class GUI extends javax.swing.JFrame {
     	}
     	
     	return data;
+    }
+    
+    private void refreshTable() {
+        techTable.setModel(new javax.swing.table.DefaultTableModel(
+                getTechData(),
+                new String [] {
+                    "Technician", "Branch"
+                }
+            ) {
+
+                boolean[] canEdit = new boolean [] {
+                    false, false
+                };
+
+
+                public boolean isCellEditable(int rowIndex, int columnIndex) {
+                    return canEdit [columnIndex];
+                }
+            });
+
+        
+    	        techTable.setColumnSelectionAllowed(true);
+    	        techTable.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+    	        techTable.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+    	        techTable.getTableHeader().setReorderingAllowed(false);
+    	        jScrollPane1.setViewportView(techTable);
+    	        techTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+    	        if (techTable.getColumnModel().getColumnCount() > 0) {   	        
+    	            techTable.getColumnModel().getColumn(1).setMinWidth(200);
+    	            techTable.getColumnModel().getColumn(1).setPreferredWidth(200);
+    	            techTable.getColumnModel().getColumn(1).setMaxWidth(250);
+    	            techTable.setFont(new Font("TimesRoman", Font.PLAIN, 18));
+    	            techTable.setRowHeight(35); 
+
+
+            }
     }
 }
