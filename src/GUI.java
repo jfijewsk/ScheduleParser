@@ -365,12 +365,11 @@ public class GUI extends javax.swing.JFrame {
 
 
                 public boolean isCellEditable(int rowIndex, int columnIndex) {
-                    return canEdit [columnIndex];
+                    return canEdit [1];
                 }
             });
 
-        
-    	        techTable.setColumnSelectionAllowed(true);
+    	        techTable.setColumnSelectionAllowed(false);
     	        techTable.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
     	        techTable.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
     	        techTable.getTableHeader().setReorderingAllowed(false);
