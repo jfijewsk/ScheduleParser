@@ -2,6 +2,11 @@ import java.awt.Font;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
+
 /**
  *
  * @author fijewskij
@@ -143,6 +148,15 @@ public class GUI extends javax.swing.JFrame {
             }
         });
         
+        techTable.getSelectionModel().addListSelectionListener((ListSelectionListener) new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent e) {
+            	  if ( !e.getValueIsAdjusting()) {  
+                int sel = techTable.getSelectedRow();
+                System.out.println("You selected: " + techTable.getValueAt(sel, 0));
+            	  }
+            }
+        });
+        
         refreshTable();
         
         jMenu2.add(jMenuConfig);
@@ -221,6 +235,8 @@ public class GUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>                        
+    
+    
 
     private void GTCSessionComboActionPerformed(java.awt.event.ActionEvent evt) {                                                
         // TODO add your handling code here:
@@ -276,7 +292,13 @@ public class GUI extends javax.swing.JFrame {
 
     private void clearAllBtnActionPerformed(java.awt.event.ActionEvent evt) {                                            
         // TODO add your handling code here:
-    }                                           
+    }        
+    
+    private void techTableAction() {                                            
+        // Get the clicked row
+
+
+    }    
 
     /**
      * @param args the command line arguments
