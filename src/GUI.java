@@ -1,11 +1,14 @@
+import java.awt.Component;
 import java.awt.Font;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JTable;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
+import javax.swing.table.DefaultTableCellRenderer;
 
 /**
  *
@@ -153,8 +156,9 @@ public class GUI extends javax.swing.JFrame {
             	  if ( !e.getValueIsAdjusting()) {  
             		  int sel = techTable.getSelectedRow();
                 
-            		  techTable.setRowSelectionInterval(sel, sel);
-            		  System.out.println("You selected: " + techTable.getValueAt(sel, 0));
+            		  
+//            		  techTable.setRowSelectionInterval(sel, sel);
+//            		  System.out.println("You selected: " + techTable.getValueAt(sel, 0));
             	  }
             }
         });
@@ -247,7 +251,9 @@ public class GUI extends javax.swing.JFrame {
     // After user selects a GTC class populate the tech table and the combo box
     // for selecting the different sessions.
     private void GTCClassNumCombo1ActionPerformed(java.awt.event.ActionEvent evt) {  
-    	        
+    	// Deselect currently selected
+    	techTable.clearSelection();
+    	
     	// Populate the session combo
     	Class selectedClass = (Class) GTCClassNumCombo1.getSelectedItem();
     	GTCSessionCombo.setModel(new javax.swing.DefaultComboBoxModel<>(ScheduleDataHelper.getAllSessions(selectedClass)));
@@ -392,7 +398,9 @@ public class GUI extends javax.swing.JFrame {
                     return canEdit [1];
                 }
             });
-
+        
+        		techTable.setFocusable(false);
+//        		techTable.setDefaultRenderer( Object.class, new BorderLessTableCellRenderer() );
     	        techTable.setColumnSelectionAllowed(false);
     	        techTable.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
     	        techTable.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
@@ -408,7 +416,30 @@ public class GUI extends javax.swing.JFrame {
     	            techTable.getColumnModel().getColumn(1).setMaxWidth(250);
     	            techTable.setFont(new Font("TimesRoman", Font.PLAIN, 18));
     	            techTable.setRowHeight(35); 
+    	            techTable.setRowSelectionAllowed(false);
+    	            techTable.setColumnSelectionAllowed(false);
 
             }
+    	        
+    	        techTable.clearSelection();
     }
+	/*
+	 * private static class BorderLessTableCellRenderer extends
+	 * DefaultTableCellRenderer {
+	 * 
+	 * private static final long serialVersionUID = 1L;
+	 * 
+	 * public Component getTableCellRendererComponent( final JTable table, final
+	 * Object value, final boolean isSelected, final boolean hasFocus, final int
+	 * row, final int col) {
+	 * 
+	 * final boolean showFocusedCellBorder = false; // change this to see the
+	 * behavior change
+	 * 
+	 * final Component c = super.getTableCellRendererComponent( table, value,
+	 * isSelected, showFocusedCellBorder && hasFocus, // shall obviously always
+	 * evaluate to false in this example row, col ); return c; } }
+	 */
 }
+
+
