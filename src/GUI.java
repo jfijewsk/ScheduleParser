@@ -26,6 +26,11 @@ public class GUI extends javax.swing.JFrame {
 	ArrayList<Integer> selectedRows;
 	ListSelectionModel model;
 	
+	Properties prop = Properties.getInstance();
+	
+	String fileName = prop.getScheduleFileName();
+	String doorSignFileName = prop.getDoorSignFileName();
+	
     /**
      * Creates new form GUI
      */
@@ -309,7 +314,9 @@ public class GUI extends javax.swing.JFrame {
     }                                            
 
     private void createDoorSignBtnActionPerformed(java.awt.event.ActionEvent evt) {                                                  
-        // TODO add your handling code here:
+		PDFEditor.fillDoorSign(doorSignFileName, (Class)GTCClassNumCombo1.getSelectedItem());
+
+
     }                                                 
 
     private void createNameTentBtnActionPerformed(java.awt.event.ActionEvent evt) {                                                  
