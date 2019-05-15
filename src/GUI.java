@@ -341,7 +341,11 @@ public class GUI extends javax.swing.JFrame {
     }                                      
 
     private void clearAllBtnActionPerformed(java.awt.event.ActionEvent evt) {                                            
-        // TODO add your handling code here:
+    	Class selectedClass = (Class) GTCClassNumCombo1.getSelectedItem();
+    	
+    	selectedRows.clear();
+        
+    	model.removeSelectionInterval(0, selectedClass.getTechnicans().size());
     }        
     
     private void techTableAction() {                                            
