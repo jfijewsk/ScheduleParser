@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.TableModelEvent;
@@ -18,6 +19,8 @@ import javax.swing.table.DefaultTableCellRenderer;
  */
 public class GUI extends javax.swing.JFrame {
 
+	ArrayList<Integer> selectedRows;
+	
     /**
      * Creates new form GUI
      */
@@ -34,7 +37,7 @@ public class GUI extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
-
+   	
         jScrollPane1 = new javax.swing.JScrollPane();
         techTable = new javax.swing.JTable();
         GTCSessionCombo = new javax.swing.JComboBox<Session>();
@@ -157,32 +160,31 @@ public class GUI extends javax.swing.JFrame {
         {
             public void mousePressed(MouseEvent e)
             {
+            	ListSelectionModel model = techTable.getSelectionModel();
+            	model.clearSelection();
+            	
                 int row = techTable.rowAtPoint( e.getPoint() );
                 
                 System.out.println(row);
 
-                // See if the clicked row is already selected.
-                int[] selectedRows = techTable.getSelectedRows();
                
-                boolean isAlreadySelected = false;
-                for (int x : selectedRows) {
-                	if (x == row) {
-                		isAlreadySelected = true;
-                	}
-                }
                 
-                if (isAlreadySelected) {
+                if (selectedRows.contains(row)) {
                 	System.out.println(row + " already selected!");
-                	techTable.getSelectionModel().removeSelectionInterval(row, row);
+                	
+                	selectedRows.remove((Object) row);
+                   	model.removeSelectionInterval(row, row);
+                	
 
                 }
                 
                 else {
-                	techTable.setRowSelectionInterval(row, row);;
+                	selectedRows.add(row);
+                   	model.addSelectionInterval(row, row);
 
                 }               
                 
-                refreshTable();
+ //               refreshTable();
 
               
             }
@@ -334,7 +336,8 @@ public class GUI extends javax.swing.JFrame {
     }    
 
 
-    // Variables declaration - do not modify                     
+    // Variables declaration - do not modify               
+    
     private javax.swing.JComboBox<Class> GTCClassNumCombo1;
     private javax.swing.JComboBox<Session> GTCSessionCombo;
     private javax.swing.JButton clearAllBtn;
@@ -373,8 +376,11 @@ public class GUI extends javax.swing.JFrame {
     }
     
     private void refreshTable() {
+    	
+    	Object data[][] = getTechData();
+    	
         techTable.setModel(new javax.swing.table.DefaultTableModel(
-                getTechData(),
+        		data,
                 new String [] {
                     "Technician", "Branch", "Misc"
                 }
@@ -392,11 +398,9 @@ public class GUI extends javax.swing.JFrame {
         
         		techTable.setFocusable(false);
 //        		techTable.setDefaultRenderer( Object.class, new BorderLessTableCellRenderer() );
-    	        techTable.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-    	        techTable.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+    	        techTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
     	        techTable.getTableHeader().setReorderingAllowed(false);
     	        jScrollPane1.setViewportView(techTable);
-    	        techTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
     	        if (techTable.getColumnModel().getColumnCount() > 0) {  
     	            techTable.getColumnModel().getColumn(0).setMinWidth(300);
     	            techTable.getColumnModel().getColumn(0).setPreferredWidth(350);
@@ -410,6 +414,9 @@ public class GUI extends javax.swing.JFrame {
     	            techTable.setColumnSelectionAllowed(false);
 
             }
+    	        // When the table is refreshed, refresh selected rows too
+    	    	selectedRows = new ArrayList<Integer>();
+
     	        
     }
 	/*
