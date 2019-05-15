@@ -436,6 +436,19 @@ public class GUI extends javax.swing.JFrame {
             }
     	        // When the table is refreshed, refresh selected rows too
     	    	selectedRows = new ArrayList<Integer>();
+    	    	
+    	    	// Select all techs at the init of the table by defualt
+    	    	Class selectedClass = (Class) GTCClassNumCombo1.getSelectedItem();
+    	    	int numOfTechs = selectedClass.getTechnicans().size();
+    	    	
+    	        for (int i = 0; i < numOfTechs; i++) {
+    	        	if (!selectedRows.contains(i)) {
+    	        		selectedRows.add((Integer)i);
+    	        	}
+    	        	}
+    	        
+    	    	model.addSelectionInterval(0, selectedClass.getTechnicans().size());
+    	    	
 
     	        
     }
