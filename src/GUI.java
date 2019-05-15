@@ -181,7 +181,6 @@ public class GUI extends javax.swing.JFrame {
         	@Override
         	public void mouseDragged(MouseEvent e) {
         		return;
- //           	clickedRow(row);
 
         	}
         	
@@ -191,11 +190,6 @@ public class GUI extends javax.swing.JFrame {
                 int row = techTable.rowAtPoint( e.getPoint() );
         		
             	clickedRow(row);
-                
-            	
-                
- //               refreshTable();
-
               
             }
         });
@@ -299,8 +293,19 @@ public class GUI extends javax.swing.JFrame {
     	refreshTable();
     }                                                 
 
-    private void selectAllBtnActionPerformed(java.awt.event.ActionEvent evt) {                                             
-        // TODO add your handling code here:
+    private void selectAllBtnActionPerformed(java.awt.event.ActionEvent evt) {       
+        // Reselect all selected rows.
+    	Class selectedClass = (Class) GTCClassNumCombo1.getSelectedItem();
+    	int numOfTechs = selectedClass.getTechnicans().size();
+    	
+        for (int i = 0; i < numOfTechs; i++) {
+        	if (!selectedRows.contains(i)) {
+        		selectedRows.add((Integer)i);
+        	}
+        	}
+        
+    	model.addSelectionInterval(0, selectedClass.getTechnicans().size());
+
     }                                            
 
     private void createDoorSignBtnActionPerformed(java.awt.event.ActionEvent evt) {                                                  
