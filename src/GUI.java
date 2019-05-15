@@ -41,7 +41,7 @@ public class GUI extends javax.swing.JFrame {
     private void initComponents() {
    	
         jScrollPane1 = new javax.swing.JScrollPane();
-        techTable = new javax.swing.JTable();
+        techTable = new Table();
         GTCSessionCombo = new javax.swing.JComboBox<Session>();
         GTCClassNumCombo1 = new javax.swing.JComboBox<Class>();
         selectTechLbl = new javax.swing.JLabel();
@@ -161,12 +161,19 @@ public class GUI extends javax.swing.JFrame {
         
         techTable.addMouseListener( new MouseAdapter()
         {
+        	
+        	ListSelectionModel model = techTable.getSelectionModel();
+
+        	@Override
+        	public void mousePressed(MouseEvent e) {
+            	return;
+        	}
+        	
         	@Override
             public void mouseClicked(MouseEvent e)
             {
 
-
-            	ListSelectionModel model = techTable.getSelectionModel();
+        		
             	model.clearSelection();
             	
                 int row = techTable.rowAtPoint( e.getPoint() );
@@ -187,9 +194,11 @@ public class GUI extends javax.swing.JFrame {
 
                 }               
                 
+                // Reselect all selected rows.
                 for (int x : selectedRows) {
                 	model.addSelectionInterval(x, x);;
                 }
+                
                 
             	
                 
@@ -429,31 +438,26 @@ public class GUI extends javax.swing.JFrame {
 
     	        
     }
-	/*
-	 * private static class BorderLessTableCellRenderer extends
-	 * DefaultTableCellRenderer {
-	 * 
-	 * private static final long serialVersionUID = 1L;
-	 * 
-	 * public Component getTableCellRendererComponent( final JTable table, final
-	 * Object value, final boolean isSelected, final boolean hasFocus, final int
-	 * row, final int col) {
-	 * 
-	 * final boolean showFocusedCellBorder = false; // change this to see the
-	 * behavior change
-	 * 
-	 * final Component c = super.getTableCellRendererComponent( table, value,
-	 * isSelected, showFocusedCellBorder && hasFocus, // shall obviously always
-	 * evaluate to false in this example row, col ); return c; } }
-	 */
     
-    public static class MouseDragger extends MouseAdapter {
-    	
-    	@Override
-        public void mouseDragged(MouseEvent e) {
-    		
-    	}
-    }
+    class Table extends JTable {
+
+        @Override
+        protected void processMouseEvent(MouseEvent e) {
+ //            if (e.getID() == MouseEvent.) {
+             	System.out.println(e.getID());
+
+            	 Point pt = e.getPoint();
+                  int row = rowAtPoint(pt);
+                  int col = columnAtPoint(pt);
+                  if (row >= 0 && col >= 0 && !super.isCellSelected(row, col))
+                       changeSelection(row, col, false, false);
+//             }
+             super.processMouseEvent(e);
+        }
+        
+   }
+
+
     
 
 }
