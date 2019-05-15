@@ -1,5 +1,7 @@
 import java.awt.Component;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -151,15 +153,38 @@ public class GUI extends javax.swing.JFrame {
             }
         });
         
-        techTable.getSelectionModel().addListSelectionListener((ListSelectionListener) new ListSelectionListener() {
-            public void valueChanged(ListSelectionEvent e) {
-            	  if ( !e.getValueIsAdjusting()) {  
-            		  int sel = techTable.getSelectedRow();
+        techTable.addMouseListener( new MouseAdapter()
+        {
+            public void mousePressed(MouseEvent e)
+            {
+                int row = techTable.rowAtPoint( e.getPoint() );
                 
-            		  
-//            		  techTable.setRowSelectionInterval(sel, sel);
-//            		  System.out.println("You selected: " + techTable.getValueAt(sel, 0));
-            	  }
+                System.out.println(row);
+
+                // See if the clicked row is already selected.
+                int[] selectedRows = techTable.getSelectedRows();
+               
+                boolean isAlreadySelected = false;
+                for (int x : selectedRows) {
+                	if (x == row) {
+                		isAlreadySelected = true;
+                	}
+                }
+                
+                if (isAlreadySelected) {
+                	System.out.println(row + " already selected!");
+                	techTable.getSelectionModel().removeSelectionInterval(row, row);
+
+                }
+                
+                else {
+                	techTable.setRowSelectionInterval(row, row);;
+
+                }               
+                
+                refreshTable();
+
+              
             }
         });
         
@@ -308,40 +333,6 @@ public class GUI extends javax.swing.JFrame {
 
     }    
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
- //               new GUI().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify                     
     private javax.swing.JComboBox<Class> GTCClassNumCombo1;
@@ -401,7 +392,6 @@ public class GUI extends javax.swing.JFrame {
         
         		techTable.setFocusable(false);
 //        		techTable.setDefaultRenderer( Object.class, new BorderLessTableCellRenderer() );
-    	        techTable.setColumnSelectionAllowed(false);
     	        techTable.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
     	        techTable.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
     	        techTable.getTableHeader().setReorderingAllowed(false);
@@ -416,12 +406,11 @@ public class GUI extends javax.swing.JFrame {
     	            techTable.getColumnModel().getColumn(1).setMaxWidth(250);
     	            techTable.setFont(new Font("TimesRoman", Font.PLAIN, 18));
     	            techTable.setRowHeight(35); 
-    	            techTable.setRowSelectionAllowed(false);
+    	            techTable.setRowSelectionAllowed(true);
     	            techTable.setColumnSelectionAllowed(false);
 
             }
     	        
-    	        techTable.clearSelection();
     }
 	/*
 	 * private static class BorderLessTableCellRenderer extends
