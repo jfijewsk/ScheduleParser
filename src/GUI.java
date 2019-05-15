@@ -3,6 +3,8 @@ import java.awt.Font;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,7 +43,7 @@ public class GUI extends javax.swing.JFrame {
     private void initComponents() {
    	
         jScrollPane1 = new javax.swing.JScrollPane();
-        techTable = new Table();
+        techTable = new JTable();
         GTCSessionCombo = new javax.swing.JComboBox<Session>();
         GTCClassNumCombo1 = new javax.swing.JComboBox<Class>();
         selectTechLbl = new javax.swing.JLabel();
@@ -74,6 +76,17 @@ public class GUI extends javax.swing.JFrame {
                 GTCClassNumCombo1PropertyChange(evt);
             }
         });
+        
+        MouseListener[] listeners = techTable.getMouseListeners();
+        for (MouseListener l : listeners)
+        {
+        	techTable.removeMouseListener(l);
+        }
+        
+        MouseMotionListener[] moveListeners = techTable.getMouseMotionListeners();
+		for (MouseMotionListener l : moveListeners) {
+        	techTable.removeMouseMotionListener(l);
+        }
         
 
     	Class selectedClass = (Class) GTCClassNumCombo1.getSelectedItem();
@@ -164,8 +177,9 @@ public class GUI extends javax.swing.JFrame {
         	
         	ListSelectionModel model = techTable.getSelectionModel();
 
+        	
         	@Override
-        	public void mousePressed(MouseEvent e) {
+        	public void mouseReleased(MouseEvent e) {
             	return;
         	}
         	
@@ -439,23 +453,6 @@ public class GUI extends javax.swing.JFrame {
     	        
     }
     
-    class Table extends JTable {
-
-        @Override
-        protected void processMouseEvent(MouseEvent e) {
- //            if (e.getID() == MouseEvent.) {
-             	System.out.println(e.getID());
-
-            	 Point pt = e.getPoint();
-                  int row = rowAtPoint(pt);
-                  int col = columnAtPoint(pt);
-                  if (row >= 0 && col >= 0 && !super.isCellSelected(row, col))
-                       changeSelection(row, col, false, false);
-//             }
-             super.processMouseEvent(e);
-        }
-        
-   }
 
 
     
