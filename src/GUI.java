@@ -1,5 +1,6 @@
 import java.awt.Component;
 import java.awt.Font;
+import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -7,6 +8,7 @@ import java.util.List;
 
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingUtilities;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.TableModelEvent;
@@ -155,11 +157,15 @@ public class GUI extends javax.swing.JFrame {
                 jMenuConfigActionPerformed(evt);
             }
         });
+
         
         techTable.addMouseListener( new MouseAdapter()
         {
-            public void mousePressed(MouseEvent e)
+        	@Override
+            public void mouseClicked(MouseEvent e)
             {
+
+
             	ListSelectionModel model = techTable.getSelectionModel();
             	model.clearSelection();
             	
@@ -170,11 +176,8 @@ public class GUI extends javax.swing.JFrame {
                
                 
                 if (selectedRows.contains(row)) {
-                	System.out.println(row + " already selected!");
-                	
-                	selectedRows.remove((Object) row);
-                   	model.removeSelectionInterval(row, row);
-                	
+                	System.out.println(row + " already selected!");               	
+                	selectedRows.remove((Object) row);                	
 
                 }
                 
@@ -183,6 +186,12 @@ public class GUI extends javax.swing.JFrame {
                    	model.addSelectionInterval(row, row);
 
                 }               
+                
+                for (int x : selectedRows) {
+                	model.addSelectionInterval(x, x);;
+                }
+                
+            	
                 
  //               refreshTable();
 
@@ -398,7 +407,7 @@ public class GUI extends javax.swing.JFrame {
         
         		techTable.setFocusable(false);
 //        		techTable.setDefaultRenderer( Object.class, new BorderLessTableCellRenderer() );
-    	        techTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+    	        techTable.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
     	        techTable.getTableHeader().setReorderingAllowed(false);
     	        jScrollPane1.setViewportView(techTable);
     	        if (techTable.getColumnModel().getColumnCount() > 0) {  
@@ -412,6 +421,7 @@ public class GUI extends javax.swing.JFrame {
     	            techTable.setRowHeight(35); 
     	            techTable.setRowSelectionAllowed(true);
     	            techTable.setColumnSelectionAllowed(false);
+    	            techTable.setDragEnabled(false);
 
             }
     	        // When the table is refreshed, refresh selected rows too
@@ -436,6 +446,16 @@ public class GUI extends javax.swing.JFrame {
 	 * isSelected, showFocusedCellBorder && hasFocus, // shall obviously always
 	 * evaluate to false in this example row, col ); return c; } }
 	 */
+    
+    public static class MouseDragger extends MouseAdapter {
+    	
+    	@Override
+        public void mouseDragged(MouseEvent e) {
+    		
+    	}
+    }
+    
+
 }
 
 
