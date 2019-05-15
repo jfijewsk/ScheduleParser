@@ -1,8 +1,11 @@
 import java.awt.Desktop;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.JOptionPane;
 
 import org.apache.commons.configuration2.Configuration;
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -56,8 +59,14 @@ public class PDFEditor {
 			    trainerCombo.setOptions(allTrainers);
 			    trainerCombo.setValue(prop.getDefaultTrainer());
 			    
-			    
+			    try {
 			    pdfDocument.save(fileName);
+			    }
+			    
+			    catch (FileNotFoundException e) {
+			    	JOptionPane.showMessageDialog(null, "Error saving pdf. Make sure the pdf is not already open.", 
+			    			"Error saving pdf", JOptionPane.ERROR_MESSAGE);
+			    }
 			    pdfDocument.close();
 			}
 			
