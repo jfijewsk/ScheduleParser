@@ -24,6 +24,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 public class GUI extends javax.swing.JFrame {
 
 	ArrayList<Integer> selectedRows;
+	ListSelectionModel model;
 	
     /**
      * Creates new form GUI
@@ -171,48 +172,25 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
+    	model = techTable.getSelectionModel();
         
         techTable.addMouseListener( new MouseAdapter()
         {
         	
-        	ListSelectionModel model = techTable.getSelectionModel();
-
         	
         	@Override
-        	public void mouseReleased(MouseEvent e) {
-            	return;
+        	public void mouseDragged(MouseEvent e) {
+        		return;
+ //           	clickedRow(row);
+
         	}
         	
         	@Override
-            public void mouseClicked(MouseEvent e)
+            public void mouseReleased(MouseEvent e)
             {
-
-        		
-            	model.clearSelection();
-            	
                 int row = techTable.rowAtPoint( e.getPoint() );
-                
-                System.out.println(row);
-
-               
-                
-                if (selectedRows.contains(row)) {
-                	System.out.println(row + " already selected!");               	
-                	selectedRows.remove((Object) row);                	
-
-                }
-                
-                else {
-                	selectedRows.add(row);
-                   	model.addSelectionInterval(row, row);
-
-                }               
-                
-                // Reselect all selected rows.
-                for (int x : selectedRows) {
-                	model.addSelectionInterval(x, x);;
-                }
-                
+        		
+            	clickedRow(row);
                 
             	
                 
@@ -451,6 +429,32 @@ public class GUI extends javax.swing.JFrame {
     	    	selectedRows = new ArrayList<Integer>();
 
     	        
+    }
+    
+    public void clickedRow(int row) {
+		
+    	model.clearSelection();
+    	        
+        System.out.println(row);
+
+       
+        
+        if (selectedRows.contains(row)) {
+        	System.out.println(row + " already selected!");               	
+        	selectedRows.remove((Object) row);                	
+
+        }
+        
+        else {
+        	selectedRows.add(row);
+           	model.addSelectionInterval(row, row);
+
+        }               
+        
+        // Reselect all selected rows.
+        for (int x : selectedRows) {
+        	model.addSelectionInterval(x, x);;
+        }
     }
     
 
