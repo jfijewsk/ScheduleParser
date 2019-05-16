@@ -1,3 +1,4 @@
+import java.awt.FileDialog;
 import java.io.File;
 
 
@@ -11,6 +12,9 @@ public class ConfigWordDialog extends javax.swing.JDialog {
     /**
      * Creates new form ConfigPDFDialog
      */
+	
+	static Properties prop = Properties.getInstance();
+
     public ConfigWordDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -35,7 +39,7 @@ public class ConfigWordDialog extends javax.swing.JDialog {
 
         fileLocationJLabel.setText("Training Schedule Word File:");
 
-        fileLocationTxtField.setText("jTextField1");
+        fileLocationTxtField.setText(prop.getScheduleFileName());
 
         saveBtn.setText("Save");
         saveBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -105,8 +109,13 @@ public class ConfigWordDialog extends javax.swing.JDialog {
 
     private void browseBtnActionPerformed(java.awt.event.ActionEvent evt) {                                          
     	
-    	new java.awt.FileDialog((java.awt.Frame) null).setVisible(true);
+    	FileDialog fd = new FileDialog(this, "Open", FileDialog.LOAD); 
+    	fd.show();
+//    	FileDialog fd = new java.awt.FileDialog((java.awt.Frame) null).setVisible(true);
+    	
 
+    	String path = new File(fd.getFile()).getAbsolutePath();
+    	fileLocationTxtField.setText(path);
 
     }                                         
 
