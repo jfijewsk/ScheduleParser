@@ -16,7 +16,5 @@
 	<classpathentry kind="lib" path="C:/SER316/Schedule_Parser/src/Resources/poi-ooxml-4.1.0.jar"/>
 	<classpathentry kind="lib" path="C:/SER316/Schedule_Parser/src/Resources/poi-ooxml-schemas-4.1.0.jar"/>
 	<classpathentry kind="lib" path="C:/SER316/Schedule_Parser/src/Resources/xmlbeans-3.1.0.jar"/>
-	<classpathentry kind="lib" path="C:/SER316/Schedule_Parser/src/Resources/lib/JavaFX/javafx.graphics.jar"/>
-	<classpathentry kind="lib" path="C:/SER316/Schedule_Parser/src/Resources/lib/JavaFX/javafx.base.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
