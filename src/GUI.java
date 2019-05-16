@@ -296,7 +296,8 @@ public class GUI extends javax.swing.JFrame {
     }// </editor-fold>   
     
     private void GTCSessionComboActionPerformed(java.awt.event.ActionEvent evt) {                                                
-        // TODO add your handling code here:
+    	updateSessionDatesLabel();
+
     }                                               
 
     // After user selects a GTC class populate the tech table and the combo box
@@ -478,7 +479,7 @@ public class GUI extends javax.swing.JFrame {
     	        
     	    	model.addSelectionInterval(0, selectedClass.getTechnicans().size());
     	    	
-
+    	    	updateSessionDatesLabel();
     	        
     }
     
@@ -506,6 +507,17 @@ public class GUI extends javax.swing.JFrame {
         for (int x : selectedRows) {
         	model.addSelectionInterval(x, x);;
         }
+    }
+    
+    
+    /**
+     * This updates the session dates label 
+     */
+    public void updateSessionDatesLabel() {
+    	
+    	Session selectedSession = (Session) GTCSessionCombo.getSelectedItem();
+
+    	sessionDatesLabel.setText("Session dates: " + selectedSession.getFullStartDate() + " - " + selectedSession.getEndDate());
     }
     
 
