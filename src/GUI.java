@@ -67,6 +67,7 @@ public class GUI extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenuConfigWord = new javax.swing.JMenuItem();
         jMenuConfigPDF = new javax.swing.JMenuItem();
+        sessionDatesLabel = new javax.swing.JLabel();
 
         
 
@@ -153,6 +154,8 @@ public class GUI extends javax.swing.JFrame {
         selectAClassLbl.setText("Select a class:");
 
         selectSessionLbl.setText("Select a session:");
+        
+        sessionDatesLabel.setText("Session Dates:");
 
         jMenu1.setText("File");
 
@@ -241,18 +244,18 @@ public class GUI extends javax.swing.JFrame {
                         .addComponent(selectSessionLbl)))
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(sessionDatesLabel)
+                        .addGap(265, 265, 265)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(selectAllBtn)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(57, 57, 57)
                                 .addComponent(clearAllBtn))
                             .addComponent(selectTechLbl))
-                        .addGap(425, 425, 425))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1000, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
-            
+                        .addGap(0, 453, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -264,7 +267,9 @@ public class GUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(clearAllBtn)
-                            .addComponent(selectAllBtn))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(selectAllBtn)
+                                .addComponent(sessionDatesLabel)))
                         .addGap(11, 11, 11)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
@@ -285,13 +290,11 @@ public class GUI extends javax.swing.JFrame {
                         .addGap(28, 28, 28)
                         .addComponent(createTechReviewBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(18, Short.MAX_VALUE))
-        );
-
+        );    
+    
         pack();
-    }// </editor-fold>                        
+    }// </editor-fold>   
     
-    
-
     private void GTCSessionComboActionPerformed(java.awt.event.ActionEvent evt) {                                                
         // TODO add your handling code here:
     }                                               
@@ -400,6 +403,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel selectSessionLbl;
     private javax.swing.JLabel selectTechLbl;
     private javax.swing.JTable techTable;
+    private javax.swing.JLabel sessionDatesLabel;
     // End of variables declaration                   
     
     private Object[][] getTechData() {
