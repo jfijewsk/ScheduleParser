@@ -17,6 +17,7 @@ public class Properties {
 	
 	static Properties instance;
 	private static Configuration config;
+	private static FileBasedConfigurationBuilder<FileBasedConfiguration> builder;
 	
 	private Properties() {
 		
@@ -42,8 +43,7 @@ public class Properties {
 		
 		 Parameters params = new Parameters();
 	
-		FileBasedConfigurationBuilder<FileBasedConfiguration> builder =
-		    new FileBasedConfigurationBuilder<FileBasedConfiguration>(PropertiesConfiguration.class)
+		builder = new FileBasedConfigurationBuilder<FileBasedConfiguration>(PropertiesConfiguration.class)
 		    .configure(params.properties()
 		        .setFileName("config.properties")
         .setListDelimiterHandler(new DefaultListDelimiterHandler(',')));
@@ -90,6 +90,20 @@ public class Properties {
 	 */
 	public static String getDefaultTrainer() {
 		return config.getString("trainerName");
+
+	}
+	
+	/**
+	 * Saves new file location of the word document containing the schedule
+	 */
+	public static void saveScheduleFileName(String newLocation) {
+		config.setProperty("scheduleLocation", newLocation);
+		try {
+			builder.save();
+		} catch (ConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 

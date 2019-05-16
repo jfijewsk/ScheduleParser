@@ -110,12 +110,16 @@ public class ConfigWordDialog extends javax.swing.JDialog {
     private void browseBtnActionPerformed(java.awt.event.ActionEvent evt) {                                          
     	
     	FileDialog fd = new FileDialog(this, "Open", FileDialog.LOAD); 
-    	fd.show();
-//    	FileDialog fd = new java.awt.FileDialog((java.awt.Frame) null).setVisible(true);
-    	
+    	fd.show();    	
 
+    	if (fd.getFile() == null) {
+    		return;
+    	}
+    	
+    	else {
     	String path = new File(fd.getFile()).getAbsolutePath();
     	fileLocationTxtField.setText(path);
+    	}
 
     }                                         
 
