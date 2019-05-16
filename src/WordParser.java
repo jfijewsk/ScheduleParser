@@ -3,6 +3,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.ListIterator;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import org.apache.poi.ooxml.POIXMLDocumentPart;
 import org.apache.poi.openxml4j.opc.OPCPackage;
 import org.apache.poi.xwpf.extractor.XWPFWordExtractor;
@@ -123,7 +126,20 @@ public class WordParser {
 		return classes;
 
 	} catch (Exception ex) {
-		ex.printStackTrace();
+		Properties prop = Properties.getInstance();
+    	JOptionPane.showMessageDialog(null,
+    		    "Invaild file to load the schedule. Please pick the correct file.",
+    		    "Error",
+    		    JOptionPane.PLAIN_MESSAGE);
+    	
+    	JFrame frame = new JFrame("");
+    	frame.setLocationRelativeTo(null);
+    	ConfigWordDialog wordDiag = new ConfigWordDialog(frame , false);
+    	wordDiag.setLocationRelativeTo(frame);
+    	wordDiag.setVisible(true);
+    	
+		GUI gui = new GUI();
+		gui.setLocationRelativeTo(null);
 	}
 	return classes;
 
