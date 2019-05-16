@@ -350,7 +350,6 @@ public class GUI extends javax.swing.JFrame {
     	ConfigWordDialog wordDiag = new ConfigWordDialog(this, rootPaneCheckingEnabled);
     	wordDiag.setLocationRelativeTo(this);
     	wordDiag.setVisible(true);
-    	System.out.println("Got here");
     }     
     
     private void jMenuConfigPDFActionPerformed(java.awt.event.ActionEvent evt) {                                            
