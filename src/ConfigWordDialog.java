@@ -123,8 +123,11 @@ public class ConfigWordDialog extends javax.swing.JDialog {
     	}
     	
     	else {
-    	String path = new File(fd.getFile()).getAbsolutePath();
-    	fileLocationTxtField.setText(path);
+    	String fileName = new File(fd.getFile()).getName();
+    	String directory = fd.getDirectory();
+    	fileLocationTxtField.setText(directory + fileName);
+    	
+    	System.out.println("path " + directory + fileName);
 
     	}
     	
