@@ -65,7 +65,10 @@ public class GUI extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenuExit = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuConfig = new javax.swing.JMenuItem();
+        jMenuConfigWord = new javax.swing.JMenuItem();
+        jMenuConfigPDF = new javax.swing.JMenuItem();
+
+        
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1185, 527));
@@ -170,10 +173,17 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
-        jMenuConfig.setText("Configure");
-        jMenuConfig.addActionListener(new java.awt.event.ActionListener() {
+        jMenuConfigWord.setText("Configure Schedule File Location");
+        jMenuConfigWord.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuConfigActionPerformed(evt);
+                jMenuConfigWordActionPerformed(evt);
+            }
+        });
+        
+        jMenuConfigPDF.setText("Configure PDF Fields");
+        jMenuConfigPDF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuConfigPDFActionPerformed(evt);
             }
         });
 
@@ -201,7 +211,8 @@ public class GUI extends javax.swing.JFrame {
         
         refreshTable();
         
-        jMenu2.add(jMenuConfig);
+        jMenu2.add(jMenuConfigWord);
+        jMenu2.add(jMenuConfigPDF);
 
         jMenuBar1.add(jMenu2);
 
@@ -335,9 +346,15 @@ public class GUI extends javax.swing.JFrame {
         System.exit(0);
     }                                         
 
-    private void jMenuConfigActionPerformed(java.awt.event.ActionEvent evt) {                                            
-        // TODO add your handling code here:
-    }                                           
+    private void jMenuConfigWordActionPerformed(java.awt.event.ActionEvent evt) { 
+    	ConfigWordDialog wordDiag = new ConfigWordDialog(this, rootPaneCheckingEnabled);
+    	wordDiag.setLocationRelativeTo(this);
+    	wordDiag.setVisible(true);
+    	System.out.println("Got here");
+    }     
+    
+    private void jMenuConfigPDFActionPerformed(java.awt.event.ActionEvent evt) {                                            
+    }           
 
     private void GTCClassNumCombo1PropertyChange(java.beans.PropertyChangeEvent evt) {                                                 
         // TODO add your handling code here:
@@ -374,7 +391,8 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuConfig;
+    private javax.swing.JMenuItem jMenuConfigWord;
+    private javax.swing.JMenuItem jMenuConfigPDF;
     private javax.swing.JMenuItem jMenuExit;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel selectAClassLbl;
