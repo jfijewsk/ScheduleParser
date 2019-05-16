@@ -1,3 +1,10 @@
+import java.io.File;
+
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
+import javafx.stage.Stage;
+
+
 
 /**
  * Class that sets up config GUI screen for chnaging the file location of the training schedule 
@@ -102,7 +109,31 @@ public class ConfigWordDialog extends javax.swing.JDialog {
     }                                         
 
     private void browseBtnActionPerformed(java.awt.event.ActionEvent evt) {                                          
-        // TODO add your handling code here:
+    	
+    	javafx.stage.Window window;
+//    	window = javax.swing.FocusManager.getCurrentManager().getActiveWindow();;
+    	Stage stage = new Stage();
+    	
+    	FileChooser fileChooser = new FileChooser();
+    	fileChooser.setTitle("Open Resource File");
+    	fileChooser.showOpenDialog(stage);
+    	
+/*    	 FileChooser fileChooser = new FileChooser();
+    	 fileChooser.setTitle("Open Resource File");
+    	 fileChooser.getExtensionFilters().addAll(
+    	         new ExtensionFilter("Text Files", "*.txt"),
+    	         new ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"),
+    	         new ExtensionFilter("Audio Files", "*.wav", "*.mp3", "*.aac"),
+    	         new ExtensionFilter("All Files", "*.*"));
+    	 File selectedFile = fileChooser.showOpenDialog(mainStage);
+    	 if (selectedFile != null) {
+    	    mainStage.display(selectedFile);
+    	 }
+
+            String fileName = chooser.getSelectedFile().getAbsolutePath();*/
+//            System.out.println(fileName);
+
+ //       }
     }                                         
 
 
