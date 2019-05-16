@@ -1,6 +1,8 @@
 import java.awt.FileDialog;
 import java.io.File;
 
+import javax.swing.JOptionPane;
+
 
 /**
  * Class that sets up config GUI screen for chnaging the file location of the training schedule 
@@ -100,7 +102,11 @@ public class ConfigWordDialog extends javax.swing.JDialog {
     }// </editor-fold>                        
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {                                        
-        // TODO add your handling code here:
+    	prop.saveScheduleFileName(fileLocationTxtField.getText());
+    	JOptionPane.showMessageDialog(this,
+    		    "File location saved as: " + fileLocationTxtField.getText() + ".",
+    		    "Saved File Successfully",
+    		    JOptionPane.PLAIN_MESSAGE);
     }                                       
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {                                          
@@ -119,7 +125,9 @@ public class ConfigWordDialog extends javax.swing.JDialog {
     	else {
     	String path = new File(fd.getFile()).getAbsolutePath();
     	fileLocationTxtField.setText(path);
+
     	}
+    	
 
     }                                         
 
