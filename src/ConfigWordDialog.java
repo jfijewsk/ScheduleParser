@@ -107,6 +107,8 @@ public class ConfigWordDialog extends javax.swing.JDialog {
     		    "File location saved as: " + fileLocationTxtField.getText() + ".",
     		    "Saved File Successfully",
     		    JOptionPane.PLAIN_MESSAGE);
+    	
+    	this.dispose();
     }                                       
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {                                          
@@ -129,6 +131,7 @@ public class ConfigWordDialog extends javax.swing.JDialog {
     	
     	System.out.println("path " + directory + fileName);
 
+    	
     	}
     	
 
