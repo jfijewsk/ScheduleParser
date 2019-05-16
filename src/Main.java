@@ -27,6 +27,8 @@ public class Main {
 //		PDFEditor.fillDoorSign(doorSignFileName, (Class)classes.get(0));
 		
 		GUI gui = new GUI();
+		gui.setLocationRelativeTo(null);
+
 		
 	
 		
