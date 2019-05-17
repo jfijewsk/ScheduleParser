@@ -16,7 +16,7 @@ import org.apache.pdfbox.pdmodel.interactive.form.PDField;
 
 public class PDFEditor {
 
-	public static void fillDoorSign(String fileName, Class classInfo) {
+	public static void fillDoorSign(String fileName, Class classInfo, Session session) {
 		
 		Properties prop = Properties.getInstance();
 		
@@ -53,7 +53,7 @@ public class PDFEditor {
 			    // Fill out pdf
 			    techNameField.setValue(allTechs);
 			    techBranchField.setValue(allBranches);
-			    startDateField.setValue(classInfo.getSessions().get(0).getDateRange());
+			    startDateField.setValue(session.getDateRange());
 		    	
 			    List allTrainers = prop.getAllTrainers();
 			    trainerCombo.setOptions(allTrainers);

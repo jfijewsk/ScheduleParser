@@ -334,7 +334,8 @@ public class GUI extends javax.swing.JFrame {
     }                                            
 
     private void createDoorSignBtnActionPerformed(java.awt.event.ActionEvent evt) {                                                  
-		PDFEditor.fillDoorSign(doorSignFileName, (Class)GTCClassNumCombo1.getSelectedItem());
+		PDFEditor.fillDoorSign(doorSignFileName, (Class)GTCClassNumCombo1.getSelectedItem(),
+				(Session)GTCSessionCombo.getSelectedItem());
 
 
     }                                                 

@@ -31,10 +31,6 @@ public class ConfigWordDialog extends javax.swing.JDialog {
                 Main.main(null);
             }
 
-            @Override
-            public void windowClosed(WindowEvent arg0) {
-                //Window is closed, now you can free resources if you need.
-            }
         });
     }
 
