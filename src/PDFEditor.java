@@ -34,6 +34,18 @@ public class PDFEditor {
 				
 				
 	}
+	
+	private static void openPDF(String fileName) {
+	    // Open up the PDF
+	if (Desktop.isDesktopSupported()) {
+	    try {
+	        File myFile = new File(fileName);
+	        Desktop.getDesktop().open(myFile);
+	    } catch (IOException ex) {
+	        // no application registered for PDFs
+	    }
+	}
+	}
 
 
 	public static void fillDoorSign(String fileName, Class classInfo, 
@@ -88,15 +100,7 @@ public class PDFEditor {
 			    			"Error saving pdf", JOptionPane.ERROR_MESSAGE);
 			    }
 			
-			if (Desktop.isDesktopSupported()) {
-			    try {
-			        File myFile = new File(fileName);
-			        Desktop.getDesktop().open(myFile);
-			    } catch (IOException ex) {
-			        // no application registered for PDFs
-			    }
-			}
-			
+			    openPDF(fileName);
 			
 		}
 		
