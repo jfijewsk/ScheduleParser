@@ -1,10 +1,13 @@
 import java.awt.Desktop;
+import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.print.PrintService;
 import javax.swing.JOptionPane;
 
 import org.apache.commons.configuration2.Configuration;
@@ -13,6 +16,7 @@ import org.apache.pdfbox.pdmodel.PDDocumentCatalog;
 import org.apache.pdfbox.pdmodel.interactive.form.PDAcroForm;
 import org.apache.pdfbox.pdmodel.interactive.form.PDComboBox;
 import org.apache.pdfbox.pdmodel.interactive.form.PDField;
+import org.apache.pdfbox.printing.PDFPageable;
 
 public class PDFEditor {
 
@@ -55,6 +59,29 @@ public class PDFEditor {
 				// no application registered for PDFs
 			}
 		}
+	}
+	
+	public static PrintService choosePrinter() {
+	    PrinterJob printJob = PrinterJob.getPrinterJob();
+	    if(printJob.printDialog()) {
+	        return printJob.getPrintService();          
+	    }
+	    else {
+	        return null;
+	    }
+	}
+
+	public static void printPDF(String fileName,  PDDocument[] doc)
+	        throws IOException, PrinterException {
+	    PrinterJob job = PrinterJob.getPrinterJob();
+	    PrintService printer = choosePrinter();
+	    job.setPrintService(printer);
+
+	    for (PDDocument d : doc){
+		    job.setPageable(new PDFPageable(d));
+		    job.print();
+	    }
+
 	}
 
 
@@ -145,7 +172,7 @@ public class PDFEditor {
 						"Error saving pdf", JOptionPane.ERROR_MESSAGE);
 			}
 			openPDFInAdobe(fileName);
-
+			
 		}
 	}
 }
