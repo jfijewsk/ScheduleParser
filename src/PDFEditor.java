@@ -15,16 +15,33 @@ import org.apache.pdfbox.pdmodel.interactive.form.PDComboBox;
 import org.apache.pdfbox.pdmodel.interactive.form.PDField;
 
 public class PDFEditor {
+	
+	private static Properties prop = Properties.getInstance();
+	
+	private static PDDocument openPDFFile(String fileName) {
+		
+		try {
+			File file = new File(fileName);
+			PDDocument pdfDocument = PDDocument.load(file);
+			return pdfDocument;
+		}
+		
+	    catch (Exception e) {
+	    	JOptionPane.showMessageDialog(null, "Error opening pdf file.", 
+	    			"Error opening pdf", JOptionPane.ERROR_MESSAGE);
+	    }
+		
+		return null;
+			
+		
+	}
+
 
 	public static void fillDoorSign(String fileName, Class classInfo, 
 			Session session, ArrayList<Technician> selectedTechs) {
 		
-		Properties prop = Properties.getInstance();
-		
-		try {
-			
-			File file = new File(fileName);
-			PDDocument pdfDocument = PDDocument.load(file);
+			PDDocument pdfDocument = openPDFFile(fileName);
+
 						
 			PDDocumentCatalog docCatalog = pdfDocument.getDocumentCatalog();
 			PDAcroForm acroForm = docCatalog.getAcroForm();
@@ -51,6 +68,7 @@ public class PDFEditor {
 				    
 			    }
 			    
+			    try {
 			    // Fill out pdf
 			    techNameField.setValue(allTechs);
 			    techBranchField.setValue(allBranches);
@@ -60,16 +78,16 @@ public class PDFEditor {
 			    trainerCombo.setOptions(allTrainers);
 			    trainerCombo.setValue(prop.getDefaultTrainer());
 			    
-			    try {
+			   
 			    pdfDocument.save(fileName);
+			    pdfDocument.close();
+
 			    }
 			    
-			    catch (FileNotFoundException e) {
+			    catch (Exception e) {
 			    	JOptionPane.showMessageDialog(null, "Error saving pdf. Make sure the pdf is not already open.", 
 			    			"Error saving pdf", JOptionPane.ERROR_MESSAGE);
 			    }
-			    pdfDocument.close();
-			}
 			
 			if (Desktop.isDesktopSupported()) {
 			    try {
@@ -83,13 +101,11 @@ public class PDFEditor {
 			
 		}
 		
-		catch (Exception ex) {
-			ex.printStackTrace();
-	}
 
 	}
 	
-	public static void fillNameTent() {
+	public static void fillNameTent(String fileName, Technician tech) {
+		String nameTentFileLocation = prop.getNameTentFileName();
 		
 	}
 }

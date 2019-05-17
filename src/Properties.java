@@ -94,6 +94,15 @@ public class Properties {
 	}
 	
 	/**
+	 * @return file name location for the name tent pdf 
+	 */
+	public static String getNameTentFileName() {
+		return config.getString("nameTentPDFLocation");
+
+	}
+	
+
+	/**
 	 * Saves new file location of the word document containing the schedule
 	 */
 	public static void saveScheduleFileName(String newLocation) {
