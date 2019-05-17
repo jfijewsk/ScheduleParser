@@ -109,6 +109,8 @@ public class ConfigWordDialog extends javax.swing.JDialog {
     		    JOptionPane.PLAIN_MESSAGE);
     	
     	this.dispose();
+    	
+    	Main.main(null);
     }                                       
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {                                          
@@ -116,6 +118,7 @@ public class ConfigWordDialog extends javax.swing.JDialog {
     }                                         
 
     private void browseBtnActionPerformed(java.awt.event.ActionEvent evt) {                                          
+    	
     	
     	FileDialog fd = new FileDialog(this, "Open", FileDialog.LOAD); 
     	fd.show();    	
@@ -131,7 +134,6 @@ public class ConfigWordDialog extends javax.swing.JDialog {
     	
     	System.out.println("path " + directory + fileName);
 
-    	
     	}
     	
 

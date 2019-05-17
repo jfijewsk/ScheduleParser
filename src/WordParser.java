@@ -1,3 +1,5 @@
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -138,8 +140,9 @@ public class WordParser {
     	wordDiag.setLocationRelativeTo(frame);
     	wordDiag.setVisible(true);
     	
-		GUI gui = new GUI();
-		gui.setLocationRelativeTo(null);
+
+    	
+
 	}
 	return classes;
 

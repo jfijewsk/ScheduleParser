@@ -352,6 +352,7 @@ public class GUI extends javax.swing.JFrame {
     }                                         
 
     private void jMenuConfigWordActionPerformed(java.awt.event.ActionEvent evt) { 
+    	this.dispose();
     	ConfigWordDialog wordDiag = new ConfigWordDialog(this, rootPaneCheckingEnabled);
     	wordDiag.setLocationRelativeTo(this);
     	wordDiag.setVisible(true);
@@ -520,6 +521,7 @@ public class GUI extends javax.swing.JFrame {
     	sessionDatesLabel.setText("Session dates: " + selectedSession.getFullStartDate() + " - " + selectedSession.getEndDate());
     }
     
+
 
 
     

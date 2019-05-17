@@ -2,6 +2,9 @@ import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import org.apache.commons.configuration2.Configuration;
 import org.apache.poi.openxml4j.opc.OPCPackage;
 import org.apache.poi.xwpf.extractor.XWPFWordExtractor;
@@ -22,12 +25,16 @@ public class Main {
 		
 //		ArrayList classes = new ArrayList<Class>();
 			
-//		classes = WordParser.findClases(fileName);
+//		classes = WordParser.findClases(prop.getScheduleFileName());
+		
+
+			GUI gui = new GUI();
+			gui.setLocationRelativeTo(null);
+		
 		
 //		PDFEditor.fillDoorSign(doorSignFileName, (Class)classes.get(0));
 		
-		GUI gui = new GUI();
-		gui.setLocationRelativeTo(null);
+
 
 		
 	

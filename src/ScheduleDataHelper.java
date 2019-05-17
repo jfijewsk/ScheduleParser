@@ -30,6 +30,9 @@ public class ScheduleDataHelper {
 	
 	public static Session[] getAllSessions(Class inputClass) {
 		
+		if (inputClass == null) {
+			return null;
+		}
 		Session[] GTCsessions = new Session[inputClass.getSessions().size()];
 		
 		for(int i = 0; i < inputClass.getSessions().size(); i ++) {
