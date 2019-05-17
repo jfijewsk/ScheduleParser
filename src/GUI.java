@@ -339,8 +339,6 @@ public class GUI extends javax.swing.JFrame {
 		PDFEditor.fillDoorSign(doorSignFileName, (Class)GTCClassNumCombo1.getSelectedItem(),
 				(Session)GTCSessionCombo.getSelectedItem(), selectedTechs);
 
-		// Really should make a helper method to get the selected techs.???
-
     }                                                 
 
     private void createNameTentBtnActionPerformed(java.awt.event.ActionEvent evt) {                                                  
@@ -529,6 +527,9 @@ public class GUI extends javax.swing.JFrame {
     	sessionDatesLabel.setText("Session dates: " + selectedSession.getFullStartDate() + " - " + selectedSession.getEndDate());
     }
     
+    /**
+     * @returns all of the selected techs from the techTable.
+     */
     public ArrayList<Technician> getSelectedTechs(){
     	ArrayList<Technician> selectedTechs = new ArrayList<Technician>();
     	Class selectedClass = (Class) GTCClassNumCombo1.getSelectedItem();
