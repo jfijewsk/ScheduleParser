@@ -31,6 +31,7 @@ public class GUI extends javax.swing.JFrame {
 	
 	String fileName = prop.getScheduleFileName();
 	String doorSignFileName = prop.getDoorSignFileName();
+	String nameTentFileName = prop.getNameTentFileName();
 	
     /**
      * Creates new form GUI
@@ -342,7 +343,7 @@ public class GUI extends javax.swing.JFrame {
     }                                                 
 
     private void createNameTentBtnActionPerformed(java.awt.event.ActionEvent evt) {                                                  
-        // TODO add your handling code here:
+    	PDFEditor.fillNameTent(nameTentFileName, getSelectedTechs().get(0));
     }                                                 
 
     private void createShippingBtnActionPerformed(java.awt.event.ActionEvent evt) {                                                  
