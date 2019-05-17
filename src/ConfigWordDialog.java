@@ -1,4 +1,7 @@
 import java.awt.FileDialog;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.File;
 
 import javax.swing.JOptionPane;
@@ -20,6 +23,19 @@ public class ConfigWordDialog extends javax.swing.JDialog {
     public ConfigWordDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
+        this.addWindowListener((WindowListener) new WindowAdapter() {
+
+            @Override
+            public void windowClosing(WindowEvent arg0) {
+                Main.main(null);
+            }
+
+            @Override
+            public void windowClosed(WindowEvent arg0) {
+                //Window is closed, now you can free resources if you need.
+            }
+        });
     }
 
     /**
@@ -99,6 +115,8 @@ public class ConfigWordDialog extends javax.swing.JDialog {
         );
 
         pack();
+        
+        
     }// </editor-fold>                        
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {                                        
@@ -115,6 +133,8 @@ public class ConfigWordDialog extends javax.swing.JDialog {
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {                                          
        this.dispose();
+   		Main.main(null);
+
     }                                         
 
     private void browseBtnActionPerformed(java.awt.event.ActionEvent evt) {                                          
@@ -137,7 +157,8 @@ public class ConfigWordDialog extends javax.swing.JDialog {
     	}
     	
 
-    }                                         
+    }                                    
+    
 
 
 
