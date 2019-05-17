@@ -60,28 +60,35 @@ public class PDFEditor {
 			}
 		}
 	}
-	
-	public static PrintService choosePrinter() {
-	    PrinterJob printJob = PrinterJob.getPrinterJob();
-	    if(printJob.printDialog()) {
-	        return printJob.getPrintService();          
-	    }
-	    else {
-	        return null;
-	    }
+
+	private static PrintService choosePrinter() {
+		PrinterJob printJob = PrinterJob.getPrinterJob();
+		if(printJob.printDialog()) {
+			return printJob.getPrintService();          
+		}
+		else {
+			return null;
+		}
 	}
 
-	public static void printPDF(String fileName,  PDDocument[] doc)
-	        throws IOException, PrinterException {
-	    PrinterJob job = PrinterJob.getPrinterJob();
-	    PrintService printer = choosePrinter();
-	    job.setPrintService(printer);
+	private static boolean printPDF(PDDocument doc) {
 
-	    for (PDDocument d : doc){
-		    job.setPageable(new PDFPageable(d));
-		    job.print();
-	    }
+		try {
+			PrinterJob job = PrinterJob.getPrinterJob();
+			PrintService printer = choosePrinter();
+			job.setPrintService(printer);
 
+			job.setPageable(new PDFPageable(doc));
+			job.print();
+			return true;
+
+		}
+
+		catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Print job canceled.", 
+					"Print canceled", JOptionPane.INFORMATION_MESSAGE);
+			return false;
+		}
 	}
 
 
@@ -144,7 +151,7 @@ public class PDFEditor {
 
 	}
 
-	public static void fillNameTent(String fileName, Technician tech) {
+	public static void fillNameTent(String fileName, ArrayList<Technician> techs) {
 		String nameTentFileLocation = prop.getNameTentFileName();
 		PDDocument pdfDocument = openPDFFile(fileName);
 
@@ -160,10 +167,21 @@ public class PDFEditor {
 			PDField techBranchField = (PDField) acroForm.getField( "Trainee Branch" );
 
 			try {
-				techNameField.setValue(tech.getName());
-				techBranchField.setValue(tech.getBranch());
-				
-				pdfDocument.save(fileName);
+
+				boolean printWasSucessful = true;
+
+				for (Technician t : techs) {
+
+					if (printWasSucessful) {
+						techNameField.setValue(t.getName());
+						techBranchField.setValue(t.getBranch());
+
+						pdfDocument.save(fileName);
+						printWasSucessful = printPDF(pdfDocument);
+					}
+				}
+
+
 				pdfDocument.close();
 			}
 
@@ -171,8 +189,7 @@ public class PDFEditor {
 				JOptionPane.showMessageDialog(null, "Error saving pdf. Make sure the pdf is not already open.", 
 						"Error saving pdf", JOptionPane.ERROR_MESSAGE);
 			}
-			openPDFInAdobe(fileName);
-			
+
 		}
 	}
 }
