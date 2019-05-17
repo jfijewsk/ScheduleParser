@@ -29,11 +29,10 @@ public class PDFEditor {
 	    catch (Exception e) {
 	    	JOptionPane.showMessageDialog(null, "Error opening pdf file.", 
 	    			"Error opening pdf", JOptionPane.ERROR_MESSAGE);
+	    	return null;
 	    }
-		
-		return null;
-			
-		
+				
+				
 	}
 
 
