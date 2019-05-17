@@ -60,7 +60,12 @@ public class PDFEditor {
 			}
 		}
 	}
+	
 
+	/**
+	 * Lets the user pick a printer.
+	 * @returns The printer the user wishes to use.
+	 */
 	private static PrintService choosePrinter() {
 		PrinterJob printJob = PrinterJob.getPrinterJob();
 		if(printJob.printDialog()) {
@@ -71,11 +76,17 @@ public class PDFEditor {
 		}
 	}
 
-	private static boolean printPDF(PDDocument doc) {
+	
+	/**
+	 * Prints the inputed PDF file.
+	 * @param printer the user wishes to use
+	 * @param doc the document needing to be printed
+	 * @return boolean if the print job was successfully sent to the printer
+	 */
+	private static boolean printPDF(PrintService printer, PDDocument doc) {
 
 		try {
 			PrinterJob job = PrinterJob.getPrinterJob();
-			PrintService printer = choosePrinter();
 			job.setPrintService(printer);
 
 			job.setPageable(new PDFPageable(doc));
@@ -85,8 +96,8 @@ public class PDFEditor {
 		}
 
 		catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Print job canceled.", 
-					"Print canceled", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Holy flying squirrels, the print job somehow failed. How the hell did you manage that!?", 
+					"Print Failed", JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
 	}
@@ -169,15 +180,18 @@ public class PDFEditor {
 			try {
 
 				boolean printWasSucessful = true;
+				
+				// Select printer
+				PrintService printer = choosePrinter();
 
 				for (Technician t : techs) {
 
-					if (printWasSucessful) {
+					if (printWasSucessful && printer != null) {
 						techNameField.setValue(t.getName());
 						techBranchField.setValue(t.getBranch());
 
 						pdfDocument.save(fileName);
-						printWasSucessful = printPDF(pdfDocument);
+						printWasSucessful = printPDF(printer, pdfDocument);
 					}
 				}
 
