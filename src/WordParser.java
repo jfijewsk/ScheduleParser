@@ -45,6 +45,7 @@ public class WordParser {
 
 			// If next is a paragraph increase paragraph index
 		    element = (IBodyElement) bodyElementIterator.next();
+		    
 			
 		    // Get the class name from the paragraph before the class table. Looks for 
 		    // the keyword "Class"
@@ -66,51 +67,56 @@ public class WordParser {
 				  
 					ArrayList<Session> sessions = new ArrayList<Session>();
 				  
-					for (int i = 0; i < table.getRows().size(); i++) {
+				    // If the table does not have the keyword "Session" in it, skip it						
+						if (checkIfGTCClass(table) == true) {
+							for (int i = 0; i < table.getRows().size(); i++) {
 
-						for (int j = 0; j < table.getRow(i).getTableCells().size(); j++) {
-							
-							// Find the different sessions and their dates.
-							// If statement looks for the key word "session" within the first column of the table.
-							if ((table.getRow(i).getCell(j).getText().startsWith("Session")
-									|| table.getRow(i).getCell(j).getText().startsWith("session"))
-									&& j == 0) {
-								
-								String sessionName = table.getRow(i).getCell(j).getText();
-																
-								String startDate = table.getRow(i).getCell(j+1).getText();
-								
-								String endDate = table.getRow(i).getCell(j+2).getText();
-								
-								Session session = new Session(sessionName, startDate, endDate);
-								sessions.add(session);
-							}
-							
-							// Find the Technician Name column
-							ArrayList<Technician> students = new ArrayList<Technician>();
-					
-							if (table.getRow(i).getCell(j).getText().equals("Technician Name")) {
-								// Get all techs
-								for(int k = i+1; k < table.getRows().size(); k++) {
-								
-									// make sure not to add a blank tech
-									if (table.getRow(k).getCell(j).getText() != null 
-											|| !table.getRow(k).getCell(j).getText().equals("")) {
+								for (int j = 0; j < table.getRow(i).getTableCells().size(); j++) {
+									
+									// Find the different sessions and their dates.
+									// If statement looks for the key word "session" within the first column of the table.
+									if ((table.getRow(i).getCell(j).getText().startsWith("Session")
+											|| table.getRow(i).getCell(j).getText().startsWith("session"))
+											&& j == 0) {
 										
-										String name = table.getRow(k).getCell(j).getText();
-										String branch = table.getRow(k).getCell(j - 1).getText();
-										String startDate = table.getRow(k).getCell(j + 1).getText();
+										String sessionName = table.getRow(i).getCell(j).getText();
+																		
+										String startDate = table.getRow(i).getCell(j+1).getText();
 										
-										students.add(new Technician(name, branch, startDate));
-//										System.out.println("Added student: " + table.getRow(k).getCell(j).getText());
+										String endDate = table.getRow(i).getCell(j+2).getText();
+										
+										Session session = new Session(sessionName, startDate, endDate);
+										sessions.add(session);
+									}
+									
+									// Find the Technician Name column
+									ArrayList<Technician> students = new ArrayList<Technician>();
+							
+									if (table.getRow(i).getCell(j).getText().equals("Technician Name")) {
+										// Get all techs
+										for(int l = i+1; l < table.getRows().size(); l++) {
+										
+											// make sure not to add a blank tech
+											if (table.getRow(l).getCell(j).getText() != null 
+													|| !table.getRow(l).getCell(j).getText().equals("")) {
+												
+												String name = table.getRow(l).getCell(j).getText();
+												String branch = table.getRow(l).getCell(j - 1).getText();
+												String startDate = table.getRow(l).getCell(j + 1).getText();
+												
+												students.add(new Technician(name, branch, startDate));
+//												System.out.println("Added student: " + table.getRow(k).getCell(j).getText());
+												
+											}
+
+										}
+										
+										Class classGTC = new Class(students, className, sessions);
+										classes.add(classGTC);
 										
 									}
-
-								}
-								
-								Class classGTC = new Class(students, className, sessions);
-								classes.add(classGTC);
-								
+						}
+					
 							}
 
 						} // end of each col loop
@@ -123,11 +129,12 @@ public class WordParser {
 			
 
 			// end of while loop
-			}
+			
 		
 		return classes;
-
-	} catch (Exception ex) {
+	} 
+	
+	catch (Exception ex) {
 		Properties prop = Properties.getInstance();
     	JOptionPane.showMessageDialog(null,
     		    "Invaild file to load the schedule. Please pick the correct file.",
@@ -146,5 +153,19 @@ public class WordParser {
 	}
 	return classes;
 
+}
+	
+	public static boolean checkIfGTCClass(XWPFTable table ) {
+		for (int k = 0; k < table.getRows().size(); k++) {
+
+			for (int j = 0; j < table.getRow(k).getTableCells().size(); j++) {
+				if ((table.getRow(k).getCell(j).getText().startsWith("Session")
+						|| table.getRow(k).getCell(j).getText().startsWith("session"))){
+					return true;
+				}
+			}
+	}
+		
+		return false;
 }
 }
