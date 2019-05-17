@@ -16,7 +16,7 @@ import org.apache.pdfbox.pdmodel.interactive.form.PDField;
 
 public class PDFEditor {
 
-	public static void fillDoorSign(String fileName, Class classInfo, Session session) {
+	public static void fillDoorSign(String fileName, Class classInfo, Session session, ArrayList<Technician> selectedTechs) {
 		
 		Properties prop = Properties.getInstance();
 		
@@ -42,10 +42,10 @@ public class PDFEditor {
 			    
 			    // Changing the techs names on the pdf
 			    ArrayList<Technician> enrolledTechs = classInfo.getTechnicans();
-			    for (int i = 0; i < enrolledTechs.size(); i++) {
+			    for (Technician t: selectedTechs) {
 			    	
-			    	allTechs = allTechs.concat(enrolledTechs.get(i).getName() +  "\n");
-			    	allBranches = allBranches.concat(enrolledTechs.get(i).getBranch() +  "\n");
+			    	allTechs = allTechs.concat(t.getName() +  "\n");
+			    	allBranches = allBranches.concat(t.getBranch() +  "\n");
 
 				    
 			    }

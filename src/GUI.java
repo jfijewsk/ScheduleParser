@@ -333,7 +333,12 @@ public class GUI extends javax.swing.JFrame {
 
     }                                            
 
-    private void createDoorSignBtnActionPerformed(java.awt.event.ActionEvent evt) {                                                  
+    private void createDoorSignBtnActionPerformed(java.awt.event.ActionEvent evt) {     
+    	// Get the selected techs
+    	ArrayList<Technician> selectedTechs = new ArrayList<Technician>();
+    	for (int i : selectedRows) {
+    		selectedTechs.add(techTable.getComponent(i));
+    	}
 		PDFEditor.fillDoorSign(doorSignFileName, (Class)GTCClassNumCombo1.getSelectedItem(),
 				(Session)GTCSessionCombo.getSelectedItem());
 

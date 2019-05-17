@@ -37,6 +37,8 @@ public class WordParser {
 			Iterator<?> bodyElementIterator = xdoc.getBodyElementsIterator();
 			IBodyElement element = (IBodyElement) bodyElementIterator.next();
 			java.util.List<XWPFParagraph> paragraphList;
+			
+			
 
 			XWPFTable table = null;
 			String className = null;
@@ -123,7 +125,8 @@ public class WordParser {
 
 			}
 
-
+			fis.close();
+			xdoc.close();
 			return classes;
 		} 
 
