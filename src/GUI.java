@@ -335,12 +335,9 @@ public class GUI extends javax.swing.JFrame {
 
     private void createDoorSignBtnActionPerformed(java.awt.event.ActionEvent evt) {     
     	// Get the selected techs
-    	ArrayList<Technician> selectedTechs = new ArrayList<Technician>();
-    	for (int i : selectedRows) {
-    		selectedTechs.add(techTable.getComponent(i));
-    	}
+    	ArrayList<Technician> selectedTechs = getSelectedTechs();
 		PDFEditor.fillDoorSign(doorSignFileName, (Class)GTCClassNumCombo1.getSelectedItem(),
-				(Session)GTCSessionCombo.getSelectedItem());
+				(Session)GTCSessionCombo.getSelectedItem(), selectedTechs);
 
 		// Really should make a helper method to get the selected techs.???
 
@@ -530,6 +527,15 @@ public class GUI extends javax.swing.JFrame {
     	Session selectedSession = (Session) GTCSessionCombo.getSelectedItem();
 
     	sessionDatesLabel.setText("Session dates: " + selectedSession.getFullStartDate() + " - " + selectedSession.getEndDate());
+    }
+    
+    public ArrayList<Technician> getSelectedTechs(){
+    	ArrayList<Technician> selectedTechs = new ArrayList<Technician>();
+    	Class selectedClass = (Class) GTCClassNumCombo1.getSelectedItem();
+    	for (int i : selectedRows) {
+    		selectedTechs.add(selectedClass.getTechnicans().get(i));
+    	}
+    	return selectedTechs;
     }
     
 
