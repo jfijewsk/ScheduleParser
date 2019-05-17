@@ -342,6 +342,7 @@ public class GUI extends javax.swing.JFrame {
 		PDFEditor.fillDoorSign(doorSignFileName, (Class)GTCClassNumCombo1.getSelectedItem(),
 				(Session)GTCSessionCombo.getSelectedItem());
 
+		// Really should make a helper method to get the selected techs.???
 
     }                                                 
 
