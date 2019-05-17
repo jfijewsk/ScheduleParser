@@ -27,7 +27,7 @@ import org.apache.xmlbeans.impl.xb.xsdschema.ListDocument.List;
  */
 public class WordParser {
 	
-	public static ArrayList<Class> findClases(String fileName) {
+	public static ArrayList<Class> findGTCClases(String fileName) {
 		
 		ArrayList<Class> classes = new ArrayList<Class>();
 				

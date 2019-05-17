@@ -15,7 +15,7 @@ public class ScheduleDataHelper {
 				
 	
 	public static Class[] getAllGTCClasses() {
-		ArrayList<Class> classes = WordParser.findClases(prop.getScheduleFileName());
+		ArrayList<Class> classes = WordParser.findGTCClases(prop.getScheduleFileName());
 		
 		Class[] GTCclasses = new Class[classes.size()];
 		
