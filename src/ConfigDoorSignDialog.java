@@ -61,11 +61,24 @@ public class ConfigDoorSignDialog extends javax.swing.JDialog {
         trainingRoomsBrowseBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        
+        String[] currentSettings = prop.getDoorSignSettings();
 
         doorSignJLabel.setText("Door Sign PDF File:");
+        session1DescriptionJlabel.setText("Session 1 Description:");
+        session2DescriptionJlabel.setText("Session 2 Description:");
+        session3DescriptionJlabel.setText("Session 3 Description:");
+        session4DescriptionJlabel.setText("Session 4 Description:");
+        trainingRoomsJlabel.setText("Training Rooms:");
 
-        doorSignTextField.setText("jTextField1");
 
+        doorSignTextField.setText(currentSettings[0]);
+        session1DescriptionTextField.setText(currentSettings[1]);
+        session2DescriptionTextField.setText(currentSettings[2]);
+        session3DescriptionTextField.setText(currentSettings[3]);
+        session4DescriptionTextField.setText(currentSettings[4]);       
+        trainingRoomsTextField.setText(currentSettings[5]);
+        
         saveBtn.setText("Save");
         saveBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,9 +100,6 @@ public class ConfigDoorSignDialog extends javax.swing.JDialog {
             }
         });
 
-        session1DescriptionJlabel.setText("Session 1 Description:");
-
-        session1DescriptionTextField.setText("jTextField1");
 
         session1DescriptionBrowseBtn.setText("Browse");
         session1DescriptionBrowseBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -98,10 +108,6 @@ public class ConfigDoorSignDialog extends javax.swing.JDialog {
             }
         });
 
-        session2DescriptionJlabel.setText("Session 2 Description:");
-
-        session2DescriptionTextField.setText("jTextField1");
-
         session2DescriptionBrowseBtn.setText("Browse");
         session2DescriptionBrowseBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -109,9 +115,6 @@ public class ConfigDoorSignDialog extends javax.swing.JDialog {
             }
         });
 
-        session3DescriptionJlabel.setText("Session 3 Description:");
-
-        session3DescriptionTextField.setText("jTextField1");
 
         session3DescriptionBrowseBtn.setText("Browse");
         session3DescriptionBrowseBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -120,9 +123,6 @@ public class ConfigDoorSignDialog extends javax.swing.JDialog {
             }
         });
 
-        session4DescriptionJlabel.setText("Session 4 Description:");
-
-        session4DescriptionTextField.setText("jTextField1");
 
         session4DescriptionBrowseBtn.setText("Browse");
         session4DescriptionBrowseBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -131,9 +131,6 @@ public class ConfigDoorSignDialog extends javax.swing.JDialog {
             }
         });
 
-        trainingRoomsJlabel.setText("Training Rooms:");
-
-        trainingRoomsTextField.setText("jTextField1");
 
         trainingRoomsBrowseBtn.setText("Browse");
         trainingRoomsBrowseBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -232,11 +229,18 @@ public class ConfigDoorSignDialog extends javax.swing.JDialog {
         pack();
     }// </editor-fold>                        
 
-    private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {                                        
-    	prop.saveScheduleFileName(fileLocationTxtField.getText());
+    private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {       
+    	String[] values = new String[6];
+    	values[0] = doorSignTextField.getText();
+    	values[1] = session1DescriptionTextField.getText();
+    	values[2] = session2DescriptionTextField.getText();
+    	values[3] = session3DescriptionTextField.getText();
+    	values[4] = session4DescriptionTextField.getText();
+    	values[5] = trainingRoomsTextField.getText();
+
+    	prop.saveDoorSign(values);
     	JOptionPane.showMessageDialog(this,
-    		    "Settings changed!",
-    		    JOptionPane.PLAIN_MESSAGE);
+    		    "Settings changed!");
     	
     	parentFrame.dispose();
     	

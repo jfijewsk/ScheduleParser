@@ -103,6 +103,19 @@ public class Properties {
 
 	}
 	
+	public static String[] getDoorSignSettings() {
+		
+		String[] result = new String[6];
+		result[0] = config.getProperty("doorSignPDFLocation").toString();
+		result[1] = config.getProperty("session1Description").toString();
+		result[2] = config.getProperty("session2Description").toString();
+		result[3] = config.getProperty("session3Description").toString();
+		result[4] = config.getProperty("session4Description").toString();
+		result[5] = config.getProperty("allTrainingRooms").toString();
+		
+		return result;
+	}
+	
 
 	/**
 	 * Saves new file location of the word document containing the schedule
