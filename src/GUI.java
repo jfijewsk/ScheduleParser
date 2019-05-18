@@ -68,7 +68,10 @@ public class GUI extends javax.swing.JFrame {
         jMenuExit = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuConfigWord = new javax.swing.JMenuItem();
-        jMenuConfigPDF = new javax.swing.JMenuItem();
+        jMenuConfigDoorSignPDF = new javax.swing.JMenuItem();
+        jMenuConfigShippingFormPDF = new javax.swing.JMenuItem();
+        jMenuConfigTechReviewPDF = new javax.swing.JMenuItem();
+        jMenuConfigNameTentPDF = new javax.swing.JMenuItem();
         sessionDatesLabel = new javax.swing.JLabel();
 
         
@@ -178,19 +181,41 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
-        jMenuConfigWord.setText("Configure Schedule File Location");
+        jMenuConfigWord.setText("Training Schedule File");
         jMenuConfigWord.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuConfigWordActionPerformed(evt);
             }
         });
         
-        jMenuConfigPDF.setText("Configure PDF Fields");
-        jMenuConfigPDF.addActionListener(new java.awt.event.ActionListener() {
+        jMenuConfigDoorSignPDF.setText("Door Sign PDF");
+        jMenuConfigDoorSignPDF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuConfigPDFActionPerformed(evt);
+                jMenuConfigDoorSignPDFActionPerformed(evt);
             }
         });
+        
+        jMenuConfigShippingFormPDF.setText("Shipping Form");
+        jMenuConfigShippingFormPDF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuConfigShippingFormPDFActionPerformed(evt);
+            }
+        });
+        
+        jMenuConfigTechReviewPDF.setText("Technician Reviews");
+        jMenuConfigTechReviewPDF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuConfigTechReviewPDFActionPerformed(evt);
+            }
+        });
+        
+        jMenuConfigNameTentPDF.setText("Name Tents");
+        jMenuConfigNameTentPDF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuConfigNameTentPDFActionPerformed(evt);
+            }
+        });
+        
 
     	model = techTable.getSelectionModel();
         
@@ -217,7 +242,7 @@ public class GUI extends javax.swing.JFrame {
         refreshTable();
         
         jMenu2.add(jMenuConfigWord);
-        jMenu2.add(jMenuConfigPDF);
+        jMenu2.add(jMenuConfigDoorSignPDF);
 
         jMenuBar1.add(jMenu2);
 
@@ -365,12 +390,33 @@ public class GUI extends javax.swing.JFrame {
     	wordDiag.setVisible(true);
     }     
     
-    private void jMenuConfigPDFActionPerformed(java.awt.event.ActionEvent evt) {    
+    private void jMenuConfigDoorSignPDFActionPerformed(java.awt.event.ActionEvent evt) {    
     	this.dispose();
     	ConfigDoorSignDialog PDFDiag = new ConfigDoorSignDialog(this, rootPaneCheckingEnabled);
     	PDFDiag.setLocationRelativeTo(this);
     	PDFDiag.setVisible(true);
     }           
+    
+    private void jMenuConfigShippingFormPDFActionPerformed(java.awt.event.ActionEvent evt) {    
+    	this.dispose();
+    	ConfigDoorSignDialog PDFDiag = new ConfigDoorSignDialog(this, rootPaneCheckingEnabled);
+    	PDFDiag.setLocationRelativeTo(this);
+    	PDFDiag.setVisible(true);
+    } 
+    
+    private void jMenuConfigNameTentPDFActionPerformed(java.awt.event.ActionEvent evt) {    
+    	this.dispose();
+    	ConfigDoorSignDialog PDFDiag = new ConfigDoorSignDialog(this, rootPaneCheckingEnabled);
+    	PDFDiag.setLocationRelativeTo(this);
+    	PDFDiag.setVisible(true);
+    } 
+    
+    private void jMenuConfigTechReviewPDFActionPerformed(java.awt.event.ActionEvent evt) {    
+    	this.dispose();
+    	ConfigDoorSignDialog PDFDiag = new ConfigDoorSignDialog(this, rootPaneCheckingEnabled);
+    	PDFDiag.setLocationRelativeTo(this);
+    	PDFDiag.setVisible(true);
+    } 
 
     private void GTCClassNumCombo1PropertyChange(java.beans.PropertyChangeEvent evt) {                                                 
         // TODO add your handling code here:
@@ -408,7 +454,10 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuConfigWord;
-    private javax.swing.JMenuItem jMenuConfigPDF;
+    private javax.swing.JMenuItem jMenuConfigDoorSignPDF;
+    private javax.swing.JMenuItem jMenuConfigShippingFormPDF;
+    private javax.swing.JMenuItem jMenuConfigNameTentPDF;
+    private javax.swing.JMenuItem jMenuConfigTechReviewPDF;
     private javax.swing.JMenuItem jMenuExit;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel selectAClassLbl;
