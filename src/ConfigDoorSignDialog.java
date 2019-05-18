@@ -1,6 +1,9 @@
+import java.awt.Frame;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -8,9 +11,12 @@ import java.awt.event.WindowListener;
  */
 public class ConfigDoorSignDialog extends javax.swing.JDialog {
 	
+	Properties prop = Properties.getInstance();
+	private Frame parentFrame;
 
     public ConfigDoorSignDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        parentFrame = parent;
         initComponents();
         
         this.addWindowListener((WindowListener) new WindowAdapter() {
@@ -227,12 +233,21 @@ public class ConfigDoorSignDialog extends javax.swing.JDialog {
     }// </editor-fold>                        
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {                                        
-        // TODO add your handling code here:
+    	prop.saveScheduleFileName(fileLocationTxtField.getText());
+    	JOptionPane.showMessageDialog(this,
+    		    "Settings changed!",
+    		    JOptionPane.PLAIN_MESSAGE);
+    	
+    	parentFrame.dispose();
+    	
+    	Main.main(null);
     }                                       
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {                                          
-        // TODO add your handling code here:
-    }                                         
+    	parentFrame.dispose();
+   		Main.main(null);
+
+    }                                              
 
     private void doorSignBrowseBtnActionPerformed(java.awt.event.ActionEvent evt) {                                                  
         // TODO add your handling code here:

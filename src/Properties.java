@@ -4,6 +4,8 @@ import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import org.apache.commons.configuration2.Configuration;
 import org.apache.commons.configuration2.FileBasedConfiguration;
 import org.apache.commons.configuration2.PropertiesConfiguration;
@@ -107,13 +109,35 @@ public class Properties {
 	 */
 	public static void saveScheduleFileName(String newLocation) {
 		config.setProperty("scheduleLocation", newLocation);
+		save();
+
+	}
+	
+	/**
+	 * Saves new file location of the word document containing the schedule
+	 */
+	public static void saveDoorSign(String[] values) {
+		config.setProperty("doorSignPDFLocation", values[0]);
+		config.setProperty("session1Description", values[1]);
+		config.setProperty("session2Description", values[2]);
+		config.setProperty("session3Description", values[3]);
+		config.setProperty("session4Description", values[4]);
+		config.setProperty("allTrainingRooms", values[5]);
+
+		save();
+
+	}
+	
+	/**
+	 * Saves the config file.
+	 */
+	private static void save() {
 		try {
 			builder.save();
 		} catch (ConfigurationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Error saving settings. Make sure config.properties is not open.", 
+					"Save Settings Failed", JOptionPane.ERROR_MESSAGE);
 		}
-
 	}
 
     

@@ -1,4 +1,5 @@
 import java.awt.FileDialog;
+import java.awt.Frame;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
@@ -18,10 +19,12 @@ public class ConfigWordDialog extends javax.swing.JDialog {
      * Creates new form ConfigPDFDialog
      */
 	
+	private Frame parentFrame;
 	static Properties prop = Properties.getInstance();
 
     public ConfigWordDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+    	parentFrame = parent;
         initComponents();
         
         this.addWindowListener((WindowListener) new WindowAdapter() {
@@ -123,13 +126,13 @@ public class ConfigWordDialog extends javax.swing.JDialog {
     		    "Saved File Successfully",
     		    JOptionPane.PLAIN_MESSAGE);
     	
-    	this.dispose();
+    	parentFrame.dispose();
     	
     	Main.main(null);
     }                                       
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {                                          
-       this.dispose();
+    	parentFrame.dispose();
    		Main.main(null);
 
     }                                         
