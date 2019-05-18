@@ -19,7 +19,11 @@ public class Properties {
 	
 	static Properties instance;
 	private static Configuration config;
+	private static Configuration configNonList;
+
 	private static FileBasedConfigurationBuilder<FileBasedConfiguration> builder;
+	private static FileBasedConfigurationBuilder<FileBasedConfiguration> builderNonList;
+
 	
 	private Properties() {
 		
@@ -49,10 +53,16 @@ public class Properties {
 		    .configure(params.properties()
 		        .setFileName("config.properties")
         .setListDelimiterHandler(new DefaultListDelimiterHandler(',')));
+		
+		builderNonList = new FileBasedConfigurationBuilder<FileBasedConfiguration>(PropertiesConfiguration.class)
+			    .configure(params.properties()
+			        .setFileName("config.properties"));
 
 		try
 		{
 		    config = builder.getConfiguration();
+		    configNonList = builderNonList.getConfiguration();
+
 		}
 		catch(ConfigurationException cex)
 		{
@@ -106,12 +116,12 @@ public class Properties {
 	public static String[] getDoorSignSettings() {
 		
 		String[] result = new String[6];
-		result[0] = config.getProperty("doorSignPDFLocation").toString();
-		result[1] = config.getProperty("session1Description").toString();
-		result[2] = config.getProperty("session2Description").toString();
-		result[3] = config.getProperty("session3Description").toString();
-		result[4] = config.getProperty("session4Description").toString();
-		result[5] = config.getProperty("allTrainingRooms").toString();
+		result[0] = configNonList.getProperty("doorSignPDFLocation").toString();
+		result[1] = configNonList.getProperty("session1Description").toString();
+		result[2] = configNonList.getProperty("session2Description").toString();
+		result[3] = configNonList.getProperty("session3Description").toString();
+		result[4] = configNonList.getProperty("session4Description").toString();
+		result[5] = configNonList.getProperty("allTrainingRooms").toString();
 		
 		return result;
 	}
@@ -122,7 +132,7 @@ public class Properties {
 	 */
 	public static void saveScheduleFileName(String newLocation) {
 		config.setProperty("scheduleLocation", newLocation);
-		save();
+		saveList();
 
 	}
 	
@@ -130,23 +140,35 @@ public class Properties {
 	 * Saves new file location of the word document containing the schedule
 	 */
 	public static void saveDoorSign(String[] values) {
-		config.setProperty("doorSignPDFLocation", values[0]);
-		config.setProperty("session1Description", values[1]);
-		config.setProperty("session2Description", values[2]);
-		config.setProperty("session3Description", values[3]);
-		config.setProperty("session4Description", values[4]);
-		config.setProperty("allTrainingRooms", values[5]);
+		configNonList.setProperty("doorSignPDFLocation", values[0]);
+		configNonList.setProperty("session1Description", values[1]);
+		configNonList.setProperty("session2Description", values[2]);
+		configNonList.setProperty("session3Description", values[3]);
+		configNonList.setProperty("session4Description", values[4]);
+		configNonList.setProperty("allTrainingRooms", values[5]);
 
-		save();
+		saveNonList();
 
 	}
 	
 	/**
-	 * Saves the config file.
+	 * Saves the config file with List values.
 	 */
-	private static void save() {
+	private static void saveList() {
 		try {
 			builder.save();
+		} catch (ConfigurationException e) {
+			JOptionPane.showMessageDialog(null, "Error saving settings. Make sure config.properties is not open.", 
+					"Save Settings Failed", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	
+	/**
+	 * Saves the config file without listing values by commas.
+	 */
+	private static void saveNonList() {
+		try {
+			builderNonList.save();
 		} catch (ConfigurationException e) {
 			JOptionPane.showMessageDialog(null, "Error saving settings. Make sure config.properties is not open.", 
 					"Save Settings Failed", JOptionPane.ERROR_MESSAGE);
