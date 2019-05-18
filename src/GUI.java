@@ -388,38 +388,34 @@ public class GUI extends javax.swing.JFrame {
     }                                         
 
     private void jMenuConfigWordActionPerformed(java.awt.event.ActionEvent evt) { 
-    	this.dispose();
     	ConfigWordDialog wordDiag = new ConfigWordDialog(this, rootPaneCheckingEnabled);
     	wordDiag.setLocationRelativeTo(this);
     	wordDiag.setVisible(true);
     }     
     
     private void jMenuConfigDoorSignPDFActionPerformed(java.awt.event.ActionEvent evt) {    
-    	this.dispose();
-    	ConfigDoorSignDialog PDFDiag = new ConfigDoorSignDialog(this, rootPaneCheckingEnabled);
-    	PDFDiag.setLocationRelativeTo(this);
-    	PDFDiag.setVisible(true);
+    	ConfigDoorSignDialog doorSignDiag = new ConfigDoorSignDialog(this, rootPaneCheckingEnabled);
+    	doorSignDiag.setLocationRelativeTo(this);
+    	doorSignDiag.setVisible(true);
     }           
     
     private void jMenuConfigShippingFormPDFActionPerformed(java.awt.event.ActionEvent evt) {    
-    	this.dispose();
-    	ConfigDoorSignDialog PDFDiag = new ConfigDoorSignDialog(this, rootPaneCheckingEnabled);
-    	PDFDiag.setLocationRelativeTo(this);
-    	PDFDiag.setVisible(true);
+    	ConfigShippingFormDialog shippingFormDiag = new ConfigShippingFormDialog(this, rootPaneCheckingEnabled);
+    	shippingFormDiag.setLocationRelativeTo(this);
+    	shippingFormDiag.setVisible(true);
     } 
     
     private void jMenuConfigNameTentPDFActionPerformed(java.awt.event.ActionEvent evt) {    
-    	this.dispose();
-    	ConfigDoorSignDialog PDFDiag = new ConfigDoorSignDialog(this, rootPaneCheckingEnabled);
-    	PDFDiag.setLocationRelativeTo(this);
-    	PDFDiag.setVisible(true);
+    	ConfigNameTentDialog nameTentDiag = new ConfigNameTentDialog(this, rootPaneCheckingEnabled);
+    	nameTentDiag.setLocationRelativeTo(this);
+    	nameTentDiag.setVisible(true);
     } 
     
     private void jMenuConfigTechReviewPDFActionPerformed(java.awt.event.ActionEvent evt) {    
     	this.dispose();
-    	ConfigDoorSignDialog PDFDiag = new ConfigDoorSignDialog(this, rootPaneCheckingEnabled);
-    	PDFDiag.setLocationRelativeTo(this);
-    	PDFDiag.setVisible(true);
+    	ConfigTechReviewDialog techReviewDiag = new ConfigTechReviewDialog(this, rootPaneCheckingEnabled);
+    	techReviewDiag.setLocationRelativeTo(this);
+    	techReviewDiag.setVisible(true);
     } 
 
     private void GTCClassNumCombo1PropertyChange(java.beans.PropertyChangeEvent evt) {                                                 
