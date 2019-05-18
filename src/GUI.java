@@ -39,6 +39,7 @@ public class GUI extends javax.swing.JFrame {
     public GUI() {
         initComponents();
         setVisible(true);
+        this.toFront();
     }
 
     /**
@@ -393,7 +394,7 @@ public class GUI extends javax.swing.JFrame {
     	wordDiag.setVisible(true);
     }     
     
-    private void jMenuConfigDoorSignPDFActionPerformed(java.awt.event.ActionEvent evt) {    
+    private void jMenuConfigDoorSignPDFActionPerformed(java.awt.event.ActionEvent evt) {   
     	ConfigDoorSignDialog doorSignDiag = new ConfigDoorSignDialog(this, rootPaneCheckingEnabled);
     	doorSignDiag.setLocationRelativeTo(this);
     	doorSignDiag.setVisible(true);

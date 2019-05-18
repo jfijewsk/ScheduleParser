@@ -1,3 +1,6 @@
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 /**
  *
@@ -6,11 +9,21 @@
 public class ConfigTechReviewDialog extends javax.swing.JDialog {
 
     /**
-     * Creates new form ConfigPDFDialog
+     * Creates new form ConfigTechReviewDialog
      */
     public ConfigTechReviewDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
+        this.addWindowListener((WindowListener) new WindowAdapter() {
+
+            @Override
+            public void windowClosing(WindowEvent arg0) {
+            	parent.dispose();
+                Main.main(null);
+            }
+
+        });
     }
 
     /**

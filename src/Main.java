@@ -30,7 +30,7 @@ public class Main {
 
 			GUI gui = new GUI();
 			gui.setLocationRelativeTo(null);
-		
+
 		
 //		PDFEditor.fillDoorSign(doorSignFileName, (Class)classes.get(0));
 		

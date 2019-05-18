@@ -28,6 +28,7 @@ public class ConfigWordDialog extends javax.swing.JDialog {
 
             @Override
             public void windowClosing(WindowEvent arg0) {
+            	parent.dispose();
                 Main.main(null);
             }
 

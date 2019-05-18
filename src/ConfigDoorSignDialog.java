@@ -1,16 +1,27 @@
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 /**
  *
  * @author James
  */
 public class ConfigDoorSignDialog extends javax.swing.JDialog {
+	
 
-    /**
-     * Creates new form ConfigPDFDialog
-     */
     public ConfigDoorSignDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
+        this.addWindowListener((WindowListener) new WindowAdapter() {
+
+            @Override
+            public void windowClosing(WindowEvent arg0) {
+            	parent.dispose();
+                Main.main(null);
+            }
+
+        });
     }
 
     /**
