@@ -367,7 +367,7 @@ public class GUI extends javax.swing.JFrame {
     
     private void jMenuConfigPDFActionPerformed(java.awt.event.ActionEvent evt) {    
     	this.dispose();
-    	ConfigPDFDialog PDFDiag = new ConfigPDFDialog(this, rootPaneCheckingEnabled);
+    	ConfigDoorSignDialog PDFDiag = new ConfigDoorSignDialog(this, rootPaneCheckingEnabled);
     	PDFDiag.setLocationRelativeTo(this);
     	PDFDiag.setVisible(true);
     }           
