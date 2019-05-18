@@ -365,7 +365,11 @@ public class GUI extends javax.swing.JFrame {
     	wordDiag.setVisible(true);
     }     
     
-    private void jMenuConfigPDFActionPerformed(java.awt.event.ActionEvent evt) {                                            
+    private void jMenuConfigPDFActionPerformed(java.awt.event.ActionEvent evt) {    
+    	this.dispose();
+    	ConfigPDFDialog PDFDiag = new ConfigPDFDialog(this, rootPaneCheckingEnabled);
+    	PDFDiag.setLocationRelativeTo(this);
+    	PDFDiag.setVisible(true);
     }           
 
     private void GTCClassNumCombo1PropertyChange(java.beans.PropertyChangeEvent evt) {                                                 
