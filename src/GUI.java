@@ -181,14 +181,14 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
-        jMenuConfigWord.setText("Training Schedule File");
+        jMenuConfigWord.setText("Training Schedule File Location");
         jMenuConfigWord.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuConfigWordActionPerformed(evt);
             }
         });
         
-        jMenuConfigDoorSignPDF.setText("Door Sign PDF");
+        jMenuConfigDoorSignPDF.setText("Door Sign");
         jMenuConfigDoorSignPDF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuConfigDoorSignPDFActionPerformed(evt);
@@ -243,6 +243,10 @@ public class GUI extends javax.swing.JFrame {
         
         jMenu2.add(jMenuConfigWord);
         jMenu2.add(jMenuConfigDoorSignPDF);
+        jMenu2.add(jMenuConfigNameTentPDF);
+        jMenu2.add(jMenuConfigTechReviewPDF);
+        jMenu2.add(jMenuConfigShippingFormPDF);
+
 
         jMenuBar1.add(jMenu2);
 
