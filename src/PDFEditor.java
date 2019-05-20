@@ -110,6 +110,9 @@ public class PDFEditor {
 		
 		String selectedTrainingRoom = ConfigDoorSignDialog.askTrainingRoom();
 		
+		if (selectedTrainingRoom == null) {
+			return;
+		}
 		PDDocument pdfDocument = openPDFFile(fileName);
 
 
@@ -161,7 +164,6 @@ public class PDFEditor {
 				trainingRoomCombo.setValue(selectedTrainingRoom);
 				trainerCombo.setValue(prop.getDefaultTrainer());
 				
-
 				pdfDocument.save(fileName);
 				pdfDocument.close();
 
