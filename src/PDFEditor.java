@@ -149,6 +149,8 @@ public class PDFEditor {
 				List allTrainers = prop.getAllTrainers();
 				trainerCombo.setOptions(allTrainers);
 				trainerCombo.setValue(prop.getDefaultTrainer());
+				
+				
 
 
 				pdfDocument.save(fileName);
