@@ -98,6 +98,18 @@ public class Properties {
 	}
 	
 	/**
+	 * @return all available training rooms
+	 */
+	public static String[] getAllTrainingRooms() {
+		List rooms = config.getList("allTrainingRooms");
+		Object[] roomArray =  rooms.toArray();
+		String[] result = new String[roomArray.length];
+		System.arraycopy(roomArray, 0, result, 0, roomArray.length);
+		return result;
+
+	}
+	
+	/**
 	 * @return all trainers 
 	 */
 	public static String getDefaultTrainer() {

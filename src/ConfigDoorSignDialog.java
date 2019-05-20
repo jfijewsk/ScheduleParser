@@ -3,6 +3,8 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
+import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
 /**
@@ -231,5 +233,40 @@ public class ConfigDoorSignDialog extends javax.swing.JDialog {
     private javax.swing.JTextField session4DescriptionTextField;
     private javax.swing.JLabel trainingRoomsJlabel;
     private javax.swing.JTextField trainingRoomsTextField;
-    // End of variables declaration                   
+    // End of variables declaration                 
+    
+
+    public static String askTrainingRoom() {
+
+    	Properties prop = Properties.getInstance();
+    	
+    	String[] trainingRoomOptions = prop.getAllTrainingRooms();
+
+        JComboBox trainingRoom = new JComboBox(trainingRoomOptions);
+
+        trainingRoom.setEditable(true);
+
+        //create a JOptionPane
+        Object[] options = new Object[] {};
+        JOptionPane jop = new JOptionPane("Please select the training room:",
+                                        JOptionPane.QUESTION_MESSAGE,
+                                        JOptionPane.DEFAULT_OPTION,
+                                        null,options, null);
+
+        //add combos to JOptionPane
+        jop.add(trainingRoom);
+
+        //create a JDialog and add JOptionPane to it 
+        JDialog diag = new JDialog();
+        diag.getContentPane().add(jop);
+        diag.pack();
+        diag.setVisible(true);
+        
+        return (String) trainingRoom.getSelectedItem();
+    }
+    
+    
 }
+
+
+

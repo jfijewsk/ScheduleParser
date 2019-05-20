@@ -106,6 +106,9 @@ public class PDFEditor {
 	public static void fillDoorSign(String fileName, Class classInfo, 
 			Session session, ArrayList<Technician> selectedTechs) {
 
+		
+		String selectedRoom = ConfigDoorSignDialog.askTrainingRoom();
+		
 		PDDocument pdfDocument = openPDFFile(fileName);
 
 
