@@ -7,13 +7,19 @@ public class Session{
 	String sessionName;
 	String startDate;
 	String endDate;
+	int sessionNumber;
 
 	public Session(String sessionName, String startDate, String endDate) {
 		this.sessionName = sessionName;
 		this.startDate = startDate;
 		this.endDate = endDate;
+		this.sessionNumber = getSessionNumber();
 	}
 	
+
+	public int getSessionNumber() {
+		return Integer.parseInt(sessionName.replaceAll("[\\D]", ""));
+	}
 	
 	public String getSessionName() {
 		return sessionName;

@@ -113,23 +113,23 @@ public class Properties {
 		switch (sessionNum) {
 		
 		case 1 : {
-			return config.getString("session1Description");
+			return configNonList.getString("session1Description");
 		}
 		
 		case 2 : {
-			return config.getString("session2Description");
+			return configNonList.getString("session2Description");
 		}
 		
 		case 3 : {
-			return config.getString("session3Description");
+			return configNonList.getString("session3Description");
 		}
 		
 		case 4 : {
-			return config.getString("session4Description");
+			return configNonList.getString("session4Description");
 		}
 		
 		default : {
-			return config.getString("session1Description");
+			return configNonList.getString("session1Description");
 
 		}
 		

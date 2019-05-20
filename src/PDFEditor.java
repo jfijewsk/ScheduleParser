@@ -143,7 +143,8 @@ public class PDFEditor {
 				techNameField.setValue(allTechs);
 				techBranchField.setValue(allBranches);
 				startDateField.setValue(session.getDateRange());
-				classNameField.setValue(prop.getClassTitle(sessionNum));
+				classNameField.setValue(classInfo.getClassName() + " " + session.getSessionName() 
+					+ "\n" + prop.getClassTitle(session.getSessionNumber()));
 
 				List allTrainers = prop.getAllTrainers();
 				trainerCombo.setOptions(allTrainers);
