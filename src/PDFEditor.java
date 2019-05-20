@@ -20,6 +20,13 @@ import org.apache.pdfbox.pdmodel.interactive.form.PDField;
 import org.apache.pdfbox.printing.PDFPageable;
 
 public class PDFEditor {
+	
+	final static String TECH_NAME_FIELD_NAME = "Tech Names";
+	final static String TECH_BRANCH_FIELD_NAME = "Tech Branch";
+	final static String CLASS_DATES_FIELD_NAME = "Class Dates";
+	final static String CLASS_NAME_FIELD_NAME = "Class Name";
+	final static String TRAINER_COMBO_NAME = "Trainer";
+	final static String TRAINING_ROOM_COMBO_NAME = "Class Room";
 
 	private static Properties prop = Properties.getInstance();
 
@@ -126,17 +133,14 @@ public class PDFEditor {
 		if (acroForm != null)
 		{
 			
-			// NEED TO HAVE ERROR MESSAGE HERE FOR NOT FINDING THESE FIELDS.
-			PDField techNameField = (PDField) acroForm.getField( "Tech Names" );
-			PDField techBranchField = (PDField) acroForm.getField( "Tech Branch" );
-			PDField startDateField = (PDField) acroForm.getField( "Class Dates" );
-			PDField classNameField = (PDField) acroForm.getField( "Class Name TextBox");
-
-			PDComboBox trainerCombo = (PDComboBox) acroForm.getField( "Trainer" );
-			PDComboBox trainingRoomCombo = (PDComboBox) acroForm.getField( "Class Room" );
-
+			PDField techNameField = createPDFField(acroForm, TECH_NAME_FIELD_NAME);
+			PDField techBranchField = createPDFField(acroForm, TECH_BRANCH_FIELD_NAME);
+			PDField startDateField = createPDFField(acroForm, CLASS_DATES_FIELD_NAME);
+			PDField classNameField = createPDFField(acroForm, CLASS_NAME_FIELD_NAME);
 			
-
+			PDComboBox trainerCombo = createPDFCombo(acroForm, TRAINER_COMBO_NAME);
+			PDComboBox trainingRoomCombo = createPDFCombo(acroForm, TRAINING_ROOM_COMBO_NAME);
+						
 			// Changing the techs names on the pdf
 			ArrayList<Technician> enrolledTechs = classInfo.getTechnicans();
 			for (Technician t: selectedTechs) {
@@ -170,8 +174,10 @@ public class PDFEditor {
 			}
 
 			catch (Exception e) {
-				JOptionPane.showMessageDialog(null, "Error saving pdf. Make sure the pdf is not already open.", 
+				JOptionPane.showMessageDialog(null, "Error saving pdf. If there was no additional errors about missing fields in the "
+						+ "pdf, make sure that the pdf is not already open.", 
 						"Error saving pdf", JOptionPane.ERROR_MESSAGE);
+				e.printStackTrace();
 			}
 
 			openPDFInAdobe(fileName);
@@ -224,5 +230,29 @@ public class PDFEditor {
 			}
 
 		}
+	}
+	
+	private static PDField createPDFField(PDAcroForm acroForm, String fieldName) {
+		PDField field = (PDField) acroForm.getField(fieldName);
+		if (field == null) {
+			JOptionPane.showMessageDialog(null, "Could not find the field named \"" + fieldName
+				+ "\" in the door sign templete pdf", 
+					"Error finding text field", JOptionPane.ERROR_MESSAGE);
+			return field;
+		}
+		
+		return null;
+	}
+	
+	private static PDComboBox createPDFCombo(PDAcroForm acroForm, String fieldName) {
+		PDComboBox combo = (PDComboBox) acroForm.getField(TRAINER_COMBO_NAME);
+		if (combo == null) {
+			JOptionPane.showMessageDialog(null, "Could not find the field named \"" + fieldName
+				+ "\" in the door sign templete pdf", 
+					"Error finding text field", JOptionPane.ERROR_MESSAGE);
+			return combo;
+		}
+		
+		return null;
 	}
 }
