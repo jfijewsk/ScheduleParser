@@ -118,9 +118,13 @@ public class PDFEditor {
 
 		if (acroForm != null)
 		{
+			
+			// NEED TO HAVE ERROR MESSAGE HERE FOR NOT FINDING THESE FIELDS.
 			PDField techNameField = (PDField) acroForm.getField( "Tech Names" );
 			PDField techBranchField = (PDField) acroForm.getField( "Tech Branch" );
 			PDField startDateField = (PDField) acroForm.getField( "Class Dates" );
+			PDField classNameField = (PDField) acroForm.getField( "Class Name TextBox");
+
 			PDComboBox trainerCombo = (PDComboBox) acroForm.getField( "Trainer" );
 
 
@@ -139,6 +143,7 @@ public class PDFEditor {
 				techNameField.setValue(allTechs);
 				techBranchField.setValue(allBranches);
 				startDateField.setValue(session.getDateRange());
+				classNameField.setValue(prop.getClassTitle(sessionNum));
 
 				List allTrainers = prop.getAllTrainers();
 				trainerCombo.setOptions(allTrainers);

@@ -106,6 +106,39 @@ public class Properties {
 	}
 	
 	/**
+	 * @return Door sign class title
+	 */
+	public static String getClassTitle(int sessionNum) {
+		
+		switch (sessionNum) {
+		
+		case 1 : {
+			return config.getString("session1Description");
+		}
+		
+		case 2 : {
+			return config.getString("session2Description");
+		}
+		
+		case 3 : {
+			return config.getString("session3Description");
+		}
+		
+		case 4 : {
+			return config.getString("session4Description");
+		}
+		
+		default : {
+			return config.getString("session1Description");
+
+		}
+		
+		
+		}
+
+	}
+	
+	/**
 	 * @return file name location for the name tent pdf 
 	 */
 	public static String getNameTentFileName() {
