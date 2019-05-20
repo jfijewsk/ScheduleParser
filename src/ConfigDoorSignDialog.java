@@ -240,7 +240,7 @@ public class ConfigDoorSignDialog extends javax.swing.JDialog {
 	// End of variables declaration                 
 
 
-	public static void askTrainingRoom() {
+	public static String askTrainingRoom() {
 
 		Properties prop = Properties.getInstance();
 
@@ -249,25 +249,30 @@ public class ConfigDoorSignDialog extends javax.swing.JDialog {
 		JComboBox trainingRoom = new JComboBox(trainingRoomOptions);
 
 		trainingRoom.setEditable(true);
-
-		int selection = JOptionPane.showConfirmDialog(
+		
+		JOptionPane jop = new JOptionPane();
+		Object[] options = new Object[] {};
+		int selection = jop.showConfirmDialog(
 				null
-				, "Please select the training room:"
-				, "Selection : "
-				, JOptionPane.OK_CANCEL_OPTION
-				, JOptionPane.INFORMATION_MESSAGE);
+				, trainingRoom 
+				, "Select a training room."
+				, jop.OK_CANCEL_OPTION
+				, jop.INFORMATION_MESSAGE);
 		System.out.println("I be written" +
-				" after you close, the JOptionPane");      
-		if (selection == JOptionPane.OK_OPTION)
+				" after you close, the JOptionPane");
+		
+		jop.add(trainingRoom);
+		
+		if (selection == jop.OK_OPTION)
 		{
-			// Code to use when OK is PRESSED.
-			System.out.println("Selected Option is OK : " + selection);
+			return (String) trainingRoom.getSelectedItem();
 		}
-		else if (selection == JOptionPane.CANCEL_OPTION)
+		else if (selection == jop.CANCEL_OPTION)
 		{
-			// Code to use when CANCEL is PRESSED.
-			System.out.println("Selected Option Is CANCEL : " + selection);
+			return null;
 		}
+		
+		return null;
 	}          
 	
 

@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.print.PrintService;
@@ -107,7 +108,7 @@ public class PDFEditor {
 			Session session, ArrayList<Technician> selectedTechs) {
 
 		
-		ConfigDoorSignDialog.askTrainingRoom();
+		String selectedTrainingRoom = ConfigDoorSignDialog.askTrainingRoom();
 		
 		PDDocument pdfDocument = openPDFFile(fileName);
 
@@ -129,7 +130,9 @@ public class PDFEditor {
 			PDField classNameField = (PDField) acroForm.getField( "Class Name TextBox");
 
 			PDComboBox trainerCombo = (PDComboBox) acroForm.getField( "Trainer" );
+			PDComboBox trainingRoomCombo = (PDComboBox) acroForm.getField( "Class Room" );
 
+			
 
 			// Changing the techs names on the pdf
 			ArrayList<Technician> enrolledTechs = classInfo.getTechnicans();
@@ -150,11 +153,14 @@ public class PDFEditor {
 					+ "\n" + prop.getClassTitle(session.getSessionNumber()));
 
 				List allTrainers = prop.getAllTrainers();
+				List<String> allTrainingRooms = Arrays.asList(prop.getAllTrainingRooms());
+				
+				trainingRoomCombo.setOptions(allTrainingRooms);
 				trainerCombo.setOptions(allTrainers);
+				
+				trainingRoomCombo.setValue(selectedTrainingRoom);
 				trainerCombo.setValue(prop.getDefaultTrainer());
 				
-				
-
 
 				pdfDocument.save(fileName);
 				pdfDocument.close();
