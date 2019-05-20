@@ -107,7 +107,7 @@ public class PDFEditor {
 			Session session, ArrayList<Technician> selectedTechs) {
 
 		
-		String selectedRoom = ConfigDoorSignDialog.askTrainingRoom();
+		ConfigDoorSignDialog.askTrainingRoom();
 		
 		PDDocument pdfDocument = openPDFFile(fileName);
 
