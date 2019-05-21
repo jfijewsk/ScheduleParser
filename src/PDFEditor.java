@@ -182,8 +182,7 @@ public class PDFEditor {
 			}
 
 			catch (Exception e) {
-				JOptionPane.showMessageDialog(null, "Error saving pdf. If there was no additional errors about missing fields in the "
-						+ "pdf, make sure that the pdf is not already open.", 
+				JOptionPane.showMessageDialog(null, "Error saving pdf. Make sure that the pdf is not already open.", 
 						"Error saving pdf", JOptionPane.ERROR_MESSAGE);
 				e.printStackTrace();
 			}
