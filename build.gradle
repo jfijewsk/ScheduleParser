@@ -7,9 +7,10 @@ import org.apache.tools.ant.filters.ReplaceTokens
 apply plugin: 'application'
 apply plugin: 'jacoco'
 
-mainClassName = 'src/'
+mainClassName = 'src/Main.Main'
 
 compileJava.options.encoding = 'UTF-8'
+
 
 // Repositories and dependencies for code go here
 repositories {
@@ -19,19 +20,24 @@ repositories {
 
 
 dependencies {
-  compile 'com.io7m.xom:xom:1.2.+'
-  compile 'net.sourceforge.nekohtml:nekohtml:1.9.+'
-  compile "junit:junit:4.12"
   compile files('src/')
-  compile 'com.googlecode.json-simple:json-simple:1.1.1'
-  compile 'com.github.monkeysintown:jgraphx:3.3.1.1'
+  compile 'org.apache.commons:commons-configuration2:2.4'
+  compile 'org.apache.pdfbox:pdfbox:2.0.15'
+    compile 'org.apache.poi:poi:3.17'
+    compile 'org.apache.poi:poi-ooxml:3.17'
+    compile 'org.apache.poi:poi-ooxml-schemas:3.17'
+    compile 'org.springframework:spring-core:5.0.2.RELEASE'
+    compile 'org.springframework:spring-context:5.0.2.RELEASE'
+    compile 'org.apache.commons:commons-collections4:4.1'
+    compile 'org.apache.xmlbeans:xmlbeans:2.6.0'
+
 }
 
 jar {
   manifest {
     attributes(
       'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
-      'Main-Class': 'Main'
+      'Main-Class': 'Main.Main'
     )
   }
 }
@@ -39,8 +45,7 @@ jar {
 sourceSets {
     main {
         java {
-            srcDirs 'src/main/java'
-            srcDirs 'src/bus_soft'
+            srcDirs 'src/'
         }
     }
  }
