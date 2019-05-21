@@ -30,6 +30,8 @@ public class PDFEditor {
 
 	private static Properties prop = Properties.getInstance();
 
+		private static boolean errorOccurred = false;
+	
 	/**
 	 * Opens the pdf to be editted.
 	 * @param fileName location of the pdf to load
@@ -113,8 +115,9 @@ public class PDFEditor {
 
 	public static void fillDoorSign(String fileName, Class classInfo, 
 			Session session, ArrayList<Technician> selectedTechs) {
-
 		
+		errorOccurred = false;
+
 		String selectedTrainingRoom = ConfigDoorSignDialog.askTrainingRoom();
 		
 		if (selectedTrainingRoom == null) {
@@ -140,7 +143,12 @@ public class PDFEditor {
 			
 			PDComboBox trainerCombo = createPDFCombo(acroForm, TRAINER_COMBO_NAME);
 			PDComboBox trainingRoomCombo = createPDFCombo(acroForm, TRAINING_ROOM_COMBO_NAME);
-						
+					
+			// If there was an error on retrieving the pdf fields then do not proceed.
+			if (errorOccurred) {
+				return;
+			}
+			
 			// Changing the techs names on the pdf
 			ArrayList<Technician> enrolledTechs = classInfo.getTechnicans();
 			for (Technician t: selectedTechs) {
@@ -238,21 +246,24 @@ public class PDFEditor {
 			JOptionPane.showMessageDialog(null, "Could not find the field named \"" + fieldName
 				+ "\" in the door sign templete pdf", 
 					"Error finding text field", JOptionPane.ERROR_MESSAGE);
-			return field;
+			errorOccurred = true;
+			return null;
 		}
 		
-		return null;
+		return field;
 	}
 	
 	private static PDComboBox createPDFCombo(PDAcroForm acroForm, String fieldName) {
-		PDComboBox combo = (PDComboBox) acroForm.getField(TRAINER_COMBO_NAME);
+		PDComboBox combo = (PDComboBox) acroForm.getField(fieldName);
 		if (combo == null) {
 			JOptionPane.showMessageDialog(null, "Could not find the field named \"" + fieldName
 				+ "\" in the door sign templete pdf", 
 					"Error finding text field", JOptionPane.ERROR_MESSAGE);
-			return combo;
+			errorOccurred = true;
+
+			return null;
 		}
 		
-		return null;
+		return combo;
 	}
 }
