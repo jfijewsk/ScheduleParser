@@ -1,11 +1,8 @@
-plugins {
-  id "com.github.spotbugs" version "1.6.11"
-}
+
 
 import org.apache.tools.ant.filters.ReplaceTokens
 
 apply plugin: 'application'
-apply plugin: 'jacoco'
 
 mainClassName = 'src/Main.Main'
 
@@ -23,13 +20,15 @@ dependencies {
   compile files('src/')
   compile 'org.apache.commons:commons-configuration2:2.4'
   compile 'org.apache.pdfbox:pdfbox:2.0.15'
-    compile 'org.apache.poi:poi:3.17'
-    compile 'org.apache.poi:poi-ooxml:3.17'
+      compile 'org.apache.poi:poi:4.1.0'
+          compile 'org.apache.poi:poi-ooxml:4.1.0'
     compile 'org.apache.poi:poi-ooxml-schemas:3.17'
-    compile 'org.springframework:spring-core:5.0.2.RELEASE'
-    compile 'org.springframework:spring-context:5.0.2.RELEASE'
-    compile 'org.apache.commons:commons-collections4:4.1'
-    compile 'org.apache.xmlbeans:xmlbeans:2.6.0'
+
+// https://mvnrepository.com/artifact/commons-collections/commons-collections
+compile group: 'commons-collections', name: 'commons-collections', version: '3.2.2'
+
+
+compile 'commons-beanutils:commons-beanutils:1.9.3'
 
 }
 
@@ -49,6 +48,16 @@ sourceSets {
         }
     }
  }
+ 
+ jar {
+    manifest {
+        attributes "Main-Class": 'Main.Main'
+    }
+ 
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
 
 
 
