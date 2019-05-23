@@ -1,8 +1,10 @@
 package GUI;
+import java.awt.FileDialog;
 import java.awt.Frame;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.File;
 
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -201,29 +203,14 @@ public class ConfigDoorSignDialog extends javax.swing.JDialog {
 
 	}                                              
 
-	private void doorSignBrowseBtnActionPerformed(java.awt.event.ActionEvent evt) {                                                  
-		// TODO add your handling code here:
+	private void doorSignBrowseBtnActionPerformed(java.awt.event.ActionEvent evt) {  
+		
+		String browseResult = browseFiles();
+		if (browseResult != null) {
+			doorSignTextField.setText(browseResult);
+		}
 	}                                                 
-
-	private void session1DescriptionBrowseBtnActionPerformed(java.awt.event.ActionEvent evt) {                                                             
-		// TODO add your handling code here:
-	}                                                            
-
-	private void session2DescriptionBrowseBtnActionPerformed(java.awt.event.ActionEvent evt) {                                                             
-		// TODO add your handling code here:
-	}                                                            
-
-	private void session3DescriptionBrowseBtnActionPerformed(java.awt.event.ActionEvent evt) {                                                             
-		// TODO add your handling code here:
-	}                                                            
-
-	private void session4DescriptionBrowseBtnActionPerformed(java.awt.event.ActionEvent evt) {                                                             
-		// TODO add your handling code here:
-	}                                                            
-
-	private void trainingRoomsBrowseBtnActionPerformed(java.awt.event.ActionEvent evt) {                                                       
-		// TODO add your handling code here:
-	}                                                      
+                                       
 
 	// Variables declaration - do not modify                     
 	private javax.swing.JButton cancelBtn;
@@ -253,7 +240,7 @@ public class ConfigDoorSignDialog extends javax.swing.JDialog {
 		JComboBox trainingRoom = new JComboBox(trainingRoomOptions);
 
 		trainingRoom.setEditable(true);
-		
+
 		JOptionPane jop = new JOptionPane();
 		Object[] options = new Object[] {};
 		int selection = jop.showConfirmDialog(
@@ -262,9 +249,9 @@ public class ConfigDoorSignDialog extends javax.swing.JDialog {
 				, "Select a training room."
 				, jop.OK_CANCEL_OPTION
 				, jop.INFORMATION_MESSAGE);
-		
+
 		jop.add(trainingRoom);
-		
+
 		if (selection == jop.OK_OPTION)
 		{
 			return (String) trainingRoom.getSelectedItem();
@@ -273,11 +260,27 @@ public class ConfigDoorSignDialog extends javax.swing.JDialog {
 		{
 			return null;
 		}
-		
+
 		return null;
 	}          
 
+	public String browseFiles() {
+		FileDialog fd = new FileDialog(this, "Open", FileDialog.LOAD); 
+		fd.show();    	
 
+		if (fd.getFile() == null) {
+			return null;
+		}
+
+		else {
+			String fileName = new File(fd.getFile()).getName();
+			String directory = fd.getDirectory();
+			return (directory + fileName);
+
+		}
+
+
+	}
 }
 
 

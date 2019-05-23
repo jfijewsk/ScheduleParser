@@ -3,6 +3,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
+import Backend.Properties;
 import Main.Main;
 
 /**
@@ -10,6 +11,8 @@ import Main.Main;
  * @author James
  */
 public class ConfigNameTentDialog extends javax.swing.JDialog {
+	
+	Properties prop = Properties.getInstance();
 
     /**
      * Creates new form ConfigNameTentDialog
@@ -22,8 +25,7 @@ public class ConfigNameTentDialog extends javax.swing.JDialog {
 
             @Override
             public void windowClosing(WindowEvent arg0) {
-            	parent.dispose();
-                Main.main(null);
+            	dispose();
             }
 
         });
@@ -60,9 +62,9 @@ public class ConfigNameTentDialog extends javax.swing.JDialog {
             }
         });
 
-        nameTentJlabel.setText("Name Tent  PDF File:");
+        nameTentJlabel.setText("Name Tent PDF File:");
 
-        nameTentTextField.setText("jTextField1");
+        nameTentTextField.setText(prop.getNameTentFileName());
 
         nameTentBrowseBtn.setText("Browse");
         nameTentBrowseBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -113,8 +115,8 @@ public class ConfigNameTentDialog extends javax.swing.JDialog {
     }                                       
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {                                          
-        // TODO add your handling code here:
-    }                                         
+		this.dispose();
+    }
 
     private void nameTentBrowseBtnActionPerformed(java.awt.event.ActionEvent evt) {                                                  
         // TODO add your handling code here:

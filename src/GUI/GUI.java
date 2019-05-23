@@ -37,10 +37,6 @@ public class GUI extends javax.swing.JFrame {
 	
 	Properties prop = Properties.getInstance();
 	
-	String fileName = prop.getScheduleFileName();
-	String doorSignFileName = prop.getDoorSignFileName();
-	String nameTentFileName = prop.getNameTentFileName();
-	
     /**
      * Creates new form GUI
      */
@@ -375,13 +371,13 @@ public class GUI extends javax.swing.JFrame {
     private void createDoorSignBtnActionPerformed(java.awt.event.ActionEvent evt) {     
     	// Get the selected techs
     	ArrayList<Technician> selectedTechs = getSelectedTechs();
-		PDFEditor.fillDoorSign(doorSignFileName, (Class)GTCClassNumCombo1.getSelectedItem(),
+		PDFEditor.fillDoorSign(prop.getDoorSignFileName(), (Class)GTCClassNumCombo1.getSelectedItem(),
 				(Session)GTCSessionCombo.getSelectedItem(), selectedTechs);
 
     }                                                 
 
     private void createNameTentBtnActionPerformed(java.awt.event.ActionEvent evt) {                                                  
-    	PDFEditor.fillNameTent(nameTentFileName, getSelectedTechs());
+    	PDFEditor.fillNameTent(prop.getNameTentFileName(), getSelectedTechs());
     }                                                 
 
     private void createShippingBtnActionPerformed(java.awt.event.ActionEvent evt) {                                                  
