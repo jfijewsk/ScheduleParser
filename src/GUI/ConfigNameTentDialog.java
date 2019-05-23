@@ -3,6 +3,8 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
+import javax.swing.JOptionPane;
+
 import Backend.Properties;
 import Main.Main;
 
@@ -111,7 +113,11 @@ public class ConfigNameTentDialog extends javax.swing.JDialog {
     }// </editor-fold>                        
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {                                        
-        // TODO add your handling code here:
+    	prop.saveNameTentFileName(nameTentTextField.getText());
+    	JOptionPane.showMessageDialog(this,
+    		    "File location saved as: " + nameTentTextField.getText() + ".",
+    		    "Saved File Successfully",
+    		    JOptionPane.PLAIN_MESSAGE);
     }                                       
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {                                          

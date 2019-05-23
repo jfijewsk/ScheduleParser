@@ -22,7 +22,6 @@ public class ConfigWordDialog extends javax.swing.JDialog {
     /**
      * Creates new form ConfigPDFDialog
      */
-	
 	private Frame parentFrame;
 	static Properties prop = Properties.getInstance();
 
@@ -35,8 +34,7 @@ public class ConfigWordDialog extends javax.swing.JDialog {
 
             @Override
             public void windowClosing(WindowEvent arg0) {
-            	parent.dispose();
-                Main.main(null);
+            	dispose();
             }
 
         });
@@ -136,8 +134,7 @@ public class ConfigWordDialog extends javax.swing.JDialog {
     }                                       
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {                                          
-    	parentFrame.dispose();
-   		Main.main(null);
+    	dispose();
 
     }                                         
 

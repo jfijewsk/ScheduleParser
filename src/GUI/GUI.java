@@ -417,7 +417,6 @@ public class GUI extends javax.swing.JFrame {
     } 
     
     private void jMenuConfigTechReviewPDFActionPerformed(java.awt.event.ActionEvent evt) {    
-    	this.dispose();
     	ConfigTechReviewDialog techReviewDiag = new ConfigTechReviewDialog(this, rootPaneCheckingEnabled);
     	techReviewDiag.setLocationRelativeTo(this);
     	techReviewDiag.setVisible(true);

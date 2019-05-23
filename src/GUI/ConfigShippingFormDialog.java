@@ -22,8 +22,8 @@ public class ConfigShippingFormDialog extends javax.swing.JDialog {
 
             @Override
             public void windowClosing(WindowEvent arg0) {
-            	parent.dispose();
-                Main.main(null);
+            	dispose();
+
             }
 
         });
@@ -140,7 +140,7 @@ public class ConfigShippingFormDialog extends javax.swing.JDialog {
     }                                                     
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {                                          
-        // TODO add your handling code here:
+    	dispose();
     }                                         
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {                                        

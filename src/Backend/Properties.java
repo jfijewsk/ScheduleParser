@@ -172,18 +172,40 @@ public class Properties {
 		return result;
 	}
 	
+	public static String[] getTechReviewSettings() {
+		
+		String[] result = new String[4];
+		result[0] = configNonList.getProperty("techReviewSession1Location").toString();
+		result[1] = configNonList.getProperty("techReviewSession2Location").toString();
+		result[2] = configNonList.getProperty("techReviewSession3Location").toString();
+		result[3] = configNonList.getProperty("techReviewSession4Location").toString();
+
+		
+		return result;
+	}
+	
 
 	/**
 	 * Saves new file location of the word document containing the schedule
 	 */
 	public static void saveScheduleFileName(String newLocation) {
 		config.setProperty("scheduleLocation", newLocation);
-		saveList();
+		saveNonList();
+
+	}
+	
+
+	/**
+	 * Saves new file location of the name tent PDF
+	 */
+	public static void saveNameTentFileName(String newLocation) {
+		config.setProperty("nameTentPDFLocation", newLocation);
+		saveNonList();
 
 	}
 	
 	/**
-	 * Saves new file location of the word document containing the schedule
+	 * Saves new file location of the pdf door sign
 	 */
 	public static void saveDoorSign(String[] values) {
 		configNonList.setProperty("doorSignPDFLocation", values[0]);
@@ -192,6 +214,20 @@ public class Properties {
 		configNonList.setProperty("session3Description", values[3]);
 		configNonList.setProperty("session4Description", values[4]);
 		configNonList.setProperty("allTrainingRooms", values[5]);
+
+		saveNonList();
+
+	}
+	
+	
+	/**
+	 * Saves new file location of the pdfs containing the tech review forms
+	 */
+	public static void saveTechReviewsPDF(String[] values) {
+		configNonList.setProperty("techReviewSession1Location", values[0]);
+		configNonList.setProperty("techReviewSession2Location", values[1]);
+		configNonList.setProperty("techReviewSession3Location", values[2]);
+		configNonList.setProperty("techReviewSession4Location", values[3]);
 
 		saveNonList();
 
