@@ -35,8 +35,7 @@ public class ConfigDoorSignDialog extends javax.swing.JDialog {
 
 			@Override
 			public void windowClosing(WindowEvent arg0) {
-				parent.dispose();
-				Main.main(null);
+				dispose();
 			}
 
 		});
@@ -198,8 +197,7 @@ public class ConfigDoorSignDialog extends javax.swing.JDialog {
 	}                                       
 
 	private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {                                          
-		parentFrame.dispose();
-		Main.main(null);
+		dispose();
 
 	}                                              
 
