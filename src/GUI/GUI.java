@@ -394,7 +394,7 @@ public class GUI extends javax.swing.JFrame {
     }                                                 
 
     private void createNameTentBtnActionPerformed(java.awt.event.ActionEvent evt) {                                                  
-    	PDFEditor.fillNameTent(prop.getNameTentFileName(), getSelectedTechs());
+    	PDFEditor.fillNameTent(getSelectedTechs());
     }                                                 
 
     private void createShippingBtnActionPerformed(java.awt.event.ActionEvent evt) {                                                  

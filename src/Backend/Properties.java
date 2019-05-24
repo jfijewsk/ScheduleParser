@@ -22,11 +22,12 @@ public class Properties {
 	private static Configuration config;
 	private static Configuration configNonList;
 	private static Configuration configBranches;
+	private static Configuration configBranchesNonList;
 
 	private static FileBasedConfigurationBuilder<FileBasedConfiguration> builder;
 	private static FileBasedConfigurationBuilder<FileBasedConfiguration> builderNonList;
 	private static FileBasedConfigurationBuilder<FileBasedConfiguration> branchLocationBuilder;
-
+	private static FileBasedConfigurationBuilder<FileBasedConfiguration> branchLocationBuilderNonList;
 
 	
 	private Properties() {
@@ -67,6 +68,11 @@ public class Properties {
 			        .setFileName("branches.properties")
 						.setListDelimiterHandler(new DefaultListDelimiterHandler('/')));
 		
+		branchLocationBuilderNonList = new FileBasedConfigurationBuilder<FileBasedConfiguration>(PropertiesConfiguration.class)
+			    .configure(params.properties()
+			        .setFileName("branches.properties"));
+		
+		
 		// Try/catch block for getting the config.properties file
 		try
 		{
@@ -89,6 +95,8 @@ public class Properties {
 		try
 		{
 			configBranches = branchLocationBuilder.getConfiguration();
+			configBranchesNonList = branchLocationBuilderNonList.getConfiguration();
+
 
 		}
 		catch(ConfigurationException cex)
@@ -125,6 +133,22 @@ public class Properties {
 	 */
 	public static List getAllTrainers() {
 		return config.getList("allTrainers");
+
+	}
+	
+	/**
+	 * @return branch address
+	 */
+	public static List getBranchAddress(String branch) {
+		return configBranches.getList(branch);
+
+	}
+	
+	/**
+	 * @return branch address
+	 */
+	public static String getBranchNumber(String branch) {
+		return configBranchesNonList.getString(branch + "BranchNum");
 
 	}
 	

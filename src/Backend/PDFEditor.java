@@ -40,6 +40,27 @@ public class PDFEditor {
 	// Name tent pdf named fields
 	final static String NAME_TENT_TRAINEE_NAME = "Trainee Name";
 	final static String NAME_TENT_TRAINEE_BRANCH = "Trainee Branch";
+	
+	// Shipping form pdf named fields
+	final static String SHIPPING_DATE = "dateField";
+	final static String SHIPPING_TRAINER_NAME =  "trainersName";
+	final static String SHIPPING_TRAINER_EXT = "trainerExt";
+	final static String SHIPPING_1_DEPT_NUMBER = "firstPositionDepartmentNum";
+	final static String SHIPPING_2_DEPT_NUMBER = "secondPositionDepartmentNum";
+	final static String SHIPPING_3_DEPT_NUMBER = "thirdPositionDepartmentNum";
+	final static String SHIPPING_1_DESC_CONTENTS = "descriptionOfContents1";
+	final static String SHIPPING_2_DESC_CONTENTS = "descriptionOfContents2";
+	final static String SHIPPING_3_DESC_CONTENTS = "descriptionOfContents3";
+	final static String SHIPPING_4_DESC_CONTENTS = "descriptionOfContents4";
+	final static String SHIPPING_5_DESC_CONTENTS = "descriptionOfContents5";
+	final static String SHIPPING_COMMERICAL_CHECK = "commercialCheckBox";
+	final static String SHIPPING_SHIP_TO_1 = "shipTo1";
+	final static String SHIPPING_SHIP_TO_2 = "shipTo2";
+	final static String SHIPPING_SHIP_TO_3 = "shipTo3";
+	final static String SHIPPING_SHIP_TO_4 = "shipTo4";
+	final static String SHIPPING_SHIP_TO_5 = "shipTo5";
+	final static String SHIPPING_GROUND_COMM_CHECK = "UPS GROUND COMMERICAL";
+
 
 	private static Properties prop = Properties.getInstance();
 
@@ -206,12 +227,12 @@ public class PDFEditor {
 
 	}
 
-	public static void fillNameTent(String fileName, ArrayList<Technician> techs) {
+	public static void fillNameTent(ArrayList<Technician> techs) {
 		
 		errorOccurred = false;
 		
 		String nameTentFileLocation = prop.getNameTentFileName();
-		PDDocument pdfDocument = openPDFFile(fileName);
+		PDDocument pdfDocument = openPDFFile(nameTentFileLocation);
 
 		PDDocumentCatalog docCatalog = pdfDocument.getDocumentCatalog();
 		PDAcroForm acroForm = docCatalog.getAcroForm();
@@ -244,7 +265,62 @@ public class PDFEditor {
 						techNameField.setValue(t.getName());
 						techBranchField.setValue(t.getBranch());
 
-						pdfDocument.save(fileName);
+						pdfDocument.save(nameTentFileLocation);
+						printWasSucessful = printPDF(printer, pdfDocument);
+					}
+				}
+
+
+				pdfDocument.close();
+			}
+
+			catch (Exception e) {
+				JOptionPane.showMessageDialog(null, "Error saving pdf. Make sure the pdf is not already open.", 
+						"Error saving pdf", JOptionPane.ERROR_MESSAGE);
+			}
+
+		}
+	}
+	
+	public static void fillShippingForms(Class classInfo, 
+			Session session, ArrayList<Technician> selectedTechs) {
+		
+		String shippingFormFileLocation = prop.getNameShippingFileName();
+		
+		PDDocument pdfDocument = openPDFFile(shippingFormFileLocation);
+
+		PDDocumentCatalog docCatalog = pdfDocument.getDocumentCatalog();
+		PDAcroForm acroForm = docCatalog.getAcroForm();
+
+		String techName =""; 
+		String techBranch =""; 
+
+		if (acroForm != null)
+		{
+
+
+			PDField techNameField = createPDFField(acroForm, NAME_TENT_TRAINEE_NAME, NAME_TENT);
+			PDField techBranchField = createPDFField(acroForm, NAME_TENT_TRAINEE_BRANCH, NAME_TENT );
+
+			// If there was an error on retrieving the pdf fields then do not proceed.
+			if (errorOccurred) {
+				return;
+			}
+			
+			try {
+
+				boolean printWasSucessful = true;
+
+				// Select printer
+				PrintService printer = choosePrinter();
+
+				for (Technician t : techs) {
+
+					if (printWasSucessful && printer != null) {
+						techNameField.setValue(t.getName());
+						techBranchField.setValue(t.getBranch());
+
+						pdfDocument.save(shippingFormFileLocation);
 						printWasSucessful = printPDF(printer, pdfDocument);
 					}
 				}
