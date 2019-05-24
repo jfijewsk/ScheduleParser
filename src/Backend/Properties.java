@@ -21,9 +21,12 @@ public class Properties {
 	static Properties instance;
 	private static Configuration config;
 	private static Configuration configNonList;
+	private static Configuration configBranches;
 
 	private static FileBasedConfigurationBuilder<FileBasedConfiguration> builder;
 	private static FileBasedConfigurationBuilder<FileBasedConfiguration> builderNonList;
+	private static FileBasedConfigurationBuilder<FileBasedConfiguration> branchLocationBuilder;
+
 
 	
 	private Properties() {
@@ -58,7 +61,13 @@ public class Properties {
 		builderNonList = new FileBasedConfigurationBuilder<FileBasedConfiguration>(PropertiesConfiguration.class)
 			    .configure(params.properties()
 			        .setFileName("config.properties"));
-
+		
+		branchLocationBuilder = new FileBasedConfigurationBuilder<FileBasedConfiguration>(PropertiesConfiguration.class)
+			    .configure(params.properties()
+			        .setFileName("branches.properties")
+						.setListDelimiterHandler(new DefaultListDelimiterHandler('/')));
+		
+		// Try/catch block for getting the config.properties file
 		try
 		{
 		    config = builder.getConfiguration();
@@ -75,6 +84,22 @@ public class Properties {
 			System.exit(1);
 		}
 		
+		
+		// Try/catch block for getting the branches.properties file
+		try
+		{
+			configBranches = branchLocationBuilder.getConfiguration();
+
+		}
+		catch(ConfigurationException cex)
+		{
+			JOptionPane.showMessageDialog(null,
+					"Could not load properties file to retrieve setup settings. Make sure the branches.properties file is "
+					+ "in the root folder of the program.",
+					"Error",
+					JOptionPane.PLAIN_MESSAGE);
+			System.exit(1);
+		}
 		
 	}
 	
@@ -164,6 +189,23 @@ public class Properties {
 
 	}
 	
+	/**
+	 * @return file name location for the shipping form pdf 
+	 */
+	public static String getNameShippingFileName() {
+		return config.getString("shippingFormPDFLocation");
+
+	}
+	
+	
+	/**
+	 * @return root location for the shipping forms to be saved at.
+	 */
+	public static String getNameShippingSaveLocation() {
+		return config.getString("shippingRootSaveLocation");
+
+	}
+	
 	public static String[] getDoorSignSettings() {
 		
 		String[] result = new String[6];
@@ -233,6 +275,18 @@ public class Properties {
 		configNonList.setProperty("techReviewSession2Location", values[1]);
 		configNonList.setProperty("techReviewSession3Location", values[2]);
 		configNonList.setProperty("techReviewSession4Location", values[3]);
+
+		saveNonList();
+
+	}
+	
+	/**
+	 * Saves new file location of the shipping form and shipping form save location
+	 */
+	public static void saveShippingFormPDF(String[] values) {
+		configNonList.setProperty("shippingFormPDFLocation", values[0]);
+		configNonList.setProperty("shippingRootSaveLocation", values[1]);
+
 
 		saveNonList();
 

@@ -1,8 +1,13 @@
 package GUI;
+import java.awt.FileDialog;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.File;
 
+import javax.swing.JOptionPane;
+
+import Backend.Properties;
 import main.Main;
 
 /**
@@ -11,6 +16,8 @@ import main.Main;
  */
 public class ConfigShippingFormDialog extends javax.swing.JDialog {
 
+	Properties prop = Properties.getInstance();
+	
     /**
      * Creates new form ConfigShippingFormDialog
      */
@@ -51,7 +58,7 @@ public class ConfigShippingFormDialog extends javax.swing.JDialog {
 
         shippingFormJlabel.setText("Shipping Form PDF File:");
 
-        shippingFormTextField.setText("jTextField1");
+        shippingFormTextField.setText(prop.getNameShippingFileName());
 
         shippingFormBrowseBtn.setText("Browse");
         shippingFormBrowseBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -76,7 +83,7 @@ public class ConfigShippingFormDialog extends javax.swing.JDialog {
 
         rootSaveFolderJlabel.setText("Root Save Folder:");
 
-        rootSaveFolderTextField.setText("jTextField1");
+        rootSaveFolderTextField.setText(prop.getNameShippingSaveLocation());
 
         rootSaveFolderBrowseBtn.setText("Browse");
         rootSaveFolderBrowseBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -136,7 +143,10 @@ public class ConfigShippingFormDialog extends javax.swing.JDialog {
     }// </editor-fold>                        
 
     private void shippingFormBrowseBtnActionPerformed(java.awt.event.ActionEvent evt) {                                                      
-        // TODO add your handling code here:
+		String browseResult = browseFiles();
+		if (browseResult != null) {
+			shippingFormTextField.setText(browseResult);
+		}
     }                                                     
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {                                          
@@ -144,11 +154,22 @@ public class ConfigShippingFormDialog extends javax.swing.JDialog {
     }                                         
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {                                        
-        // TODO add your handling code here:
+		String[] values = new String[2];
+		values[0] = shippingFormTextField.getText();
+		values[1] = rootSaveFolderTextField.getText();
+
+		prop.saveShippingFormPDF(values);
+		JOptionPane.showMessageDialog(this,
+				"Settings changed!");
+
+		dispose();
     }                                       
 
     private void rootSaveFolderBrowseBtnActionPerformed(java.awt.event.ActionEvent evt) {                                                        
-        // TODO add your handling code here:
+		String browseResult = browseFiles();
+		if (browseResult != null) {
+			rootSaveFolderTextField.setText(browseResult);
+		}
     }                                                       
 
 
@@ -162,4 +183,22 @@ public class ConfigShippingFormDialog extends javax.swing.JDialog {
     private javax.swing.JLabel shippingFormJlabel;
     private javax.swing.JTextField shippingFormTextField;
     // End of variables declaration                   
+    
+	public String browseFiles() {
+		FileDialog fd = new FileDialog(this, "Open", FileDialog.LOAD); 
+		fd.show();    	
+
+		if (fd.getFile() == null) {
+			return null;
+		}
+
+		else {
+			String fileName = new File(fd.getFile()).getName();
+			String directory = fd.getDirectory();
+			return (directory + fileName);
+
+		}
+
+
+	}
 }

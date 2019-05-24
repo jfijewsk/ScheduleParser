@@ -191,9 +191,8 @@ public class ConfigDoorSignDialog extends javax.swing.JDialog {
 		JOptionPane.showMessageDialog(this,
 				"Settings changed!");
 
-		parentFrame.dispose();
+		dispose();
 
-		Main.main(null);
 	}                                       
 
 	private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {                                          
