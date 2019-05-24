@@ -2,14 +2,19 @@ package GUI;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
@@ -80,6 +85,18 @@ public class GUI extends javax.swing.JFrame {
         sessionDatesLabel = new javax.swing.JLabel();
 
         
+        try{
+            File caLogo = new File("src/Resources/CA Logo.png");
+            Image image = ImageIO.read(caLogo);
+            this.setIconImage(image);
+
+        }
+        catch (IOException e){
+            System.out.println("Failed to load cummins image");
+        }
+        
+        
+        this.setTitle("Cummins Allison Training Department");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1185, 527));
