@@ -3,6 +3,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -17,7 +18,7 @@ import org.apache.commons.configuration2.convert.DefaultListDelimiterHandler;
 import org.apache.commons.configuration2.ex.ConfigurationException;
 
 public class Properties {
-	
+
 	static Properties instance;
 	private static Configuration config;
 	private static Configuration configNonList;
@@ -29,17 +30,17 @@ public class Properties {
 	private static FileBasedConfigurationBuilder<FileBasedConfiguration> branchLocationBuilder;
 	private static FileBasedConfigurationBuilder<FileBasedConfiguration> branchLocationBuilderNonList;
 
-	
+
 	private Properties() {
-		
+
 	}
-	
+
 	public static Properties getInstance() {
 		if(instance == null) {
 			getProp();
 			return instance;
 		}
-		
+
 		else {
 			return instance;
 		}
@@ -51,46 +52,46 @@ public class Properties {
 	 * @return Configuration
 	 */
 	private static void getProp() {
-		
-		 Parameters params = new Parameters();
-	
+
+		Parameters params = new Parameters();
+
 		builder = new FileBasedConfigurationBuilder<FileBasedConfiguration>(PropertiesConfiguration.class)
-		    .configure(params.properties()
-		        .setFileName("config.properties")
-        .setListDelimiterHandler(new DefaultListDelimiterHandler(',')));
-		
+				.configure(params.properties()
+						.setFileName("config.properties")
+						.setListDelimiterHandler(new DefaultListDelimiterHandler(',')));
+
 		builderNonList = new FileBasedConfigurationBuilder<FileBasedConfiguration>(PropertiesConfiguration.class)
-			    .configure(params.properties()
-			        .setFileName("config.properties"));
-		
+				.configure(params.properties()
+						.setFileName("config.properties"));
+
 		branchLocationBuilder = new FileBasedConfigurationBuilder<FileBasedConfiguration>(PropertiesConfiguration.class)
-			    .configure(params.properties()
-			        .setFileName("branches.properties")
+				.configure(params.properties()
+						.setFileName("branches.properties")
 						.setListDelimiterHandler(new DefaultListDelimiterHandler('/')));
-		
+
 		branchLocationBuilderNonList = new FileBasedConfigurationBuilder<FileBasedConfiguration>(PropertiesConfiguration.class)
-			    .configure(params.properties()
-			        .setFileName("branches.properties"));
-		
-		
+				.configure(params.properties()
+						.setFileName("branches.properties"));
+
+
 		// Try/catch block for getting the config.properties file
 		try
 		{
-		    config = builder.getConfiguration();
-		    configNonList = builderNonList.getConfiguration();
+			config = builder.getConfiguration();
+			configNonList = builderNonList.getConfiguration();
 
 		}
 		catch(ConfigurationException cex)
 		{
 			JOptionPane.showMessageDialog(null,
 					"Could not load properties file to retrieve setup settings. Make sure the config.properties file is "
-					+ "in the root folder of the program.",
-					"Error",
-					JOptionPane.PLAIN_MESSAGE);
+							+ "in the root folder of the program.",
+							"Error",
+							JOptionPane.PLAIN_MESSAGE);
 			System.exit(1);
 		}
-		
-		
+
+
 		// Try/catch block for getting the branches.properties file
 		try
 		{
@@ -103,15 +104,15 @@ public class Properties {
 		{
 			JOptionPane.showMessageDialog(null,
 					"Could not load properties file to retrieve setup settings. Make sure the branches.properties file is "
-					+ "in the root folder of the program.",
-					"Error",
-					JOptionPane.PLAIN_MESSAGE);
+							+ "in the root folder of the program.",
+							"Error",
+							JOptionPane.PLAIN_MESSAGE);
 			System.exit(1);
 		}
-		
+
 	}
-	
-	
+
+
 	/**
 	 * @return file location of the word document containing the schedule
 	 */
@@ -119,7 +120,7 @@ public class Properties {
 		return config.getString("scheduleLocation");
 
 	}
-	
+
 	/**
 	 * @return file location of pdf containing the door sign templete
 	 */
@@ -127,7 +128,7 @@ public class Properties {
 		return config.getString("doorSignPDFLocation");
 
 	}
-	
+
 	/**
 	 * @return all trainers 
 	 */
@@ -135,15 +136,38 @@ public class Properties {
 		return config.getList("allTrainers");
 
 	}
-	
+
 	/**
 	 * @return branch address
 	 */
 	public static List getBranchAddress(String branch) {
-		return configBranches.getList(branch);
+		branch = branch.toLowerCase();
+		List<String> address = new ArrayList<String>();
+		List<Object> rawAddress = configBranches.getList(branch);
+
+		address.add(0, "Cummins Allison");
+		int i = 0;
+		for (Object line: rawAddress) {
+			address.add(i+1,(rawAddress.get(i)).toString());
+			System.out.println("Adding :" + ((rawAddress.get(i)).toString()));
+			i++;
+		}
+		
+		int size = address.size() ;
+		if (size< 5) {
+			System.out.println("address size: " + address.size());
+			for (int j = 5; j > size; j--) {
+				address.add("");
+			}
+			
+		}
+
+
+		System.out.println("new address length is: " + address.size());
+		return address;
 
 	}
-	
+
 	/**
 	 * @return branch address
 	 */
@@ -153,7 +177,7 @@ public class Properties {
 		return configBranchesNonList.getString(branch + "BranchNum");
 
 	}
-	
+
 	/**
 	 * @return all available training rooms
 	 */
@@ -165,7 +189,7 @@ public class Properties {
 		return result;
 
 	}
-	
+
 	/**
 	 * @return the defualy trainer who is using this software
 	 */
@@ -173,8 +197,8 @@ public class Properties {
 		return config.getString("trainerName");
 
 	}
-	
-	
+
+
 	/**
 	 * @return the default trainers phone ext
 	 */
@@ -182,40 +206,40 @@ public class Properties {
 		return config.getString("trainerExt");
 
 	}
-	
+
 	/**
 	 * @return Door sign class title
 	 */
 	public static String getClassTitle(int sessionNum) {
-		
+
 		switch (sessionNum) {
-		
+
 		case 1 : {
 			return configNonList.getString("session1Description");
 		}
-		
+
 		case 2 : {
 			return configNonList.getString("session2Description");
 		}
-		
+
 		case 3 : {
 			return configNonList.getString("session3Description");
 		}
-		
+
 		case 4 : {
 			return configNonList.getString("session4Description");
 		}
-		
+
 		default : {
 			return configNonList.getString("session1Description");
 
 		}
-		
-		
+
+
 		}
 
 	}
-	
+
 	/**
 	 * @return file name location for the name tent pdf 
 	 */
@@ -223,7 +247,7 @@ public class Properties {
 		return config.getString("nameTentPDFLocation");
 
 	}
-	
+
 	/**
 	 * @return file name location for the shipping form pdf 
 	 */
@@ -231,8 +255,8 @@ public class Properties {
 		return config.getString("shippingFormPDFLocation");
 
 	}
-	
-	
+
+
 	/**
 	 * @return root location for the shipping forms to be saved at.
 	 */
@@ -240,9 +264,9 @@ public class Properties {
 		return config.getString("shippingRootSaveLocation");
 
 	}
-	
+
 	public static String[] getDoorSignSettings() {
-		
+
 		String[] result = new String[6];
 		result[0] = configNonList.getProperty("doorSignPDFLocation").toString();
 		result[1] = configNonList.getProperty("session1Description").toString();
@@ -250,22 +274,22 @@ public class Properties {
 		result[3] = configNonList.getProperty("session3Description").toString();
 		result[4] = configNonList.getProperty("session4Description").toString();
 		result[5] = configNonList.getProperty("allTrainingRooms").toString();
-		
+
 		return result;
 	}
-	
+
 	public static String[] getTechReviewSettings() {
-		
+
 		String[] result = new String[4];
 		result[0] = configNonList.getProperty("techReviewSession1Location").toString();
 		result[1] = configNonList.getProperty("techReviewSession2Location").toString();
 		result[2] = configNonList.getProperty("techReviewSession3Location").toString();
 		result[3] = configNonList.getProperty("techReviewSession4Location").toString();
 
-		
+
 		return result;
 	}
-	
+
 
 	/**
 	 * Saves new file location of the word document containing the schedule
@@ -275,7 +299,7 @@ public class Properties {
 		saveNonList();
 
 	}
-	
+
 
 	/**
 	 * Saves new file location of the name tent PDF
@@ -285,7 +309,7 @@ public class Properties {
 		saveNonList();
 
 	}
-	
+
 	/**
 	 * Saves new file location of the pdf door sign
 	 */
@@ -300,8 +324,8 @@ public class Properties {
 		saveNonList();
 
 	}
-	
-	
+
+
 	/**
 	 * Saves new file location of the pdfs containing the tech review forms
 	 */
@@ -314,7 +338,7 @@ public class Properties {
 		saveNonList();
 
 	}
-	
+
 	/**
 	 * Saves new file location of the shipping form and shipping form save location
 	 */
@@ -326,7 +350,7 @@ public class Properties {
 		saveNonList();
 
 	}
-	
+
 	/**
 	 * Saves the config file with List values.
 	 */
@@ -338,7 +362,7 @@ public class Properties {
 					"Save Settings Failed", JOptionPane.ERROR_MESSAGE);
 		}
 	}
-	
+
 	/**
 	 * Saves the config file without listing values by commas.
 	 */
@@ -351,5 +375,5 @@ public class Properties {
 		}
 	}
 
-    
+
 }

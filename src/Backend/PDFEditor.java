@@ -337,9 +337,7 @@ public class PDFEditor {
 				LocalDate localDate = LocalDate.now();
 				
 				String branchNum = prop.getBranchNumber(selectedTechs.get(0).branch);
-				
-				System.out.println("BranchNum: " + branchNum);
-				System.out.println("Branch: " + selectedTechs.get(0).branch);
+				List<String> address = prop.getBranchAddress(selectedTechs.get(0).branch);
 
 				
 				// Fill out pdf
@@ -350,6 +348,21 @@ public class PDFEditor {
 				deptNum1.setValue("0");
 				deptNum2.setValue(branchNum.substring(0, 1));
 				deptNum3.setValue(branchNum.substring(1));
+
+				desc1.setValue("Workbook");
+
+				try {
+				shipTo1.setValue(address.get(0));
+				shipTo2.setValue(address.get(1));
+				shipTo3.setValue(address.get(2));
+				shipTo4.setValue(address.get(3));
+				shipTo5.setValue(address.get(4));
+				}
+
+				catch (Exception e) {
+					e.printStackTrace();
+				}
+
 
 				
 				pdfDocument.save(shippingFormFileLocation);
