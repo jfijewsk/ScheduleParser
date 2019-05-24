@@ -67,7 +67,12 @@ public class Properties {
 		}
 		catch(ConfigurationException cex)
 		{
-		    // loading of the configuration file failed
+			JOptionPane.showMessageDialog(null,
+					"Could not load properties file to retrieve setup settings. Make sure the config.properties file is "
+					+ "in the root folder of the program.",
+					"Error",
+					JOptionPane.PLAIN_MESSAGE);
+			System.exit(1);
 		}
 		
 		

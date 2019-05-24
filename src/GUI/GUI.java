@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Point;
+import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -86,12 +87,11 @@ public class GUI extends javax.swing.JFrame {
 
         
         try{
-            File caLogo = new File("src/Resources/CA Logo.png");
-            Image image = ImageIO.read(caLogo);
-            this.setIconImage(image);
+        	
+        	this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/CA_Logo.png")));
 
         }
-        catch (IOException e){
+        catch (Exception e){
             System.out.println("Failed to load cummins image");
         }
         

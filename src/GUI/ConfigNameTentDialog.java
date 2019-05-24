@@ -6,7 +6,7 @@ import java.awt.event.WindowListener;
 import javax.swing.JOptionPane;
 
 import Backend.Properties;
-import Main.Main;
+import main.Main;
 
 /**
  *

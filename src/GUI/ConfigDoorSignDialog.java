@@ -11,7 +11,7 @@ import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
 import Backend.Properties;
-import Main.Main;
+import main.Main;
 
 /**
  *

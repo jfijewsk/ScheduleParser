@@ -4,7 +4,7 @@ import org.apache.tools.ant.filters.ReplaceTokens
 
 apply plugin: 'application'
 
-mainClassName = 'src/Main.Main'
+mainClassName = 'src/main.Main'
 
 compileJava.options.encoding = 'UTF-8'
 
@@ -17,12 +17,12 @@ repositories {
 
 
 dependencies {
-  compile files('src/')
   compile 'org.apache.commons:commons-configuration2:2.4'
   compile 'org.apache.pdfbox:pdfbox:2.0.15'
       compile 'org.apache.poi:poi:4.1.0'
           compile 'org.apache.poi:poi-ooxml:4.1.0'
     compile 'org.apache.poi:poi-ooxml-schemas:3.17'
+      
 
 // https://mvnrepository.com/artifact/commons-collections/commons-collections
 compile group: 'commons-collections', name: 'commons-collections', version: '3.2.2'
@@ -32,34 +32,37 @@ compile 'commons-beanutils:commons-beanutils:1.9.3'
 
 }
 
-jar {
-  manifest {
-    attributes(
-      'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
-      'Main-Class': 'Main.Main'
-    )
-  }
-}
+
 
 sourceSets {
     main {
         java {
-            srcDirs 'src/'
+            srcDirs 'src/'         
         }
+         resources {
+                        srcDirs= ["src/main/resources"]
+                }
     }
+    
  }
  
  jar {
     manifest {
-        attributes "Main-Class": 'Main.Main'
+        attributes "Main-Class": 'main.Main'
     }
+      
  
     from {
-        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
-    }
+        configurations.runtime.collect { it.isDirectory() ? it : zipTree(it) 
+        }
+        
+
+
+
+
 }
 
-
+}
 
 
 

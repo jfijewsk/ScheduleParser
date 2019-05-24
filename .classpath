@@ -33,5 +33,6 @@
 	<classpathentry kind="lib" path="C:/SER316/Schedule_Parser/bin/Resources/poi-ooxml-4.1.0.jar"/>
 	<classpathentry kind="lib" path="C:/SER316/Schedule_Parser/bin/Resources/poi-ooxml-schemas-4.1.0.jar"/>
 	<classpathentry kind="lib" path="C:/SER316/Schedule_Parser/bin/Resources/xmlbeans-3.1.0.jar"/>
+	<classpathentry kind="lib" path="C:/SER316/Schedule_Parser/src/main/resources"/>
 	<classpathentry kind="output" path="bin/default"/>
 </classpath>
