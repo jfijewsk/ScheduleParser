@@ -5,6 +5,8 @@ import java.awt.print.PrinterJob;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -16,6 +18,7 @@ import org.apache.commons.configuration2.Configuration;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDDocumentCatalog;
 import org.apache.pdfbox.pdmodel.interactive.form.PDAcroForm;
+import org.apache.pdfbox.pdmodel.interactive.form.PDCheckBox;
 import org.apache.pdfbox.pdmodel.interactive.form.PDComboBox;
 import org.apache.pdfbox.pdmodel.interactive.form.PDField;
 import org.apache.pdfbox.printing.PDFPageable;
@@ -298,43 +301,93 @@ public class PDFEditor {
 		if (acroForm != null)
 		{
 
+			PDField dateField = createPDFField(acroForm, SHIPPING_DATE, SHIPPING);
+			PDField trainerName = createPDFField(acroForm, SHIPPING_TRAINER_NAME, SHIPPING );
+			PDField trainerExt = createPDFField(acroForm, SHIPPING_TRAINER_EXT, SHIPPING);
 
-			PDField techNameField = createPDFField(acroForm, NAME_TENT_TRAINEE_NAME, NAME_TENT);
-			PDField techBranchField = createPDFField(acroForm, NAME_TENT_TRAINEE_BRANCH, NAME_TENT );
+			
+			PDField deptNum1 = createPDFField(acroForm, SHIPPING_1_DEPT_NUMBER, SHIPPING);
+			PDField deptNum2 = createPDFField(acroForm, SHIPPING_2_DEPT_NUMBER, SHIPPING );
+			PDField deptNum3 = createPDFField(acroForm, SHIPPING_3_DEPT_NUMBER, SHIPPING);
+			
+			PDField desc1 = createPDFField(acroForm, SHIPPING_1_DESC_CONTENTS, SHIPPING );
+			PDField desc2 = createPDFField(acroForm, SHIPPING_2_DESC_CONTENTS, SHIPPING );
+			PDField desc3 = createPDFField(acroForm, SHIPPING_3_DESC_CONTENTS, SHIPPING );
+			PDField desc4 = createPDFField(acroForm, SHIPPING_4_DESC_CONTENTS, SHIPPING );
+			PDField desc5 = createPDFField(acroForm, SHIPPING_5_DESC_CONTENTS, SHIPPING );
+
+			PDCheckBox commercialCheckbox = (PDCheckBox) createPDFField(acroForm, SHIPPING_COMMERICAL_CHECK, SHIPPING );
+			PDCheckBox groundCommercialShipCheckbox = (PDCheckBox) createPDFField(acroForm, SHIPPING_GROUND_COMM_CHECK, SHIPPING );
+			
+			PDField shipTo1 = createPDFField(acroForm, SHIPPING_SHIP_TO_1, SHIPPING );
+			PDField shipTo2 = createPDFField(acroForm, SHIPPING_SHIP_TO_2, SHIPPING );
+			PDField shipTo3 = createPDFField(acroForm, SHIPPING_SHIP_TO_3, SHIPPING );
+			PDField shipTo4 = createPDFField(acroForm, SHIPPING_SHIP_TO_4, SHIPPING );
+			PDField shipTo5 = createPDFField(acroForm, SHIPPING_SHIP_TO_5, SHIPPING );
+
 
 			// If there was an error on retrieving the pdf fields then do not proceed.
 			if (errorOccurred) {
 				return;
 			}
-			
+
 			try {
+				
+				DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yy");
+				LocalDate localDate = LocalDate.now();
+				
+				String branchNum = prop.getBranchNumber(selectedTechs.get(0).branch);
+				System.out.println("BranchNum: " + branchNum);
+				System.out.println("Branch: " + selectedTechs.get(0).branch);
 
-				boolean printWasSucessful = true;
+				
+				// Fill out pdf
+				dateField.setValue(dtf.format(localDate));
+				trainerName.setValue(prop.getDefaultTrainer());
+				trainerExt.setValue(prop.getDefaultTrainerExt());
+				
+				deptNum1.setValue("0");
+				deptNum1.setValue(ChartoString(branchNum.charAt(0)));
+				deptNum1.setValue(ChartoString(branchNum.charAt(1)));
 
-				// Select printer
-				PrintService printer = choosePrinter();
+				
+				pdfDocument.save(shippingFormFileLocation);
 
-				for (Technician t : techs) {
-
-					if (printWasSucessful && printer != null) {
-						techNameField.setValue(t.getName());
-						techBranchField.setValue(t.getBranch());
-
-						pdfDocument.save(shippingFormFileLocation);
-						printWasSucessful = printPDF(printer, pdfDocument);
-					}
-				}
-
-
-				pdfDocument.close();
 			}
+				
+/*				
+				techBranchField.setValue(allBranches);
+				startDateField.setValue(session.getDateRange());
+				classNameField.setValue(classInfo.getClassName() + " " + session.getSessionName() 
+				+ "\n" + prop.getClassTitle(session.getSessionNumber()));
+
+				List allTrainers = prop.getAllTrainers();
+				List<String> allTrainingRooms = Arrays.asList(prop.getAllTrainingRooms());
+
+				trainingRoomCombo.setOptions(allTrainingRooms);
+				trainerCombo.setOptions(allTrainers);
+
+				trainingRoomCombo.setValue(selectedTrainingRoom);
+				trainerCombo.setValue(prop.getDefaultTrainer());
+
+				pdfDocument.save(fileName);
+				pdfDocument.close();
+
+			} */
 
 			catch (Exception e) {
-				JOptionPane.showMessageDialog(null, "Error saving pdf. Make sure the pdf is not already open.", 
+				JOptionPane.showMessageDialog(null, "Error saving pdf. Make sure that the pdf is not already open.", 
 						"Error saving pdf", JOptionPane.ERROR_MESSAGE);
 			}
 
+			openPDFInAdobe(shippingFormFileLocation);
+
 		}
+	}
+
+	private static String ChartoString(char charAt) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	private static PDField createPDFField(PDAcroForm acroForm, String fieldName, String pdfName) {

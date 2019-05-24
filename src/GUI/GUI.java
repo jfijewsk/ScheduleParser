@@ -397,8 +397,9 @@ public class GUI extends javax.swing.JFrame {
     	PDFEditor.fillNameTent(getSelectedTechs());
     }                                                 
 
-    private void createShippingBtnActionPerformed(java.awt.event.ActionEvent evt) {                                                  
-        // TODO add your handling code here:
+    private void createShippingBtnActionPerformed(java.awt.event.ActionEvent evt) {         
+    	ArrayList<Technician> selectedTechs = getSelectedTechs();
+    	PDFEditor.fillShippingForms((Class)GTCClassNumCombo1.getSelectedItem(), (Session)GTCSessionCombo.getSelectedItem(), selectedTechs);
     }                                                 
 
     private void createTechReviewBtnActionPerformed(java.awt.event.ActionEvent evt) {                                                    

@@ -148,6 +148,8 @@ public class Properties {
 	 * @return branch address
 	 */
 	public static String getBranchNumber(String branch) {
+		branch = branch.toLowerCase();
+		System.out.println("Looking for: " + branch + "BranchNum");
 		return configBranchesNonList.getString(branch + "BranchNum");
 
 	}
@@ -165,10 +167,19 @@ public class Properties {
 	}
 	
 	/**
-	 * @return all trainers 
+	 * @return the defualy trainer who is using this software
 	 */
 	public static String getDefaultTrainer() {
 		return config.getString("trainerName");
+
+	}
+	
+	
+	/**
+	 * @return the default trainers phone ext
+	 */
+	public static String getDefaultTrainerExt() {
+		return config.getString("trainerExt");
 
 	}
 	
