@@ -351,18 +351,14 @@ public class PDFEditor {
 
 				desc1.setValue("Workbook");
 
-				try {
 				shipTo1.setValue(address.get(0));
 				shipTo2.setValue(address.get(1));
 				shipTo3.setValue(address.get(2));
 				shipTo4.setValue(address.get(3));
 				shipTo5.setValue(address.get(4));
-				}
-
-				catch (Exception e) {
-					e.printStackTrace();
-				}
-
+				
+				commercialCheckbox.check();
+				groundCommercialShipCheckbox.check();
 
 				
 				pdfDocument.save(shippingFormFileLocation);
