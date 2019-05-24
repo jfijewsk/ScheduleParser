@@ -337,6 +337,7 @@ public class PDFEditor {
 				LocalDate localDate = LocalDate.now();
 				
 				String branchNum = prop.getBranchNumber(selectedTechs.get(0).branch);
+				
 				System.out.println("BranchNum: " + branchNum);
 				System.out.println("Branch: " + selectedTechs.get(0).branch);
 
@@ -347,8 +348,8 @@ public class PDFEditor {
 				trainerExt.setValue(prop.getDefaultTrainerExt());
 				
 				deptNum1.setValue("0");
-				deptNum1.setValue(ChartoString(branchNum.charAt(0)));
-				deptNum1.setValue(ChartoString(branchNum.charAt(1)));
+				deptNum2.setValue(branchNum.substring(0, 1));
+				deptNum3.setValue(branchNum.substring(1));
 
 				
 				pdfDocument.save(shippingFormFileLocation);
