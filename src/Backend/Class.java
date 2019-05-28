@@ -1,5 +1,7 @@
 package Backend;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author fijewskij
@@ -55,11 +57,43 @@ public class Class {
 		return className;
 	}
 	
+	
+	/**
+	 * @return Returns just the 4 digit year in the class name
+	 */
+	public String getClassYear() {
+		Pattern pattern = Pattern.compile("(\\d{4})");
+		Matcher matcher = pattern.matcher(className);
+		String result = null;
+		if (matcher.find()) {        
+		    result = matcher.group(0);  // 4 digit number
+		}
+		
+		System.out.println("Class year = " + result);
+		return result;
+	}
+	
+	/**
+	 * @return Returns the class name without the year
+	 */
+	public String getClassNameWithoutYear() {
+		Pattern pattern = Pattern.compile("(\\d{4})");
+		Matcher matcher = pattern.matcher(className);
+		String year = "";
+		if (matcher.find()) {        
+			year = matcher.group(0);  // 4 digit number
+		}
+		
+		String result = className.replace(" " + year,"");
+		return result;
+	}
+	
+
+	
 	@Override
 	public String toString() {
 		return className;
 	}
-	
 	
 
 	

@@ -261,7 +261,7 @@ public class Properties {
 	/**
 	 * @return root location for the shipping forms to be saved at.
 	 */
-	public static String getNameShippingSaveLocation() {
+	public static String getShippingSaveLocation() {
 		return config.getString("shippingRootSaveLocation");
 
 	}

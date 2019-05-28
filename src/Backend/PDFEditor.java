@@ -43,7 +43,7 @@ public class PDFEditor {
 	// Name tent pdf named fields
 	final static String NAME_TENT_TRAINEE_NAME = "Trainee Name";
 	final static String NAME_TENT_TRAINEE_BRANCH = "Trainee Branch";
-	
+
 	// Shipping form pdf named fields
 	final static String SHIPPING_DATE = "dateField";
 	final static String SHIPPING_TRAINER_NAME =  "trainersName";
@@ -232,9 +232,9 @@ public class PDFEditor {
 	}
 
 	public static void fillNameTent(ArrayList<Technician> techs) {
-		
+
 		errorOccurred = false;
-		
+
 		String nameTentFileLocation = prop.getNameTentFileName();
 		PDDocument pdfDocument = openPDFFile(nameTentFileLocation);
 
@@ -255,7 +255,7 @@ public class PDFEditor {
 			if (errorOccurred) {
 				return;
 			}
-			
+
 			try {
 
 				boolean printWasSucessful = true;
@@ -285,12 +285,12 @@ public class PDFEditor {
 
 		}
 	}
-	
+
 	public static void fillShippingForms(Class classInfo, 
 			Session session, ArrayList<Technician> selectedTechs) {
-		
+
 		String shippingFormFileLocation = prop.getNameShippingFileName();
-		
+
 		PDDocument pdfDocument = openPDFFile(shippingFormFileLocation);
 
 		PDDocumentCatalog docCatalog = pdfDocument.getDocumentCatalog();
@@ -306,11 +306,10 @@ public class PDFEditor {
 			PDField trainerName = createPDFField(acroForm, SHIPPING_TRAINER_NAME, SHIPPING );
 			PDField trainerExt = createPDFField(acroForm, SHIPPING_TRAINER_EXT, SHIPPING);
 
-			
 			PDField deptNum1 = createPDFField(acroForm, SHIPPING_1_DEPT_NUMBER, SHIPPING);
 			PDField deptNum2 = createPDFField(acroForm, SHIPPING_2_DEPT_NUMBER, SHIPPING );
 			PDField deptNum3 = createPDFField(acroForm, SHIPPING_3_DEPT_NUMBER, SHIPPING);
-			
+
 			PDField desc1 = createPDFField(acroForm, SHIPPING_1_DESC_CONTENTS, SHIPPING );
 			PDField desc2 = createPDFField(acroForm, SHIPPING_2_DESC_CONTENTS, SHIPPING );
 			PDField desc3 = createPDFField(acroForm, SHIPPING_3_DESC_CONTENTS, SHIPPING );
@@ -319,7 +318,7 @@ public class PDFEditor {
 
 			PDCheckBox commercialCheckbox = (PDCheckBox) createPDFField(acroForm, SHIPPING_COMMERICAL_CHECK, SHIPPING );
 			PDCheckBox groundCommercialShipCheckbox = (PDCheckBox) createPDFField(acroForm, SHIPPING_GROUND_COMM_CHECK, SHIPPING );
-			
+
 			PDField shipTo1 = createPDFField(acroForm, SHIPPING_SHIP_TO_1, SHIPPING );
 			PDField shipTo2 = createPDFField(acroForm, SHIPPING_SHIP_TO_2, SHIPPING );
 			PDField shipTo3 = createPDFField(acroForm, SHIPPING_SHIP_TO_3, SHIPPING );
@@ -327,53 +326,63 @@ public class PDFEditor {
 			PDField shipTo5 = createPDFField(acroForm, SHIPPING_SHIP_TO_5, SHIPPING );
 			PDField shipTo6 = createPDFField(acroForm, SHIPPING_SHIP_TO_6, SHIPPING );
 
-
-
 			// If there was an error on retrieving the pdf fields then do not proceed.
 			if (errorOccurred) {
 				return;
 			}
 
 			try {
-				
+
 				for (int i = 0; i < selectedTechs.size(); i++) {
-				
-				DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yy");
-				LocalDate localDate = LocalDate.now();
-				
-				String branchNum = prop.getBranchNumber(selectedTechs.get(i).branch);
-				List<String> address = prop.getShippingAddressText(selectedTechs.get(i).branch, selectedTechs.get(i));
 
-				
-				// Fill out pdf
-				dateField.setValue(dtf.format(localDate));
-				trainerName.setValue(prop.getDefaultTrainer());
-				trainerExt.setValue(prop.getDefaultTrainerExt());
-				
-				deptNum1.setValue("0");
-				deptNum2.setValue(branchNum.substring(0, 1));
-				deptNum3.setValue(branchNum.substring(1));
+					DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yy");
+					LocalDate localDate = LocalDate.now();
 
-				desc1.setValue("Workbook");
+					String branchNum = prop.getBranchNumber(selectedTechs.get(i).branch);
+					List<String> address = prop.getShippingAddressText(selectedTechs.get(i).branch, selectedTechs.get(i));
 
-				shipTo1.setValue(address.get(0));
-				shipTo2.setValue(address.get(1));
-				shipTo3.setValue(address.get(2));
-				shipTo4.setValue(address.get(3));
-				shipTo5.setValue(address.get(4));
-				shipTo6.setValue(address.get(5));
 
-				
-				commercialCheckbox.check();
-				groundCommercialShipCheckbox.check();
+					// Fill out pdf
+					dateField.setValue(dtf.format(localDate));
+					trainerName.setValue(prop.getDefaultTrainer());
+					trainerExt.setValue(prop.getDefaultTrainerExt());
 
-				
-				pdfDocument.save(shippingFormFileLocation);
-				openPDFInAdobe(shippingFormFileLocation);
+					deptNum1.setValue("0");
+					deptNum2.setValue(branchNum.substring(0, 1));
+					deptNum3.setValue(branchNum.substring(1));
+
+					desc1.setValue("Workbook");
+
+					shipTo1.setValue(address.get(0));
+					shipTo2.setValue(address.get(1));
+					shipTo3.setValue(address.get(2));
+					shipTo4.setValue(address.get(3));
+					shipTo5.setValue(address.get(4));
+					shipTo6.setValue(address.get(5));
+
+					commercialCheckbox.check();
+					groundCommercialShipCheckbox.check();
+
+					
+					// Save to directory
+					String rootSaveFolder = prop.getShippingSaveLocation();
+					String yearFolderName = classInfo.getClassYear() + " GTC Classes";
+					String className = classInfo.getClassNameWithoutYear();
+					
+					String fullFileName = rootSaveFolder + "\\" + yearFolderName + "\\" + className 
+							+ "\\" + selectedTechs.get(i).getName() + " " + session.getSessionName() + " Review.pdf";
+					
+					System.out.println(fullFileName);
+
+					//				new File("some/path/to/somewhere/then-my-file").getParentFile().mkdirs();
+
+
+					pdfDocument.save(shippingFormFileLocation);
+					openPDFInAdobe(shippingFormFileLocation);
 				}
 			}
-				
-/*				
+
+			/*				
 				techBranchField.setValue(allBranches);
 				startDateField.setValue(session.getDateRange());
 				classNameField.setValue(classInfo.getClassName() + " " + session.getSessionName() 
@@ -399,7 +408,7 @@ public class PDFEditor {
 				e.printStackTrace();
 			}
 
-//			openPDFInAdobe(shippingFormFileLocation);
+			//			openPDFInAdobe(shippingFormFileLocation);
 
 		}
 	}
