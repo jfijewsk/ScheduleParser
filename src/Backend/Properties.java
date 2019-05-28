@@ -141,10 +141,19 @@ public class Properties {
 	 * @return branch address
 	 */
 	public static List getShippingAddressText(String branch, Technician tech) {
+		String orginalBranch = branch;
 		branch = branch.toLowerCase();
+		branch = branch.replaceAll("\\s+","");
 		List<String> address = new ArrayList<String>();
 		List<Object> rawAddress = configBranches.getList(branch);
 
+		if (rawAddress == null) {
+			JOptionPane.showMessageDialog(null, "Error retrieving the branch address for the " + orginalBranch 
+					+ "\nMake sure that branch is in the \"branches.properties\" file and that it is named \n"
+					+ "exactly: " + branch, 
+					"Error Retrieving Branch Address", JOptionPane.ERROR_MESSAGE);
+		}
+		
 		address.add(0, "Cummins Allison");
 		int i = 0;
 		
@@ -173,8 +182,16 @@ public class Properties {
 	 * @return branch address
 	 */
 	public static String getBranchNumber(String branch) {
+		String orginalBranch = branch;
 		branch = branch.toLowerCase();
-		System.out.println("Looking for: " + branch + "BranchNum");
+		branch = branch.replaceAll("\\s+","");
+
+		if (configBranchesNonList.getString(branch + "BranchNum") == null) {
+			JOptionPane.showMessageDialog(null, "Error retrieving the branch number for the " + orginalBranch 
+					+ "\nMake sure that branch is in the \"branches.properties\" file and that it is named \n"
+					+ "exactly: " + branch, 
+					"Error Retrieving Branch Number", JOptionPane.ERROR_MESSAGE);
+		}
 		return configBranchesNonList.getString(branch + "BranchNum");
 
 	}

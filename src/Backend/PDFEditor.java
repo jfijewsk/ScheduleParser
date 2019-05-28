@@ -347,6 +347,7 @@ public class PDFEditor {
 					trainerName.setValue(prop.getDefaultTrainer());
 					trainerExt.setValue(prop.getDefaultTrainerExt());
 
+					
 					deptNum1.setValue("0");
 					deptNum2.setValue(branchNum.substring(0, 1));
 					deptNum3.setValue(branchNum.substring(1));
@@ -404,28 +405,8 @@ public class PDFEditor {
 				}
 			}
 
-			/*				
-				techBranchField.setValue(allBranches);
-				startDateField.setValue(session.getDateRange());
-				classNameField.setValue(classInfo.getClassName() + " " + session.getSessionName() 
-				+ "\n" + prop.getClassTitle(session.getSessionNumber()));
-
-				List allTrainers = prop.getAllTrainers();
-				List<String> allTrainingRooms = Arrays.asList(prop.getAllTrainingRooms());
-
-				trainingRoomCombo.setOptions(allTrainingRooms);
-				trainerCombo.setOptions(allTrainers);
-
-				trainingRoomCombo.setValue(selectedTrainingRoom);
-				trainerCombo.setValue(prop.getDefaultTrainer());
-
-				pdfDocument.save(fileName);
-				pdfDocument.close();
-
-			} */
-
 			catch (Exception e) {
-				JOptionPane.showMessageDialog(null, "Error opening and editting the PDF. For the record, this is never"
+				JOptionPane.showMessageDialog(null, "Error opening and editting the PDF. For the record, this is never "
 						+ "supposed to happen.\nLook outside and make sure pigs are not currently flying.", 
 						"Error editting pdf", JOptionPane.ERROR_MESSAGE);
 				e.printStackTrace();
@@ -436,10 +417,6 @@ public class PDFEditor {
 		}
 	}
 
-	private static String ChartoString(char charAt) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	private static PDField createPDFField(PDAcroForm acroForm, String fieldName, String pdfName) {
 		PDField field = (PDField) acroForm.getField(fieldName);
