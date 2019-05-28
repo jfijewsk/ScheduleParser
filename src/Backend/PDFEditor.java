@@ -376,6 +376,8 @@ public class PDFEditor {
 
 					File form = new File(fullFileName);
 					
+					try {
+					
 					if (!form.exists()) {
 					new File(fullFileName).getParentFile().mkdirs();
 					pdfDocument.save(fullFileName);
@@ -389,6 +391,16 @@ public class PDFEditor {
 					}
 
 					openPDFInAdobe(fullFileName);
+					
+					}
+					
+					catch (Exception e) {
+						JOptionPane.showMessageDialog(null, "How did you screw this up!? Honestly, I'm not even mad. "
+								+ "\n You somehow managed to get this to fail when trying to populate the pdf with new "
+								+ "\n values. Make sure the pdf is not already open? I'm really not sure what the fix"
+								+ "\n here is. Do NOT buy a lotto ticket today.", 
+								"Error saving pdf", JOptionPane.ERROR_MESSAGE);
+					}
 				}
 			}
 
@@ -413,8 +425,9 @@ public class PDFEditor {
 			} */
 
 			catch (Exception e) {
-				JOptionPane.showMessageDialog(null, "Error saving pdf. Make sure that the pdf is not already open.", 
-						"Error saving pdf", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Error opening and editting the PDF. For the record, this is never"
+						+ "supposed to happen.\nLook outside and make sure pigs are not currently flying.", 
+						"Error editting pdf", JOptionPane.ERROR_MESSAGE);
 				e.printStackTrace();
 			}
 
