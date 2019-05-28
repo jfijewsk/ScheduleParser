@@ -140,30 +140,31 @@ public class Properties {
 	/**
 	 * @return branch address
 	 */
-	public static List getBranchAddress(String branch) {
+	public static List getShippingAddressText(String branch, Technician tech) {
 		branch = branch.toLowerCase();
 		List<String> address = new ArrayList<String>();
 		List<Object> rawAddress = configBranches.getList(branch);
 
 		address.add(0, "Cummins Allison");
 		int i = 0;
+		
 		for (Object line: rawAddress) {
-			address.add(i+1,(rawAddress.get(i)).toString());
-			System.out.println("Adding :" + ((rawAddress.get(i)).toString()));
+			address.add((rawAddress.get(i)).toString());
 			i++;
 		}
 		
+		address.add(i+1, "Attn: " + tech.getName());
+		System.out.println("adding to line: " + (i) + " Size is now: " + address.size());
+				
 		int size = address.size() ;
-		if (size< 5) {
-			System.out.println("address size: " + address.size());
-			for (int j = 5; j > size; j--) {
+		if (size <= 6) {
+			for (int j = 6; j > size; j--) {
 				address.add("");
 			}
 			
 		}
+		
 
-
-		System.out.println("new address length is: " + address.size());
 		return address;
 
 	}

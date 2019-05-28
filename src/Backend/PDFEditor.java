@@ -62,6 +62,7 @@ public class PDFEditor {
 	final static String SHIPPING_SHIP_TO_3 = "shipTo3";
 	final static String SHIPPING_SHIP_TO_4 = "shipTo4";
 	final static String SHIPPING_SHIP_TO_5 = "shipTo5";
+	final static String SHIPPING_SHIP_TO_6 = "shipTo6";
 	final static String SHIPPING_GROUND_COMM_CHECK = "UPS GROUND COMMERICAL";
 
 
@@ -324,6 +325,8 @@ public class PDFEditor {
 			PDField shipTo3 = createPDFField(acroForm, SHIPPING_SHIP_TO_3, SHIPPING );
 			PDField shipTo4 = createPDFField(acroForm, SHIPPING_SHIP_TO_4, SHIPPING );
 			PDField shipTo5 = createPDFField(acroForm, SHIPPING_SHIP_TO_5, SHIPPING );
+			PDField shipTo6 = createPDFField(acroForm, SHIPPING_SHIP_TO_6, SHIPPING );
+
 
 
 			// If there was an error on retrieving the pdf fields then do not proceed.
@@ -333,11 +336,13 @@ public class PDFEditor {
 
 			try {
 				
+				for (int i = 0; i < selectedTechs.size(); i++) {
+				
 				DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yy");
 				LocalDate localDate = LocalDate.now();
 				
-				String branchNum = prop.getBranchNumber(selectedTechs.get(0).branch);
-				List<String> address = prop.getBranchAddress(selectedTechs.get(0).branch);
+				String branchNum = prop.getBranchNumber(selectedTechs.get(i).branch);
+				List<String> address = prop.getShippingAddressText(selectedTechs.get(i).branch, selectedTechs.get(i));
 
 				
 				// Fill out pdf
@@ -356,13 +361,16 @@ public class PDFEditor {
 				shipTo3.setValue(address.get(2));
 				shipTo4.setValue(address.get(3));
 				shipTo5.setValue(address.get(4));
+				shipTo6.setValue(address.get(5));
+
 				
 				commercialCheckbox.check();
 				groundCommercialShipCheckbox.check();
 
 				
 				pdfDocument.save(shippingFormFileLocation);
-
+				openPDFInAdobe(shippingFormFileLocation);
+				}
 			}
 				
 /*				
@@ -388,9 +396,10 @@ public class PDFEditor {
 			catch (Exception e) {
 				JOptionPane.showMessageDialog(null, "Error saving pdf. Make sure that the pdf is not already open.", 
 						"Error saving pdf", JOptionPane.ERROR_MESSAGE);
+				e.printStackTrace();
 			}
 
-			openPDFInAdobe(shippingFormFileLocation);
+//			openPDFInAdobe(shippingFormFileLocation);
 
 		}
 	}
