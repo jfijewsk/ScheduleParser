@@ -84,7 +84,10 @@ public class Class {
 			year = matcher.group(0);  // 4 digit number
 		}
 		
+		// Two replaces to make sure that if there is/is not a space before the year we remove it.
 		String result = className.replace(" " + year,"");
+		result = result.replace(year,"");
+
 		return result;
 	}
 	

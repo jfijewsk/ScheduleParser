@@ -370,15 +370,25 @@ public class PDFEditor {
 					String className = classInfo.getClassNameWithoutYear();
 					
 					String fullFileName = rootSaveFolder + "\\" + yearFolderName + "\\" + className 
-							+ "\\" + selectedTechs.get(i).getName() + " " + session.getSessionName() + " Review.pdf";
+							+ "\\" + selectedTechs.get(i).getName() + " " + session.getSessionName() + " Shipping.pdf";
 					
 					System.out.println(fullFileName);
 
-					//				new File("some/path/to/somewhere/then-my-file").getParentFile().mkdirs();
+					File form = new File(fullFileName);
+					
+					if (!form.exists()) {
+					new File(fullFileName).getParentFile().mkdirs();
+					pdfDocument.save(fullFileName);
+					}
+					
+					else {
+						JOptionPane.showMessageDialog(null, "Duplicate PDF Found. Changes NOT saved."
+								+ "Duplicate PDF will open after closing this message. Please edit manually to prevent overwritting files. "
+								+ "\nDuplicate file is located here: " + fullFileName, 
+								"Error review already exists", JOptionPane.ERROR_MESSAGE);
+					}
 
-
-					pdfDocument.save(shippingFormFileLocation);
-					openPDFInAdobe(shippingFormFileLocation);
+					openPDFInAdobe(fullFileName);
 				}
 			}
 
