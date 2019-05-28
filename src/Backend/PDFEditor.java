@@ -341,13 +341,15 @@ public class PDFEditor {
 					String branchNum = prop.getBranchNumber(selectedTechs.get(i).branch);
 					List<String> address = prop.getShippingAddressText(selectedTechs.get(i).branch, selectedTechs.get(i));
 
+					if(branchNum == null || address == null) {
+						continue;
+					}
 
 					// Fill out pdf
 					dateField.setValue(dtf.format(localDate));
 					trainerName.setValue(prop.getDefaultTrainer());
 					trainerExt.setValue(prop.getDefaultTrainerExt());
 
-					
 					deptNum1.setValue("0");
 					deptNum2.setValue(branchNum.substring(0, 1));
 					deptNum3.setValue(branchNum.substring(1));
@@ -359,7 +361,7 @@ public class PDFEditor {
 					shipTo3.setValue(address.get(2));
 					shipTo4.setValue(address.get(3));
 					shipTo5.setValue(address.get(4));
-					shipTo6.setValue(address.get(5));
+					shipTo6.setValue(address.get(5));		
 
 					commercialCheckbox.check();
 					groundCommercialShipCheckbox.check();
