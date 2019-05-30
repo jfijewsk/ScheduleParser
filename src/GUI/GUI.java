@@ -403,7 +403,8 @@ public class GUI extends javax.swing.JFrame {
     }                                                 
 
     private void createTechReviewBtnActionPerformed(java.awt.event.ActionEvent evt) {                                                    
-        // TODO add your handling code here:
+    	ArrayList<Technician> selectedTechs = getSelectedTechs();
+    	PDFEditor.fillTechReviewForms((Class)GTCClassNumCombo1.getSelectedItem(), (Session)GTCSessionCombo.getSelectedItem(), selectedTechs);
     }                                                   
 
     private void jMenuExitActionPerformed(java.awt.event.ActionEvent evt) {                                          

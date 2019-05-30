@@ -68,6 +68,14 @@ public class PDFEditor {
 	final static String SHIPPING_SHIP_TO_5 = "shipTo5";
 	final static String SHIPPING_SHIP_TO_6 = "shipTo6";
 	final static String SHIPPING_GROUND_COMM_CHECK = "UPS GROUND COMMERICAL";
+	
+	// Review form pdf named fields
+	final static String REVIEW_TRAINER_NAME = "Trainer";
+	final static String REVIEW_DATE = "Today's Date";
+	final static String REVIEW_TECH_NAME = "Name";
+	final static String REVIEW_HIRE_DATE = "Date of Hire";
+	final static String REVIEW_BRANCH_NAME = "Branch Name";
+	final static String REVIEW_CLASS_DATE =  "Date of Class";
 
 
 	private static Properties prop = Properties.getInstance();
@@ -340,7 +348,7 @@ public class PDFEditor {
 					DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yy");
 					LocalDate localDate = LocalDate.now();
 
-					String branchNum = prop.getBranchNumber(selectedTechs.get(i).branch);
+					String branchNum = prop.getBranchNumber(selectedTechs.get(i).getBranch());
 					List<String> address = prop.getShippingAddressText(selectedTechs.get(i).branch, selectedTechs.get(i));
 
 					// Fill out pdf
@@ -453,7 +461,87 @@ public class PDFEditor {
 
 		PDDocumentCatalog docCatalog = pdfDocument.getDocumentCatalog();
 		PDAcroForm acroForm = docCatalog.getAcroForm();
+	
+		if (acroForm != null)
+		{
 
+			PDComboBox trainerName = createPDFCombo(acroForm, REVIEW_TRAINER_NAME, TECH_REVIEW );
+
+			PDField todayDate = createPDFField(acroForm, REVIEW_DATE, TECH_REVIEW);
+			PDField techName = createPDFField(acroForm, REVIEW_TECH_NAME, TECH_REVIEW );
+			PDField techHireDate = createPDFField(acroForm, REVIEW_HIRE_DATE, TECH_REVIEW);
+			PDField branchName = createPDFField(acroForm, REVIEW_BRANCH_NAME, TECH_REVIEW );
+			PDField classDate = createPDFField(acroForm, REVIEW_CLASS_DATE, TECH_REVIEW );
+
+
+			// If there was an error on retrieving the pdf fields then do not proceed.
+			if (errorOccurred) {
+				return;
+			}
+			
+			try {
+
+				for (int i = 0; i < selectedTechs.size(); i++) {
+					
+					DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yy");
+					LocalDate localDate = LocalDate.now();
+
+					String branchNum = prop.getBranchNumber(selectedTechs.get(i).branch);
+					List<String> address = prop.getShippingAddressText(selectedTechs.get(i).branch, selectedTechs.get(i));
+					
+					trainerName.setOptions(prop.getAllTrainers());
+					trainerName.setValue(prop.getDefaultTrainer());
+					techName.setValue(selectedTechs.get(i).getName());
+					techHireDate.setValue(selectedTechs.get(i).getStartDate());
+					branchName.setValue(selectedTechs.get(i).getBranch());
+					classDate.setValue(session.getFullStartDate());
+					
+
+					// Save to directory
+					String rootSaveFolder = allReviewLocations[4];
+					String classFolderName = classInfo.getClassYear() + " " + classInfo.getClassNameWithoutYear();
+					String fileName = selectedTechs.get(i).getName() + " " + session.getSessionName();
+
+					String fullFileName = rootSaveFolder + "\\" + classFolderName + "\\" + fileName + ".pdf";
+
+					File form = new File(fullFileName);
+					
+					try {
+
+						if (!form.exists()) {
+							new File(fullFileName).getParentFile().mkdirs();
+							pdfDocument.save(fullFileName);
+						}
+
+						else {
+							JOptionPane.showMessageDialog(null, "Duplicate PDF Found. Changes NOT saved."
+									+ "Duplicate PDF will open after closing this message. Please edit manually to prevent overwritting files. "
+									+ "\nDuplicate file is located here: " + fullFileName, 
+									"Error review already exists", JOptionPane.ERROR_MESSAGE);
+						}
+
+						openPDFInAdobe(fullFileName);
+
+					}
+
+					catch (Exception e) {
+						JOptionPane.showMessageDialog(null, "How did you screw this up!? Honestly, I'm not even mad. "
+								+ "\n You somehow managed to get this to fail when trying to populate the pdf with new "
+								+ "\n values. Make sure the pdf is not already open? I'm really not sure what the fix"
+								+ "\n here is. Do NOT buy a lotto ticket today.", 
+								"Error saving pdf", JOptionPane.ERROR_MESSAGE);
+					
+				}
+			}
+		}
+			
+			catch (Exception e) {
+				JOptionPane.showMessageDialog(null, "Error opening and editting the PDF. For the record, this is never "
+						+ "supposed to happen.\nLook outside and make sure pigs are not currently flying.", 
+						"Error editting pdf", JOptionPane.ERROR_MESSAGE);
+				e.printStackTrace();
+			}
+		}
 	}
 
 
