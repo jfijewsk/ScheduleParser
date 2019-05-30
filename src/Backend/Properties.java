@@ -146,7 +146,7 @@ public class Properties {
 		branch = branch.replaceAll("\\s+","");
 		List<String> address = new ArrayList<String>();
 		List<Object> rawAddress = configBranches.getList(branch);
-
+		
 		if (rawAddress == null) {
 			JOptionPane.showMessageDialog(null, "Error retrieving the branch address for the " + orginalBranch 
 					+ "\nMake sure that branch is in the \"branches.properties\" file and that it is named \n"
@@ -314,7 +314,7 @@ public class Properties {
 	 */
 	public static void saveScheduleFileName(String newLocation) {
 		config.setProperty("scheduleLocation", newLocation);
-		saveNonList();
+		saveList();
 
 	}
 

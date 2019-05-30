@@ -123,6 +123,7 @@ public class ConfigWordDialog extends javax.swing.JDialog {
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {                                        
     	prop.saveScheduleFileName(fileLocationTxtField.getText());
+    	
     	JOptionPane.showMessageDialog(this,
     		    "File location saved as: " + fileLocationTxtField.getText() + ".",
     		    "Saved File Successfully",

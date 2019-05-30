@@ -241,8 +241,6 @@ public class PDFEditor {
 		PDDocumentCatalog docCatalog = pdfDocument.getDocumentCatalog();
 		PDAcroForm acroForm = docCatalog.getAcroForm();
 
-		String techName =""; 
-		String techBranch =""; 
 
 		if (acroForm != null)
 		{
@@ -266,9 +264,23 @@ public class PDFEditor {
 				for (Technician t : techs) {
 
 					if (printWasSucessful && printer != null) {
-						techNameField.setValue(t.getName());
-						techBranchField.setValue(t.getBranch());
+						
+						// Get tech branch, make all lower case and then capitalize the first letters
+						String branchName = t.getBranch();
+						String[] splitName = branchName.split("\\s+|'+");
+						
+						for(int i = 0; i < splitName.length; i++) {
+							splitName[i] = splitName[i].substring(0,1).toUpperCase()
+									+ splitName[i].substring(1).toLowerCase();
+						}
+						
+						branchName = String.join(" ", splitName);
+						
+						techBranchField.setValue(branchName);
 
+						
+						techNameField.setValue(t.getName());
+						
 						pdfDocument.save(nameTentFileLocation);
 						printWasSucessful = printPDF(printer, pdfDocument);
 					}
@@ -366,37 +378,35 @@ public class PDFEditor {
 					commercialCheckbox.check();
 					groundCommercialShipCheckbox.check();
 
-					
+
 					// Save to directory
 					String rootSaveFolder = prop.getShippingSaveLocation();
 					String yearFolderName = classInfo.getClassYear() + " GTC Classes";
 					String className = classInfo.getClassNameWithoutYear();
-					
+
 					String fullFileName = rootSaveFolder + "\\" + yearFolderName + "\\" + className 
 							+ "\\" + selectedTechs.get(i).getName() + " " + session.getSessionName() + " Shipping.pdf";
-					
-					System.out.println(fullFileName);
 
 					File form = new File(fullFileName);
-					
+
 					try {
-					
-					if (!form.exists()) {
-					new File(fullFileName).getParentFile().mkdirs();
-					pdfDocument.save(fullFileName);
-					}
-					
-					else {
-						JOptionPane.showMessageDialog(null, "Duplicate PDF Found. Changes NOT saved."
-								+ "Duplicate PDF will open after closing this message. Please edit manually to prevent overwritting files. "
-								+ "\nDuplicate file is located here: " + fullFileName, 
-								"Error review already exists", JOptionPane.ERROR_MESSAGE);
+
+						if (!form.exists()) {
+							new File(fullFileName).getParentFile().mkdirs();
+							pdfDocument.save(fullFileName);
+						}
+
+						else {
+							JOptionPane.showMessageDialog(null, "Duplicate PDF Found. Changes NOT saved."
+									+ "Duplicate PDF will open after closing this message. Please edit manually to prevent overwritting files. "
+									+ "\nDuplicate file is located here: " + fullFileName, 
+									"Error review already exists", JOptionPane.ERROR_MESSAGE);
+						}
+
+						openPDFInAdobe(fullFileName);
+
 					}
 
-					openPDFInAdobe(fullFileName);
-					
-					}
-					
 					catch (Exception e) {
 						JOptionPane.showMessageDialog(null, "How did you screw this up!? Honestly, I'm not even mad. "
 								+ "\n You somehow managed to get this to fail when trying to populate the pdf with new "
@@ -446,4 +456,5 @@ public class PDFEditor {
 
 		return combo;
 	}
+
 }
