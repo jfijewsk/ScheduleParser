@@ -43,7 +43,7 @@ public class Class {
 	}
 
 
-	public String getStartDate() {
+	public String getMisc() {
 		return startDate;
 	}
 

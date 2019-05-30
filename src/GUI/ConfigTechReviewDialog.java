@@ -5,6 +5,8 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.File;
 
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import Backend.Properties;
@@ -276,7 +278,7 @@ public class ConfigTechReviewDialog extends javax.swing.JDialog {
 	}           
 	
 	private void rootSaveLocationBrowseBtnActionPerformed(java.awt.event.ActionEvent evt) {                                                        
-		String browseResult = browseFiles();
+		String browseResult = browseFolder();
 		if (browseResult != null) {
 			rootSaveLocationTextField.setText(browseResult);
 		}    
@@ -317,6 +319,25 @@ public class ConfigTechReviewDialog extends javax.swing.JDialog {
 			return (directory + fileName);
 
 		}
+
+
+	}
+	
+	
+	public String browseFolder() {
+		
+        JFileChooser jFileChooser = new JFileChooser();
+        jFileChooser.setFileSelectionMode( JFileChooser.DIRECTORIES_ONLY);
+        //jFileChooser.setCurrentDirectory(new File("/User/alvinreyes"));
+         
+        int result = jFileChooser.showOpenDialog(new JFrame());
+     
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = jFileChooser.getSelectedFile();
+            return selectedFile.getAbsolutePath();
+        }
+        
+        return null;
 
 
 	}

@@ -456,7 +456,8 @@ public class PDFEditor {
 			return;
 		}
 
-
+		System.out.println("Trying to open: " + reviewFileLocation);
+		
 		PDDocument pdfDocument = openPDFFile(reviewFileLocation);
 
 		PDDocumentCatalog docCatalog = pdfDocument.getDocumentCatalog();
@@ -491,6 +492,7 @@ public class PDFEditor {
 					
 					trainerName.setOptions(prop.getAllTrainers());
 					trainerName.setValue(prop.getDefaultTrainer());
+					todayDate.setValue(dtf.format(localDate));
 					techName.setValue(selectedTechs.get(i).getName());
 					techHireDate.setValue(selectedTechs.get(i).getStartDate());
 					branchName.setValue(selectedTechs.get(i).getBranch());
@@ -502,7 +504,7 @@ public class PDFEditor {
 					String classFolderName = classInfo.getClassYear() + " " + classInfo.getClassNameWithoutYear();
 					String fileName = selectedTechs.get(i).getName() + " " + session.getSessionName();
 
-					String fullFileName = rootSaveFolder + "\\" + classFolderName + "\\" + fileName + ".pdf";
+					String fullFileName = rootSaveFolder + "\\" + classFolderName + "\\" + fileName + " Review.pdf";
 
 					File form = new File(fullFileName);
 					

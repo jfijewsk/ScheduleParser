@@ -1,16 +1,18 @@
 package Backend;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Technician {
 
 	String name;
 	String branch;
-	String startDate;
+	String misc;
 	
-	public Technician(String name, String branch, String startDate) {
+	public Technician(String name, String branch, String misc) {
 		this.name = name;
 		this.branch = branch;
-		this.startDate = startDate;
+		this.misc = misc;
 	}
 
 	public String getName() {
@@ -21,10 +23,21 @@ public class Technician {
 		return branch;
 	}
 
-	public String getStartDate() {
-		return startDate;
+	public String getMisc() {
+		return misc;
 	}
 	
+	public String getStartDate() {
+		 Pattern pattern = Pattern.compile( "^\\d{2}-\\d{2}-\\d{4}$");
+	        Matcher matcher = pattern.matcher(misc);
+
+	        String result = null;
+	        if (matcher.find()) {
+	            result = (matcher.group());
+	        }
+	        
+	        return result;
+	}
 	
 	
 }

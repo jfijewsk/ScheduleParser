@@ -500,7 +500,7 @@ public class GUI extends javax.swing.JFrame {
     	for (int i = 0; i < numOfTechs; i++) {
     		data[i][0] = selectedClass.getTechnicans().get(i).getName();
     		data[i][1] = selectedClass.getTechnicans().get(i).getBranch();
-    		data[i][2] = selectedClass.getTechnicans().get(i).getStartDate();
+    		data[i][2] = selectedClass.getTechnicans().get(i).getMisc();
 
 
     	}
