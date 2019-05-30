@@ -59,6 +59,10 @@ public class ConfigTechReviewDialog extends javax.swing.JDialog {
 		session4ReviewJlabel = new javax.swing.JLabel();
 		session4ReviewTextField = new javax.swing.JTextField();
 		session4ReviewBrowseBtn = new javax.swing.JButton();
+		rootSaveLocationJlabel = new javax.swing.JLabel();
+		rootSaveLocationTextField = new javax.swing.JTextField();
+		rootSaveLocationBrowseBtn = new javax.swing.JButton();
+		
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -119,78 +123,107 @@ public class ConfigTechReviewDialog extends javax.swing.JDialog {
 				session4ReviewBrowseBtnActionPerformed(evt);
 			}
 		});
+		
 
-		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-		getContentPane().setLayout(layout);
-		layout.setHorizontalGroup(
-				layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(layout.createSequentialGroup()
-						.addContainerGap()
-						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-								.addGroup(layout.createSequentialGroup()
-										.addComponent(session4ReviewJlabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-										.addGap(18, 18, 18)
-										.addComponent(session4ReviewTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 544, Short.MAX_VALUE))
-								.addGroup(layout.createSequentialGroup()
-										.addComponent(session3ReviewJlabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-										.addGap(18, 18, 18)
-										.addComponent(session3ReviewTextField))
-								.addGroup(layout.createSequentialGroup()
-										.addComponent(session1ReviewJlabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-										.addGap(18, 18, 18)
-										.addComponent(session1ReviewTextField))
-								.addGroup(layout.createSequentialGroup()
-										.addComponent(session2ReviewJlabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-										.addGap(18, 18, 18)
-										.addComponent(session2ReviewTextField)))
-						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-								.addComponent(session3ReviewBrowseBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
-								.addComponent(session2ReviewBrowseBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(session4ReviewBrowseBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(session1ReviewBrowseBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-						.addGap(18, 18, 18))
-				.addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-						.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-						.addGap(65, 65, 65)
-						.addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-						.addGap(298, 298, 298))
-				);
-		layout.setVerticalGroup(
-				layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(layout.createSequentialGroup()
-						.addContainerGap()
-						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-								.addComponent(session1ReviewJlabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-								.addComponent(session1ReviewTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-								.addComponent(session1ReviewBrowseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-								.addComponent(session2ReviewJlabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-								.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-										.addComponent(session2ReviewTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-										.addComponent(session2ReviewBrowseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
-						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-								.addComponent(session3ReviewJlabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-								.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-										.addComponent(session3ReviewTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-										.addComponent(session3ReviewBrowseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
-						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-								.addComponent(session4ReviewJlabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-								.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-										.addComponent(session4ReviewTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-										.addComponent(session4ReviewBrowseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
-						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-								.addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-								.addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-						.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-				);
+        rootSaveLocationJlabel.setText("Root save directory location: ");
 
-		pack();
+        rootSaveLocationTextField.setText("jTextField1");
+
+        rootSaveLocationBrowseBtn.setText("Browse");
+        rootSaveLocationBrowseBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rootSaveLocationBrowseBtnActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(session4ReviewJlabel)
+                                .addGap(18, 18, 18)
+                                .addComponent(session4ReviewTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 531, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(rootSaveLocationJlabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(rootSaveLocationTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 531, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(15, 15, 15)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(session4ReviewBrowseBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)
+                            .addComponent(rootSaveLocationBrowseBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(session3ReviewJlabel)
+                                .addGap(18, 18, 18)
+                                .addComponent(session3ReviewTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 531, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(session1ReviewJlabel)
+                                .addGap(18, 18, 18)
+                                .addComponent(session1ReviewTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 531, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(session2ReviewJlabel)
+                                .addGap(18, 18, 18)
+                                .addComponent(session2ReviewTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 531, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(session1ReviewBrowseBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)
+                            .addComponent(session2ReviewBrowseBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(session3ReviewBrowseBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(306, 306, 306)
+                .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(78, 78, 78)
+                .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(session1ReviewBrowseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(session1ReviewTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(session1ReviewJlabel))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(session2ReviewJlabel)
+                    .addComponent(session2ReviewTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(session2ReviewBrowseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(session3ReviewJlabel)
+                    .addComponent(session3ReviewBrowseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(session3ReviewTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(session4ReviewBrowseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(session4ReviewTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(session4ReviewJlabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rootSaveLocationJlabel)
+                    .addComponent(rootSaveLocationBrowseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rootSaveLocationTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(17, Short.MAX_VALUE))
+        );
+
+        pack();
 	}// </editor-fold>                        
 
 	private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {                                        
@@ -238,7 +271,14 @@ public class ConfigTechReviewDialog extends javax.swing.JDialog {
 		if (browseResult != null) {
 			session4ReviewTextField.setText(browseResult);
 		}    
-	}                                                                
+	}           
+	
+	private void rootSaveLocationBrowseBtnActionPerformed(java.awt.event.ActionEvent evt) {                                                        
+		String browseResult = browseFiles();
+		if (browseResult != null) {
+			rootSaveLocationTextField.setText(browseResult);
+		}    
+	}      
 
 	// Variables declaration - do not modify                     
 	private javax.swing.JButton cancelBtn;
@@ -255,6 +295,9 @@ public class ConfigTechReviewDialog extends javax.swing.JDialog {
 	private javax.swing.JButton session4ReviewBrowseBtn;
 	private javax.swing.JLabel session4ReviewJlabel;
 	private javax.swing.JTextField session4ReviewTextField;
+	private javax.swing.JButton rootSaveLocationBrowseBtn;
+	private javax.swing.JLabel rootSaveLocationJlabel;
+	private javax.swing.JTextField rootSaveLocationTextField;
 	// End of variables declaration    
 
 
