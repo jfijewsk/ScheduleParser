@@ -298,11 +298,12 @@ public class Properties {
 
 	public static String[] getTechReviewSettings() {
 
-		String[] result = new String[4];
+		String[] result = new String[5];
 		result[0] = configNonList.getProperty("techReviewSession1Location").toString();
 		result[1] = configNonList.getProperty("techReviewSession2Location").toString();
 		result[2] = configNonList.getProperty("techReviewSession3Location").toString();
 		result[3] = configNonList.getProperty("techReviewSession4Location").toString();
+		result[4] = configNonList.getProperty("techReviewRootSaveLocation").toString();
 
 
 		return result;
@@ -352,6 +353,7 @@ public class Properties {
 		configNonList.setProperty("techReviewSession2Location", values[1]);
 		configNonList.setProperty("techReviewSession3Location", values[2]);
 		configNonList.setProperty("techReviewSession4Location", values[3]);
+		configNonList.setProperty("techReviewRootSaveLocation", values[4]);
 
 		saveNonList();
 

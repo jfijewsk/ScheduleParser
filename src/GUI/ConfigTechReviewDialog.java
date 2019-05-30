@@ -127,7 +127,7 @@ public class ConfigTechReviewDialog extends javax.swing.JDialog {
 
         rootSaveLocationJlabel.setText("Root save directory location: ");
 
-        rootSaveLocationTextField.setText("jTextField1");
+        rootSaveLocationTextField.setText(currentValues[4]);
 
         rootSaveLocationBrowseBtn.setText("Browse");
         rootSaveLocationBrowseBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -227,11 +227,13 @@ public class ConfigTechReviewDialog extends javax.swing.JDialog {
 	}// </editor-fold>                        
 
 	private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {                                        
-		String[] values = new String[4];
+		String[] values = new String[5];
 		values[0] = session1ReviewTextField.getText();
 		values[1] = session2ReviewTextField.getText();
 		values[2] = session3ReviewTextField.getText();
 		values[3] = session4ReviewTextField.getText();
+		values[4] = rootSaveLocationTextField.getText();
+
 
 		prop.saveTechReviewsPDF(values);
 		JOptionPane.showMessageDialog(this,

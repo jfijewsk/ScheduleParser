@@ -300,8 +300,6 @@ public class PDFEditor {
 		PDDocumentCatalog docCatalog = pdfDocument.getDocumentCatalog();
 		PDAcroForm acroForm = docCatalog.getAcroForm();
 
-		String techName =""; 
-		String techBranch =""; 
 
 		if (acroForm != null)
 		{
@@ -344,10 +342,6 @@ public class PDFEditor {
 
 					String branchNum = prop.getBranchNumber(selectedTechs.get(i).branch);
 					List<String> address = prop.getShippingAddressText(selectedTechs.get(i).branch, selectedTechs.get(i));
-
-					if(branchNum == null || address == null) {
-						continue;
-					}
 
 					// Fill out pdf
 					dateField.setValue(dtf.format(localDate));
@@ -419,6 +413,47 @@ public class PDFEditor {
 			//			openPDFInAdobe(shippingFormFileLocation);
 
 		}
+	}
+	
+	public static void fillTechReviewForms(Class classInfo, 
+			Session session, ArrayList<Technician> selectedTechs) {
+			
+		// Get the correct session review form for that specific session
+		int sessionNumber = session.getSessionNumber();
+		String reviewFileLocation;
+		String[] allReviewLocations = prop.getTechReviewSettings();
+		
+		switch (sessionNumber) {
+		
+		case 1 : 
+			reviewFileLocation = allReviewLocations[0];
+			break;
+			
+		case 2 :
+			reviewFileLocation = allReviewLocations[1];
+			break;
+			
+		case 3: 
+			reviewFileLocation = allReviewLocations[2];
+			break;
+			
+		case 4: 
+			reviewFileLocation = allReviewLocations[3];
+			break;
+			
+		default :
+			JOptionPane.showMessageDialog(null, "Could not identify the session number \"sessionNumber\""
+					+ "\nto match it with the correct PDF file."
+					 , "Error Identifing Session Number", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+
+
+		PDDocument pdfDocument = openPDFFile(reviewFileLocation);
+
+		PDDocumentCatalog docCatalog = pdfDocument.getDocumentCatalog();
+		PDAcroForm acroForm = docCatalog.getAcroForm();
+
 	}
 
 
