@@ -25,6 +25,10 @@ import org.apache.pdfbox.printing.PDFPageable;
 
 import GUI.ConfigDoorSignDialog;
 
+/**
+ * @author fijewskij
+ *
+ */
 public class PDFEditor {
 
 	final static String DOOR_SIGN = "door sign";
@@ -192,7 +196,7 @@ public class PDFEditor {
 			for (Technician t: selectedTechs) {
 
 				allTechs = allTechs.concat(t.getName() +  "\n");
-				allBranches = allBranches.concat(t.getBranch() +  "\n");
+				allBranches = allBranches.concat(formatString(t.getBranch()) +  "\n");
 
 
 			}
@@ -265,20 +269,8 @@ public class PDFEditor {
 
 					if (printWasSucessful && printer != null) {
 						
-						// Get tech branch, make all lower case and then capitalize the first letters
-						String branchName = t.getBranch();
-						String[] splitName = branchName.split("\\s+|'+");
 						
-						for(int i = 0; i < splitName.length; i++) {
-							splitName[i] = splitName[i].substring(0,1).toUpperCase()
-									+ splitName[i].substring(1).toLowerCase();
-						}
-						
-						branchName = String.join(" ", splitName);
-						
-						techBranchField.setValue(branchName);
-
-						
+						techBranchField.setValue(formatString(t.getBranch()));
 						techNameField.setValue(t.getName());
 						
 						pdfDocument.save(nameTentFileLocation);
@@ -455,6 +447,22 @@ public class PDFEditor {
 		}
 
 		return combo;
+	}
+	
+	
+	/**
+	 * @return The String back with only the first letter and any letter after an ' symbol in upper case
+	 */
+	private static String formatString(String input) {
+		
+		String[] splitInput = input.split("\\s+|'+");
+		
+		for(int i = 0; i < splitInput.length; i++) {
+			splitInput[i] = splitInput[i].substring(0,1).toUpperCase()
+					+ splitInput[i].substring(1).toLowerCase();
+		}
+		
+		return String.join(" ", splitInput);
 	}
 
 }
