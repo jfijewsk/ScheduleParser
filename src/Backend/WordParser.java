@@ -106,7 +106,6 @@ public class WordParser {
 												|| !table.getRow(l).getCell(j).getText().equals("")
 												|| !table.getRow(l).getCell(j).getText().equals(" ")) {
 
-											System.out.println("Adding : " + table.getRow(l).getCell(j).getText());
 											String name = table.getRow(l).getCell(j).getText();
 											String branch = table.getRow(l).getCell(j - 1).getText();
 											String startDate = table.getRow(l).getCell(j + 1).getText();

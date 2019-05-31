@@ -457,8 +457,6 @@ public class PDFEditor {
 					 , "Error Identifing Session Number", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
-
-		System.out.println("Trying to open: " + reviewFileLocation);
 		
 		PDDocument pdfDocument = openPDFFile(reviewFileLocation);
 
