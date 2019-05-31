@@ -148,7 +148,7 @@ public class Properties {
 		List<Object> rawAddress = configBranches.getList(branch);
 		
 		if (rawAddress == null) {
-			JOptionPane.showMessageDialog(null, "Error retrieving the branch address for the " + orginalBranch 
+			JOptionPane.showMessageDialog(null, "Error retrieving the branch address for the " + orginalBranch + " branch."
 					+ "\nMake sure that branch is in the \"branches.properties\" file and that it is named \n"
 					+ "exactly: " + branch, 
 					"Error Retrieving Branch Address", JOptionPane.ERROR_MESSAGE);

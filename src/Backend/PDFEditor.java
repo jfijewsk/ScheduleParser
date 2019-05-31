@@ -352,15 +352,19 @@ public class PDFEditor {
 
 					String branchNum = prop.getBranchNumber(selectedTechs.get(i).getBranch());
 					List<String> address = prop.getShippingAddressText(selectedTechs.get(i).branch, selectedTechs.get(i));
+					
 
 					// Fill out pdf
 					dateField.setValue(dtf.format(localDate));
 					trainerName.setValue(prop.getDefaultTrainer());
 					trainerExt.setValue(prop.getDefaultTrainerExt());
 
-					deptNum1.setValue("0");
-					deptNum2.setValue(branchNum.substring(0, 1));
-					deptNum3.setValue(branchNum.substring(1));
+
+						deptNum1.setValue("0");
+						deptNum2.setValue(branchNum.substring(0, 1));
+						deptNum3.setValue(branchNum.substring(1));
+					
+
 
 					desc1.setValue("Workbook");
 

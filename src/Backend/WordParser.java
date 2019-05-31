@@ -102,14 +102,14 @@ public class WordParser {
 									for(int l = i+1; l < table.getRows().size(); l++) {
 
 										// make sure not to add a blank tech
-										if (table.getRow(l).getCell(j).getText() != null 
-												|| !table.getRow(l).getCell(j).getText().equals("")
-												|| !table.getRow(l).getCell(j).getText().equals(" ")) {
-
+										if ( !table.getRow(l).getCell(j).getTextRecursively().isEmpty()) {
+										
+							
 											String name = table.getRow(l).getCell(j).getText();
 											String branch = table.getRow(l).getCell(j - 1).getText();
 											String startDate = table.getRow(l).getCell(j + 1).getText();
 
+											System.out.println("(word parser) Adding tech: " + name);
 											students.add(new Technician(name, branch, startDate));
 
 										}
