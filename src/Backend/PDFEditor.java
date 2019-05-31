@@ -76,6 +76,8 @@ public class PDFEditor {
 	final static String REVIEW_HIRE_DATE = "Date of Hire";
 	final static String REVIEW_BRANCH_NAME = "Branch Name";
 	final static String REVIEW_CLASS_DATE =  "Date of Class";
+	final static String REVIEW_SESSION =  "Session";
+
 
 
 	private static Properties prop = Properties.getInstance();
@@ -473,6 +475,8 @@ public class PDFEditor {
 			PDField techHireDate = createPDFField(acroForm, REVIEW_HIRE_DATE, TECH_REVIEW);
 			PDField branchName = createPDFField(acroForm, REVIEW_BRANCH_NAME, TECH_REVIEW );
 			PDField classDate = createPDFField(acroForm, REVIEW_CLASS_DATE, TECH_REVIEW );
+			PDField sessionName = createPDFField(acroForm, REVIEW_SESSION, TECH_REVIEW );
+
 
 
 			// If there was an error on retrieving the pdf fields then do not proceed.
@@ -497,7 +501,7 @@ public class PDFEditor {
 					techHireDate.setValue(selectedTechs.get(i).getStartDate());
 					branchName.setValue(selectedTechs.get(i).getBranch());
 					classDate.setValue(session.getFullStartDate());
-					
+					sessionName.setValue("GTC " + session.getSessionName().toLowerCase());
 
 					// Save to directory
 					String rootSaveFolder = allReviewLocations[4];

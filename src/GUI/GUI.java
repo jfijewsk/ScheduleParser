@@ -611,7 +611,10 @@ public class GUI extends javax.swing.JFrame {
     	ArrayList<Technician> selectedTechs = new ArrayList<Technician>();
     	Class selectedClass = (Class) GTCClassNumCombo1.getSelectedItem();
     	for (int i : selectedRows) {
-    		selectedTechs.add(selectedClass.getTechnicans().get(i));
+    		if (selectedClass.getTechnicans().get(i).getName() != "") {
+ //   			System.out.println("Adding " + selectedClass.getTechnicans().get(i).getName() );
+    			selectedTechs.add(selectedClass.getTechnicans().get(i));
+    		}
     	}
     	return selectedTechs;
     }
