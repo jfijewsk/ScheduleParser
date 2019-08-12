@@ -40,8 +40,6 @@ public class WordParser {
 			Iterator<?> bodyElementIterator = xdoc.getBodyElementsIterator();
 			IBodyElement element = (IBodyElement) bodyElementIterator.next();
 			java.util.List<XWPFParagraph> paragraphList;
-			
-			
 
 			XWPFTable table = null;
 			String className = null;
@@ -103,8 +101,7 @@ public class WordParser {
 
 										// make sure not to add a blank tech
 										if ( !table.getRow(l).getCell(j).getTextRecursively().isEmpty()) {
-										
-							
+
 											String name = table.getRow(l).getCell(j).getText();
 											String branch = table.getRow(l).getCell(j - 1).getText();
 											String startDate = table.getRow(l).getCell(j + 1).getText();

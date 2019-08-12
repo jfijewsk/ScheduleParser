@@ -434,6 +434,9 @@ public class PDFEditor {
 			
 		// Get the correct session review form for that specific session
 		int sessionNumber = session.getSessionNumber();
+		
+		System.out.println("Found the session number and it is: " + sessionNumber);
+		
 		String reviewFileLocation;
 		String[] allReviewLocations = prop.getTechReviewSettings();
 		
@@ -477,7 +480,7 @@ public class PDFEditor {
 			PDField techHireDate = createPDFField(acroForm, REVIEW_HIRE_DATE, TECH_REVIEW);
 			PDField branchName = createPDFField(acroForm, REVIEW_BRANCH_NAME, TECH_REVIEW );
 			PDField classDate = createPDFField(acroForm, REVIEW_CLASS_DATE, TECH_REVIEW );
-			PDField sessionName = createPDFField(acroForm, REVIEW_SESSION, TECH_REVIEW );
+//			PDField sessionName = createPDFField(acroForm, REVIEW_SESSION, TECH_REVIEW );
 
 
 
@@ -503,7 +506,7 @@ public class PDFEditor {
 					techHireDate.setValue(selectedTechs.get(i).getStartDate());
 					branchName.setValue(selectedTechs.get(i).getBranch());
 					classDate.setValue(session.getFullStartDate());
-					sessionName.setValue("GTC " + session.getSessionName().toLowerCase());
+//					sessionName.setValue("GTC " + session.getSessionName().toLowerCase());
 
 					// Save to directory
 					String rootSaveFolder = allReviewLocations[4];
