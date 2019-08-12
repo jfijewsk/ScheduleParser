@@ -397,8 +397,8 @@ public class PDFEditor {
 						}
 
 						else {
-							JOptionPane.showMessageDialog(null, "Duplicate PDF Found. Changes NOT saved."
-									+ "Duplicate PDF will open after closing this message. Please edit manually to prevent overwritting files. "
+							JOptionPane.showMessageDialog(null, "Duplicate PDF Found. Changes NOT saved. "
+									+ "The preexisting PDF will open after closing this message. Please edit manually to prevent overwritting files. "
 									+ "\nDuplicate file is located here: " + fullFileName, 
 									"Error review already exists", JOptionPane.ERROR_MESSAGE);
 						}
@@ -526,7 +526,7 @@ public class PDFEditor {
 
 						else {
 							JOptionPane.showMessageDialog(null, "Duplicate PDF Found. Changes NOT saved."
-									+ "Duplicate PDF will open after closing this message. Please edit manually to prevent overwritting files. "
+									+ "The preexisting PDF will open after closing this message. Please edit manually to prevent overwritting files. "
 									+ "\nDuplicate file is located here: " + fullFileName, 
 									"Error review already exists", JOptionPane.ERROR_MESSAGE);
 						}
