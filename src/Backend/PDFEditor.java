@@ -236,6 +236,8 @@ public class PDFEditor {
 			catch (Exception e) {
 				JOptionPane.showMessageDialog(null, "Error saving pdf. Make sure that the pdf is not already open.", 
 						"Error saving pdf", JOptionPane.ERROR_MESSAGE);
+				
+				e.printStackTrace();
 			}
 
 			openPDFInAdobe(fileName);
