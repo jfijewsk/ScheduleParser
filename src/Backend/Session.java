@@ -37,7 +37,7 @@ public class Session{
 	}
 	
 	public String getDateRange() {
-		String result = "Invaild Date";
+		String result = "";
 		
 		try {
 		String[] startDateDashSplit = startDate.split("/");
@@ -50,8 +50,8 @@ public class Session{
 		
 		catch (Exception e) {
 			JOptionPane.showMessageDialog(null,
-					"Error getting the sessions date from the schedule document. Have Ronnie add a character before the session's date in the word\n"
-					+ "file and then remove the character. This clears out some metadata and allows this program to read the date.",
+					"Error getting the session's date from the training schedule Word document. Have Ronnie add a character before the session's  start date\n"
+					+ "and end date in the word file and then remove the character. This clears out some metadata and allows this program to read the date.",
 					"Error",
 					JOptionPane.PLAIN_MESSAGE);
 		}
