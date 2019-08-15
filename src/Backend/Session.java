@@ -1,5 +1,7 @@
 package Backend;
-	
+
+import javax.swing.JOptionPane;
+
 /**
  * @author fijewskij
  * Class to hold the different sessions of GTC Classes.
@@ -35,11 +37,26 @@ public class Session{
 	}
 	
 	public String getDateRange() {
+		String result = "Invaild Date";
+		
+		try {
 		String[] startDateDashSplit = startDate.split("/");
 		String[] endDateDashSplit = endDate.split("/");
 
-		return startDateDashSplit[0] + "/" + startDateDashSplit[1] 
+		result = startDateDashSplit[0] + "/" + startDateDashSplit[1] 
 				+ " - " + endDateDashSplit[0] + "/" + endDateDashSplit[1];
+		 
+		}
+		
+		catch (Exception e) {
+			JOptionPane.showMessageDialog(null,
+					"Error getting the sessions date from the schedule document. Have Ronnie add a character before the session's date in the word\n"
+					+ "file and then remove the character. This clears out some metadata and allows this program to read the date.",
+					"Error",
+					JOptionPane.PLAIN_MESSAGE);
+		}
+		
+		return result;
 	}
 	
 	@Override
