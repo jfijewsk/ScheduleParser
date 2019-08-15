@@ -78,6 +78,7 @@ public class GUI extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenuExit = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jMenuConfigTrainerInfo = new javax.swing.JMenuItem();
         jMenuConfigWord = new javax.swing.JMenuItem();
         jMenuConfigDoorSignPDF = new javax.swing.JMenuItem();
         jMenuConfigShippingFormPDF = new javax.swing.JMenuItem();
@@ -203,6 +204,13 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
+        jMenuConfigTrainerInfo.setText("Trainer Info");
+        jMenuConfigTrainerInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuConfigTrainerInfoActionPerformed(evt);
+            }
+        });
+        
         jMenuConfigWord.setText("Training Schedule File Location");
         jMenuConfigWord.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -263,6 +271,7 @@ public class GUI extends javax.swing.JFrame {
         
         refreshTable();
         
+        jMenu2.add(jMenuConfigTrainerInfo);
         jMenu2.add(jMenuConfigWord);
         jMenu2.add(jMenuConfigDoorSignPDF);
         jMenu2.add(jMenuConfigNameTentPDF);
@@ -409,7 +418,13 @@ public class GUI extends javax.swing.JFrame {
 
     private void jMenuExitActionPerformed(java.awt.event.ActionEvent evt) {                                          
         System.exit(0);
-    }                                         
+    }     
+    
+    private void jMenuConfigTrainerInfoActionPerformed(java.awt.event.ActionEvent evt) { 
+    	ConfigTrainerInfoDialog trainerDiag = new ConfigTrainerInfoDialog(this, rootPaneCheckingEnabled);
+    	trainerDiag.setLocationRelativeTo(this);
+    	trainerDiag.setVisible(true);
+    }     
 
     private void jMenuConfigWordActionPerformed(java.awt.event.ActionEvent evt) { 
     	ConfigWordDialog wordDiag = new ConfigWordDialog(this, rootPaneCheckingEnabled);
@@ -417,6 +432,7 @@ public class GUI extends javax.swing.JFrame {
     	wordDiag.setVisible(true);
     }     
     
+
     private void jMenuConfigDoorSignPDFActionPerformed(java.awt.event.ActionEvent evt) {   
     	ConfigDoorSignDialog doorSignDiag = new ConfigDoorSignDialog(this, rootPaneCheckingEnabled);
     	doorSignDiag.setLocationRelativeTo(this);
@@ -476,6 +492,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuConfigTrainerInfo;
     private javax.swing.JMenuItem jMenuConfigWord;
     private javax.swing.JMenuItem jMenuConfigDoorSignPDF;
     private javax.swing.JMenuItem jMenuConfigShippingFormPDF;

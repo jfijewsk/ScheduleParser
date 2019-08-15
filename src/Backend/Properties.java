@@ -308,6 +308,15 @@ public class Properties {
 
 		return result;
 	}
+	
+	public static String[] getTrainerInfo() {
+
+		String[] result = new String[2];
+		result[0] = configNonList.getProperty("trainerName").toString();
+		result[1] = configNonList.getProperty("trainerExt").toString();
+
+		return result;
+	}
 
 
 	/**
@@ -365,6 +374,18 @@ public class Properties {
 	public static void saveShippingFormPDF(String[] values) {
 		configNonList.setProperty("shippingFormPDFLocation", values[0]);
 		configNonList.setProperty("shippingRootSaveLocation", values[1]);
+
+
+		saveNonList();
+
+	}
+	
+	/**
+	 * Saves trainer information
+	 */
+	public static void saveTrainerInfo(String[] values) {
+		configNonList.setProperty("trainerName", values[0]);
+		configNonList.setProperty("trainerExt", values[1]);
 
 
 		saveNonList();

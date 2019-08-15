@@ -106,7 +106,7 @@ public class WordParser {
 											String branch = table.getRow(l).getCell(j - 1).getText();
 											String startDate = table.getRow(l).getCell(j + 1).getText();
 
-											System.out.println("(word parser) Adding tech: " + name);
+//											System.out.println("(word parser) Adding tech: " + name);
 											students.add(new Technician(name, branch, startDate));
 
 										}
