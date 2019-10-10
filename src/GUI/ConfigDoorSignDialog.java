@@ -10,8 +10,8 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
+import Backend.Main;
 import Backend.Properties;
-import main.Main;
 
 /**
  *

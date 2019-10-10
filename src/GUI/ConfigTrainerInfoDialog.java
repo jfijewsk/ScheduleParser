@@ -9,8 +9,8 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import Backend.Main;
 import Backend.Properties;
-import main.Main;
 
 public class ConfigTrainerInfoDialog extends javax.swing.JDialog  {
 

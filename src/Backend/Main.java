@@ -1,4 +1,4 @@
-package main;
+package Backend;
 
 import java.io.FileInputStream;
 import java.util.ArrayList;
@@ -15,7 +15,6 @@ import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFTable;
 import org.apache.xmlbeans.impl.xb.xsdschema.ListDocument.List;
 
-import Backend.Properties;
 import GUI.GUI;
 
 public class Main {
