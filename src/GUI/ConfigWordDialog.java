@@ -9,7 +9,7 @@ import java.io.File;
 import javax.swing.JOptionPane;
 
 import Backend.Properties;
-import main.Main;
+import Backend.Main;
 
 
 /**

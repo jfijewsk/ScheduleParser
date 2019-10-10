@@ -5,8 +5,8 @@ import java.awt.event.WindowListener;
 
 import javax.swing.JOptionPane;
 
+import Backend.Main;
 import Backend.Properties;
-import main.Main;
 
 /**
  *

@@ -4,7 +4,7 @@ import org.apache.tools.ant.filters.ReplaceTokens
 
 apply plugin: 'application'
 
-mainClassName = 'src/main.Main'
+mainClassName = 'src/Backend.Main'
 
 compileJava.options.encoding = 'UTF-8'
 
@@ -48,7 +48,7 @@ sourceSets {
  
  jar {
     manifest {
-        attributes "Main-Class": 'main.Main'
+        attributes "Main-Class": 'Backend.Main'
     }
       
  
