@@ -334,7 +334,7 @@ public class Properties {
 	 */
 	public static void saveNameTentFileName(String newLocation) {
 		config.setProperty("nameTentPDFLocation", newLocation);
-		saveNonList();
+		saveList();
 
 	}
 
