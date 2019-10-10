@@ -361,7 +361,8 @@ public class PDFEditor {
 					trainerName.setValue(prop.getDefaultTrainer());
 					trainerExt.setValue(prop.getDefaultTrainerExt());
 
-
+					System.out.println("Branch number for shipping is " + branchNum + " (PDFEditor)");
+					
 						deptNum1.setValue("0");
 						deptNum2.setValue(branchNum.substring(0, 1));
 						deptNum3.setValue(branchNum.substring(1));
@@ -400,8 +401,8 @@ public class PDFEditor {
 
 						else {
 							JOptionPane.showMessageDialog(null, "Duplicate PDF Found. Changes NOT saved. "
-									+ "The preexisting PDF will open after closing this message. Please edit manually to prevent overwritting files. "
-									+ "\nDuplicate file is located here: " + fullFileName, 
+									+ "The pre-existing PDF will open after closing this message. Please edit manually to prevent overwritting files. "
+									+ "\nThe duplicate file is located here: " + fullFileName, 
 									"Error review already exists", JOptionPane.ERROR_MESSAGE);
 						}
 
@@ -420,8 +421,7 @@ public class PDFEditor {
 			}
 
 			catch (Exception e) {
-				JOptionPane.showMessageDialog(null, "Error opening and editting the PDF. For the record, this is never "
-						+ "supposed to happen.\nLook outside and make sure pigs are not currently flying.", 
+				JOptionPane.showMessageDialog(null, "Error opening and editting the PDF.", 
 						"Error editting pdf", JOptionPane.ERROR_MESSAGE);
 				e.printStackTrace();
 			}

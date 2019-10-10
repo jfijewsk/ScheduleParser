@@ -187,10 +187,15 @@ public class Properties {
 		branch = branch.replaceAll("\\s+","");
 
 		if (configBranchesNonList.getString(branch + "BranchNum") == null) {
+			
+			System.out.println("getBranchNumber failed to match: " + configBranchesNonList.getString(branch + "BranchNum") + " to " + branch);
+			
 			JOptionPane.showMessageDialog(null, "Error retrieving the branch number for the " + orginalBranch 
 					+ "\nMake sure that branch is in the \"branches.properties\" file and that it is named \n"
 					+ "exactly: " + branch, 
 					"Error Retrieving Branch Number", JOptionPane.ERROR_MESSAGE);
+			
+			return "  ";
 		}
 		return configBranchesNonList.getString(branch + "BranchNum");
 
