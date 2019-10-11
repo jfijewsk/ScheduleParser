@@ -377,6 +377,7 @@ public class Properties {
 	 * Saves new file location of the shipping form and shipping form save location
 	 */
 	public static void saveShippingFormPDF(String[] values) {
+
 		configNonList.setProperty("shippingFormPDFLocation", values[0]);
 		configNonList.setProperty("shippingRootSaveLocation", values[1]);
 
