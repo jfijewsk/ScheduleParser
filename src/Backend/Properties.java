@@ -192,7 +192,7 @@ public class Properties {
 			
 			JOptionPane.showMessageDialog(null, "Error retrieving the branch number for the " + orginalBranch 
 					+ "\nMake sure that branch is in the \"branches.properties\" file and that it is named \n"
-					+ "exactly: " + branch, 
+					+ "exactly: " + branch + "BranchNum", 
 					"Error Retrieving Branch Number", JOptionPane.ERROR_MESSAGE);
 			
 			return "  ";
